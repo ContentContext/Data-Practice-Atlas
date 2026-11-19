@@ -204,7 +204,6 @@ footer .inner2{max-width:1320px;margin:0 auto}
     </div>
   </div>
   <h2 class="h2" id="h-gal" style="position:absolute;left:-9999px">Entries</h2>
-  <div class="cardkey" id="cardKey"></div>
   <div id="list"></div>
   <nav class="pager" id="pager" aria-label="Gallery pages"></nav>
 
@@ -452,7 +451,7 @@ function host(u){try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){re
 function card(d){
   const ok=d.verified.startsWith("verified"), srch=d.verified.startsWith("no link");
   const fk=primaryFamily(d);
-  const top=`<div class="topline"><span>${esc(d.status==="active"?"Active":d.status)} · ${esc(d.category)}</span><span class="fam" title="${esc(famLabel(fk))}">${shapeIcon(shapeOfFam(fk),famColor(fk),16)}</span></div>`;
+  const top=`<div class="topline"><span>${esc(d.status==="active"?"Active":d.status)} · ${esc(d.category)}</span><span class="fam" title="${esc(famLabel(fk))}">${shapeIcon(shapeOfFam(fk),famColor(fk),20)}</span></div>`;
   const bot=[d.year,d.place].filter(Boolean).join(" · ");
   const layers=`<div class="base"></div><div class="pattern" style="background:${patternFor(d)}"></div><div class="glass"></div><div class="tgrad"></div>`;
   return `<div class="card" tabindex="0" role="button" aria-pressed="false" aria-label="${esc(d.name)}, ${esc(d.category)}. Press to flip." style="--cb:${baseFor(d.category)}">
@@ -487,7 +486,6 @@ function renderKey(){
    <div class="row"><span class="lab">Pattern, shape &amp; line colour = theme family</span>${fams.map(k=>`<button class="kf" data-fam="${k}" aria-pressed="${state.fam===k}"><span class="tile" style="background:${famPattern(k)}, #3b1aa0"></span>${shapeIcon(shapeOfFam(k),famColor(k),12)}${esc(famLabel(k))} <span style="opacity:.6">${counts.get(k)}</span></button>`).join("")}</div>`;
 }
 function renderList(){
-  renderKey();
   const rows=sorted(filtered());
   let hint=""; if(state.q.trim()){const s=runSearch(state.q.trim()); if(s.hints.length) hint=` <span>· close matches for ${s.hints.map(([a,b])=>`“${esc(a)}” → ${esc(b)}`).join(", ")}</span>`; if(s.loose) hint+=` <span>· no entry matched every word, showing partial matches</span>`;}
   $("count").innerHTML=`${rows.length} <span>of ${DATA.length} entries</span>${hint}`;
@@ -658,7 +656,6 @@ function wire(){
   const setView=v=>{state.view=v;$("vCards").setAttribute("aria-pressed",v==="cards");$("vTable").setAttribute("aria-pressed",v==="table");try{localStorage.setItem("dpaView",v)}catch(e){};renderList()};
   $("vCards").onclick=()=>setView("cards"); $("vTable").onclick=()=>setView("table");
   try{if(localStorage.getItem("dpaView")==="table"){state.view="table";$("vCards").setAttribute("aria-pressed","false");$("vTable").setAttribute("aria-pressed","true")}}catch(e){}
-  $("cardKey").addEventListener("click",e=>{const b=e.target.closest("[data-fam]"); if(!b) return; state.fam=state.fam===b.dataset.fam?"":b.dataset.fam; state.page=1; renderList(); net&&net.highlight();});
   $("pager").addEventListener("click",e=>{const b=e.target.closest("[data-page]"); if(!b||b.disabled) return; goPage(+b.dataset.page);});
   $("copyCsv").onclick=async()=>{const cols=["name","category","who","year","place","tags","note","url","status","verified"];const rows=sorted(filtered());
     try{await navigator.clipboard.writeText([cols.join(",")].concat(rows.map(d=>cols.map(c=>csvCell(c==="tags"?d.tags.join(";"):d[c])).join(","))).join("\n"));toast(`Copied ${rows.length} rows`)}catch(e){toast("Copy was blocked by the browser")}};
