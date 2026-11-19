@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Practice Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: bold editorial header -> treemap + two small charts -> one-row filter bar -> spinnable 3D network -> flip-card gallery / table -> data-mark DPA wordmark footer.
+   Single visual world: electric deep purple, white ink, poppy and DV-yellow accents. */
+:root{
+  --bg:#24066a; --bg2:#300c8c; --panel:#2c0a7e; --ink:#ffffff; --muted:#cdbdff; --line:rgba(255,255,255,.16);
+  --poppy:#ff5b3a; --yellow:#ffd23f;
+  --sans:"Manrope", "Helvetica Neue", Arial, sans-serif;
+  --mono:"DM Mono", ui-monospace, Menlo, monospace;
+  --ease:cubic-bezier(.4,.2,.2,1);
+  --c-book:#ff8a5b; --c-person:#5ee0ff; --c-studio:#41e2a8; --c-fest:#ff5fc8; --c-portal:#b6f36b;
+  --c-source:#c9b8ff; --c-weird:#ffd23f; --c-web:#6fb6ff; --c-video:#f2e6c9; --c-tool:#9a93c9;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--sans);font-weight:500;
+  background-image:radial-gradient(1200px 600px at 85% -10%, #4a17c9 0%, transparent 60%),radial-gradient(900px 500px at -10% 30%, #3a0fb0 0%, transparent 55%);background-attachment:fixed}
+a{color:var(--yellow)}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.wrap{max-width:1320px;margin:0 auto;padding:40px 20px 0}
+.mono{font-family:var(--mono)}
+header{display:grid;gap:14px;margin-bottom:26px}
+.kicker{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--yellow)}
+h1{font:800 clamp(48px,8.4vw,120px)/.9 var(--sans);letter-spacing:-.045em;margin:0;text-wrap:balance}
+.lede{max-width:64ch;font-size:clamp(17px,1.5vw,20px);color:var(--muted);margin:0;font-weight:500}
+.stats{display:flex;flex-wrap:wrap;gap:22px;font:500 13px var(--mono);color:var(--muted)}
+.stats b{color:var(--ink);font:800 26px var(--sans);display:block;letter-spacing:-.02em}
+section{margin:0 0 30px}
+.h2{font:800 clamp(22px,2.4vw,32px)/1.1 var(--sans);letter-spacing:-.02em;margin:0 0 4px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 12px;max-width:80ch}
+.panel{background:rgba(20,2,70,.45);border:1px solid var(--line);border-radius:14px;padding:16px}
+#treemap{width:100%;height:440px;display:block}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media (max-width:860px){.charts{grid-template-columns:1fr}}
+.charts svg{width:100%;height:auto;display:block}
+.axis text,.lbl{font:500 11px var(--mono);fill:var(--muted)}
+.axis path,.axis line{stroke:var(--line)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+.tip{position:fixed;pointer-events:none;z-index:50;background:#11013a;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13px;max-width:280px;opacity:0;transition:opacity .12s}
+.tip b{font-weight:800}
+.tip .m{font:500 11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+/* filter row */
+.filters{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:minmax(180px,1.4fr) repeat(4,minmax(140px,1fr)) auto;gap:10px;align-items:end;
+  padding:14px;margin:0 -14px 30px;border-radius:14px;background:rgba(36,6,106,.92);backdrop-filter:blur(10px);border:1px solid var(--line)}
+@media (max-width:980px){.filters{grid-template-columns:1fr 1fr;position:static}}
+.f label{display:block;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.f input,.f select{width:100%;height:44px;padding:0 12px;border-radius:10px;border:2px solid rgba(255,255,255,.22);background:#1a0352;color:var(--ink);font:700 15px var(--sans)}
+.f select.mono-sel{font:500 13px var(--mono);text-transform:uppercase;letter-spacing:.04em}
+.f input:focus,.f select:focus{border-color:var(--yellow);outline:none}
+.btn{height:44px;padding:0 16px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:800 14px var(--sans);cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn.solid{background:var(--yellow);border-color:var(--yellow);color:#1a0352}
+/* network */
+.netwrap{position:relative;height:620px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(circle at 50% 45%, #3b10b5 0%, #1a0352 70%)}
+#net{width:100%;height:100%;display:block;cursor:grab}
+#net:active{cursor:grabbing}
+.netui{position:absolute;left:14px;top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(17,1,58,.7);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--yellow);color:#1a0352;border-color:var(--yellow)}
+.netlegend{position:absolute;right:14px;bottom:14px;max-width:300px;background:rgba(17,1,58,.78);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);display:grid;gap:5px}
+.netlegend svg{vertical-align:middle;margin-right:6px}
+.nethelp{position:absolute;left:14px;bottom:14px;font:500 12px var(--mono);color:var(--muted)}
+.netfallback{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:30px;color:var(--muted)}
+/* gallery bar */
+.gbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.count{font:800 22px var(--sans);letter-spacing:-.01em}
+.count span{font:500 13px var(--mono);color:var(--muted);margin-left:6px}
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.seg{display:inline-flex;border:2px solid var(--ink);border-radius:999px;overflow:hidden}
+.seg button{font:800 13px var(--sans);padding:9px 16px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+#sortSel{height:40px;border-radius:999px;border:2px solid rgba(255,255,255,.3);background:#1a0352;color:var(--ink);font:700 14px var(--sans);padding:0 14px}
+/* idea cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{aspect-ratio:3/4;perspective:1400px;cursor:pointer}
+.inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 560ms var(--ease), translate 320ms var(--ease)}
+.card:hover .inner{translate:0 -6px}
+.card.flipped .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:16px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-style:preserve-3d;
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.7);border:2px solid rgba(255,255,255,.14)}
+.face.back{transform:rotateY(180deg)}
+.base{position:absolute;inset:0;background:var(--cb)}
+.pattern{position:absolute;inset:0;opacity:.55;mix-blend-mode:screen}
+.glass{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02) 40%,rgba(10,0,40,.0) 60%);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.tgrad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,0,48,.0) 30%,rgba(14,0,48,.78) 100%)}
+.txt{position:absolute;inset:0;padding:18px;display:flex;flex-direction:column;justify-content:space-between;transform:translateZ(40px)}
+.topline,.botline{font:500 11px var(--mono);letter-spacing:.09em;text-transform:uppercase}
+.topline{display:flex;justify-content:space-between;gap:8px}
+.topline .st{color:var(--ink);opacity:.75}
+.venue{font:700 13px/1.3 var(--sans);color:rgba(255,255,255,.82);margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.title{font:800 clamp(22px,1.9vw,27px)/1.02 var(--sans);letter-spacing:-.025em;margin:0;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.botline{opacity:.8;margin-top:10px}
+.back .txt{justify-content:flex-start;gap:12px;background:rgba(14,0,48,.55)}
+.back .note{font:600 14px/1.45 var(--sans);margin:0;overflow:auto}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font:500 10.5px var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:3px 7px;border-radius:999px;border:1px solid rgba(255,255,255,.35)}
+.visit{margin-top:auto;align-self:flex-start;display:inline-flex;gap:8px;align-items:center;padding:9px 16px;border-radius:999px;background:var(--ink);color:#1a0352;font:800 14px var(--sans);text-decoration:none}
+.check{font:500 10.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;opacity:.8}
+.more{display:flex;justify-content:center;margin:26px 0 10px}
+/* table */
+.tablewrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);background:rgba(20,2,70,.5)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);white-space:nowrap;position:sticky;top:0;background:#26076f}
+th button{all:unset;cursor:pointer}
+td a{color:var(--ink);font-weight:800;text-decoration:none}
+td a:hover{color:var(--yellow)}
+td.cat{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+td.num{font-variant-numeric:tabular-nums}
+.empty{padding:50px;text-align:center;color:var(--muted);border:2px dashed var(--line);border-radius:14px}
+details.gov{margin:40px 0 0;border-top:1px solid var(--line);padding-top:16px}
+details.gov summary{cursor:pointer;font:800 18px var(--sans)}
+details.gov p{max-width:78ch;font-size:14px;color:var(--muted)}
+details.gov strong{color:var(--ink)}
+/* footer wordmark */
+footer{margin-top:50px;padding:30px 20px 40px;border-top:1px solid var(--line);background:#14013f}
+footer .inner2{max-width:1320px;margin:0 auto}
+#wordmark{width:100%;height:auto;display:block}
+.fcap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:500 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:12px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--yellow);color:#1a0352;padding:10px 16px;border-radius:999px;font-weight:800;opacity:0;transition:opacity .2s;z-index:60}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.inner,.toast{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker">Books · People · Studios · Festivals · Portals · Datasets · Tools</div>
+  <h1>Data Practice Atlas</h1>
+  <p class="lede">A curated, explorable index of the people, places, writing and tools at the meeting point of data, design, journalism and rights. Start with the map of the collection, spin the network to see how themes cross categories, then dig into the cards.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<section aria-labelledby="h-tree">
+  <h2 class="h2" id="h-tree">What's in the collection</h2>
+  <p class="sub">Every rectangle is a group of entries, sized by count. Categories are split by each entry's first theme; tools keep the seven sections of Andy Kirk's Visualising Data catalogue. Click a block to filter.</p>
+  <div class="panel"><svg id="treemap" role="img" aria-label="Treemap of entries by category and primary theme"></svg></div>
+  <div class="charts">
+    <div class="panel"><h3 class="h2" style="font-size:18px">When it was made</h3><p class="sub" id="yrSub"></p><svg id="years" role="img" aria-label="Entries by decade, stacked by category"></svg></div>
+    <div class="panel"><h3 class="h2" style="font-size:18px">How sure we are</h3><p class="sub">Link status per category: checked against a live source on 19 Nov 2026, a direct link still to check, or a web search because no link was confirmed.</p><svg id="checks" role="img" aria-label="Link verification state by category"></svg>
+      <div class="legend"><span><i class="sw" style="background:var(--yellow)"></i>Checked</span><span><i class="sw" style="background:#8f7fe0"></i>Check link</span><span><i class="sw" style="background:#ff5b3a"></i>Search only</span></div></div>
+  </div>
+</section>
+
+<div class="filters" role="search">
+  <div class="f"><label for="q">Search</label><input id="q" type="search" placeholder="Name, person, place, idea"></div>
+  <div class="f"><label for="catSel">Category</label><select id="catSel" class="mono-sel"></select></div>
+  <div class="f"><label for="statusSel">Status</label><select id="statusSel"><option value="">Any status</option><option value="active">Active</option><option value="archived">Archived</option><option value="historical">Historical</option><option value="unclear">Unclear</option></select></div>
+  <div class="f"><label for="linkSel">Link check</label><select id="linkSel"><option value="">Any</option><option value="verified">Checked 19 Nov 2026</option><option value="from">Check link</option><option value="no link">Search link only</option></select></div>
+  <div class="f"><label for="themeSel">Theme</label><select id="themeSel" class="mono-sel"></select></div>
+  <div class="f"><button class="btn" id="reset">Reset</button></div>
+</div>
+
+<section aria-labelledby="h-net">
+  <h2 class="h2" id="h-net">How it all connects</h2>
+  <p class="sub">Drag to spin, scroll to zoom. Large rings are categories; shapes are themes (shape shows the theme family); dots are entries, coloured by category. Themes that sit near the centre cross many categories; themes near a ring belong mostly to it. Click a theme or category to filter.</p>
+  <div class="netwrap">
+    <canvas id="net" aria-label="Interactive 3D network of entries, themes and categories"></canvas>
+    <div class="netui"><button class="chip" id="spin" aria-pressed="true">Auto-spin</button><button class="chip" id="links" aria-pressed="true">Show links</button><button class="chip" id="netReset">Reset view</button></div>
+    <div class="netlegend" id="netLegend"></div>
+    <div class="nethelp" id="netHelp">Hover for names</div>
+    <div class="netfallback" id="netFallback">The 3D view needs WebGL, which this browser has turned off. The cards below still have everything.</div>
+  </div>
+</section>
+
+<section aria-labelledby="h-gal">
+  <div class="gbar">
+    <div class="count" id="count"></div>
+    <div class="ctrl">
+      <label for="sortSel" class="mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Sort</label>
+      <select id="sortSel"><option value="name">Name A–Z</option><option value="-name">Name Z–A</option><option value="category">Category</option><option value="year">Year, oldest first</option><option value="-year">Year, newest first</option><option value="place">Place</option></select>
+      <div class="seg" role="group" aria-label="View"><button id="vCards" aria-pressed="true">Cards</button><button id="vTable" aria-pressed="false">Table</button></div>
+      <button class="btn" id="copyCsv">Copy CSV</button>
+    </div>
+  </div>
+  <h2 class="h2" id="h-gal" style="position:absolute;left:-9999px">Entries</h2>
+  <div id="list"></div>
+  <div class="more" id="moreWrap"><button class="btn solid" id="more">Show more</button></div>
+
+  <details class="gov">
+    <summary>Data governance and constraints</summary>
+    <p><strong>Provenance.</strong> A personal list, expanded with Claude on 19 Nov 2026 in several rounds, plus a Tool category that reproduces Andy Kirk's Visualising Data resources catalogue (293 tools, read the same day) in its seven original sections, without descriptions. <span id="provcounts"></span></p>
+    <p><strong>Corrections.</strong> On the Visualising Data catalogue page about a dozen links sit on the wrong tile (for example Vega and Vega-Lite, Plotly and Dash); the Atlas corrects them and says so on each card. RightsCon 2026 (Lusaka) was cancelled. "Super dot" is Superdot (Basel); its Venice work is listed as the Come ViVi Venezia project.</p>
+    <p><strong>How the pictures are made.</strong> Treemap groups use each entry's first theme. The decade chart only counts entries with a year. Network positions are computed, not drawn by hand: each theme sits at the average position of the categories its entries belong to, and each entry sits between its category and its themes. Theme families (the shapes) are an editorial grouping made for this page.</p>
+    <p><strong>Gaps.</strong> Leans towards Europe, North America and English-language work despite deliberate additions from Latin America, Africa, MENA, South and Southeast Asia and Italy. Years and places are blank where not confirmed. Event dates change.</p>
+    <p><strong>Permitted use.</strong> A starting reading, contacts and tools list for teaching, inspiration and programme research. <strong>Not for</strong> citation without checking each link, claims of completeness, or ranking people or studios.</p>
+  </details>
+</section>
+</div>
+
+<footer>
+  <div class="inner2">
+    <canvas id="wordmark" aria-label="DPA wordmark drawn from the Atlas entries: one mark per entry"></canvas>
+    <div class="fcap"><span id="wmCap"></span><span>Data Practice Atlas · 2026</span></div>
+  </div>
+</footer>
+<div class="tip" id="tip"></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+const INLINE = null;
+let DATA = [];
+const CATS = [["Book","--c-book"],["Person","--c-person"],["Studio & Lab","--c-studio"],["Festival & Conference","--c-fest"],["Data Portal","--c-portal"],["Dataset Source","--c-source"],["Weird Dataset","--c-weird"],["Website & Publication","--c-web"],["Video & Podcast","--c-video"],["Tool","--c-tool"]];
+const css = getComputedStyle(document.documentElement);
+const COLOR = Object.fromEntries(CATS.map(([c,v])=>[c, css.getPropertyValue(v).trim()]));
+const catIdx = Object.fromEntries(CATS.map(([c],i)=>[c,i]));
+const $ = id => document.getElementById(id);
+const esc = s => String(s??"").replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const SECS = ["charting","coding","complex","mapping","data","colour","specialist"];
+
+/* ---------- theme families (editorial grouping, encoded as shapes) ---------- */
+const FAMILIES = [
+ {key:"design", label:"Design & visualisation", shape:"sphere", tags:"information-design dataviz infographics data-art art storytelling data-humanism creative-coding generative physicalisation drawing illustration design craft process sound music sonification motion data-experience interaction-design speculative-design critical-design comics pictograms diagrams"},
+ {key:"rights", label:"Rights, justice & ethics", shape:"tetra", tags:"human-rights ai-ethics data-feminism data-justice activism race gender power ethics surveillance privacy digital-rights algorithms data-gaps bias facial-recognition data-colonialism design-justice inequality welfare migration evidence civilian-harm"},
+ {key:"civic", label:"Civic, cities & policy", shape:"cube", tags:"cities civic-data civic-tech government policy democracy open-data official-statistics development data-governance participatory tourism housing open-government smart-city regional public-spending transparency legibility"},
+ {key:"journalism", label:"Journalism & investigation", shape:"octa", tags:"journalism investigation fact-checking misinformation osint conflict literacy data-journalism media-startups"},
+ {key:"research", label:"Science, stats & research", shape:"icosa", tags:"statistics research complexity networks economics science theory history classic academic humanities climate ml ai data-science forecasting information-theory hci cultural-analytics digital-humanities"},
+ {key:"maps", label:"Maps & the natural world", shape:"cone", tags:"maps mapping spatial-analysis cartography counter-mapping trees nature animals space earth birds biodiversity oceans weather"},
+ {key:"regions", label:"Regions", shape:"torus", tags:"italy latin-america africa asia india mena nordic europe"},
+ {key:"tools", label:"Tools & catalogue sections", shape:"dodeca", tags:"coding charting specialist data complex colour tools tool open-source d3 r python reference visualising-data-catalogue datasets"},
+];
+const famOf = {}; FAMILIES.forEach(f=>f.tags.split(" ").forEach(t=>famOf[t]=f.key));
+const famByKey = Object.fromEntries(FAMILIES.map(f=>[f.key,f]));
+const familyOfTag = t => famOf[t] || "other";
+
+/* ---------- state ---------- */
+const state = {cat:"", theme:"", status:"", link:"", q:"", sort:"name", view:"cards", shown:60};
+function matches(d){
+  if(state.cat && d.category!==state.cat) return false;
+  if(state.theme && !d.tags.includes(state.theme)) return false;
+  if(state.status && d.status!==state.status) return false;
+  if(state.link && !d.verified.startsWith(state.link)) return false;
+  const q=state.q.trim().toLowerCase();
+  if(q){const hay=[d.name,d.who,d.place,d.note,d.tags.join(" "),d.category].join(" ").toLowerCase(); if(!q.split(/\s+/).every(w=>hay.includes(w))) return false;}
+  return true;
+}
+const filtered = () => DATA.filter(matches);
+const yearOf = d => {const m=String(d.year||"").match(/\d{4}/);return m?+m[0]:null};
+function sorted(rows){
+  const k=state.sort, desc=k.startsWith("-"), key=k.replace("-","");
+  const nm=(a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:"base"});
+  return [...rows].sort((a,b)=>{
+    if(key==="name") return desc?nm(b,a):nm(a,b);
+    if(key==="category") return (catIdx[a.category]-catIdx[b.category])||nm(a,b);
+    if(key==="place"){const pa=a.place||"￿",pb=b.place||"￿";return pa.localeCompare(pb)||nm(a,b);}
+    if(key==="year"){const ya=yearOf(a),yb=yearOf(b); if(ya===null&&yb===null) return nm(a,b); if(ya===null) return 1; if(yb===null) return -1; return (desc?yb-ya:ya-yb)||nm(a,b);}
+    return 0;});
+}
+
+/* ---------- tooltip ---------- */
+const tip=$("tip");
+function showTip(html,x,y){tip.innerHTML=html;tip.style.opacity=1;const w=tip.offsetWidth,h=tip.offsetHeight;tip.style.left=Math.min(x+14,innerWidth-w-8)+"px";tip.style.top=Math.min(y+14,innerHeight-h-8)+"px"}
+function hideTip(){tip.style.opacity=0}
+
+/* ---------- header stats ---------- */
+function stats(){
+  const c=k=>DATA.filter(d=>d.verified.startsWith(k)).length;
+  const themes=new Set(DATA.flatMap(d=>d.tags)).size;
+  $("stats").innerHTML=`<span><b>${DATA.length}</b>entries</span><span><b>${CATS.length}</b>categories</span><span><b>${themes}</b>themes</span><span><b>${c("verified")}</b>checked live 19 Nov 2026</span>`;
+  $("provcounts").textContent=`${c("verified")} records were checked against live web sources that day; ${c("from")} rely on general knowledge with a direct link to check; ${c("no link")} have no confirmed link and point to a web search instead.`;
+}
+
+/* ---------- treemap ---------- */
+function primaryGroup(d){
+  if(d.category==="Tool") return d.tags.find(t=>SECS.includes(t))||"other";
+  return d.tags.find(t=>t!=="visualising-data-catalogue")||"other";
+}
+function treemap(){
+  const svg=d3.select("#treemap"); const W=svg.node().clientWidth||1200, H=440; svg.attr("viewBox",`0 0 ${W} ${H}`);
+  const byCat=d3.group(DATA,d=>d.category);
+  const root={name:"all",children:CATS.map(([c])=>{
+    const rows=byCat.get(c)||[]; const g=d3.rollups(rows,v=>v.length,primaryGroup).sort((a,b)=>b[1]-a[1]);
+    const big=g.filter(([k,n])=>n>=3), small=g.filter(([k,n])=>n<3); const kids=big.map(([k,n])=>({name:k,value:n,cat:c}));
+    const rest=d3.sum(small,x=>x[1]); if(rest) kids.push({name:"other",value:rest,cat:c});
+    return {name:c,children:kids};})};
+  const h=d3.hierarchy(root).sum(d=>d.value||0).sort((a,b)=>b.value-a.value);
+  d3.treemap().size([W,H]).paddingTop(26).paddingInner(2).paddingOuter(3).round(true)(h);
+  svg.selectAll("*").remove();
+  const cats=svg.selectAll("g.cat").data(h.children).join("g").attr("class","cat");
+  cats.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>d.x1-d.x0).attr("height",d=>d.y1-d.y0).attr("rx",6).attr("fill","rgba(10,0,40,.55)").attr("stroke",d=>COLOR[d.data.name]).attr("stroke-width",2)
+    .style("cursor","pointer").on("click",(e,d)=>{setFilter({cat:d.data.name,theme:""})});
+  cats.append("text").attr("x",d=>d.x0+8).attr("y",d=>d.y0+18).attr("fill",d=>COLOR[d.data.name])
+    .style("font","500 12px 'DM Mono', monospace").style("text-transform","uppercase").style("letter-spacing",".06em").style("pointer-events","none")
+    .text(d=>{const w=d.x1-d.x0; const s=`${d.data.name} ${d.value}`; return w>s.length*8?s:(w>40?d.value:"")});
+  const leaves=svg.selectAll("g.leaf").data(h.leaves()).join("g").attr("class","leaf").style("cursor","pointer");
+  leaves.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>Math.max(0,d.x1-d.x0)).attr("height",d=>Math.max(0,d.y1-d.y0)).attr("rx",3)
+    .attr("fill",d=>COLOR[d.data.cat]).attr("fill-opacity",(d,i)=>.95-.5*(d.parent.children.indexOf(d)/Math.max(1,d.parent.children.length-1)));
+  leaves.append("text").attr("x",d=>d.x0+6).attr("y",d=>d.y0+15).attr("fill","#14013f").style("font","500 11px 'DM Mono', monospace").style("pointer-events","none")
+    .text(d=>{const w=d.x1-d.x0,hh=d.y1-d.y0; if(hh<18) return ""; const s=d.data.name; return w>s.length*6.8+8?s:""});
+  leaves.on("mousemove",(e,d)=>showTip(`<div class="m">${esc(d.data.cat)}</div><b>${esc(d.data.name)}</b> · ${d.value} entries`,e.clientX,e.clientY)).on("mouseleave",hideTip)
+    .on("click",(e,d)=>setFilter({cat:d.data.cat,theme:d.data.name==="other"?"":d.data.name}));
+}
+
+/* ---------- decades chart ---------- */
+function yearsChart(){
+  const rows=DATA.filter(d=>yearOf(d)!==null);
+  $("yrSub").textContent=`Entries with a known year: ${rows.length} of ${DATA.length}. Tools and most portals have none, so they are absent here.`;
+  const bucket=y=>y<1950?"<1950":Math.floor(y/10)*10+"s";
+  const order=["<1950","1950s","1960s","1970s","1980s","1990s","2000s","2010s","2020s"];
+  const cats=CATS.map(c=>c[0]).filter(c=>rows.some(d=>d.category===c));
+  const table=order.map(b=>{const o={b};cats.forEach(c=>o[c]=rows.filter(d=>bucket(yearOf(d))===b&&d.category===c).length);return o});
+  const W=560,H=260,m={t:10,r:10,b:28,l:34}; const svg=d3.select("#years").attr("viewBox",`0 0 ${W} ${H}`); svg.selectAll("*").remove();
+  const x=d3.scaleBand(order,[m.l,W-m.r]).padding(.18), st=d3.stack().keys(cats)(table);
+  const y=d3.scaleLinear([0,d3.max(st.at(-1),d=>d[1])]).nice().range([H-m.b,m.t]);
+  svg.append("g").attr("class","axis").attr("transform",`translate(0,${H-m.b})`).call(d3.axisBottom(x).tickSize(0)).call(g=>g.select(".domain").remove());
+  svg.append("g").attr("class","axis").attr("transform",`translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(-(W-m.l-m.r))).call(g=>g.select(".domain").remove()).call(g=>g.selectAll("line").attr("stroke-opacity",.4));
+  svg.append("g").selectAll("g").data(st).join("g").attr("fill",s=>COLOR[s.key]).selectAll("rect").data(s=>s.map(v=>Object.assign(v,{key:s.key}))).join("rect")
+    .attr("x",d=>x(d.data.b)).attr("width",x.bandwidth()).attr("y",d=>y(d[1])).attr("height",d=>Math.max(0,y(d[0])-y(d[1]))).attr("rx",2)
+    .on("mousemove",(e,d)=>showTip(`<div class="m">${esc(d.data.b)}</div><b>${esc(d.key)}</b> · ${d[1]-d[0]}`,e.clientX,e.clientY)).on("mouseleave",hideTip);
+}
+
+/* ---------- verification chart ---------- */
+function checksChart(){
+  const keys=[["verified","var(--yellow)","Checked"],["from","#8f7fe0","Check link"],["no link","#ff5b3a","Search only"]];
+  const rows=CATS.map(([c])=>{const r=DATA.filter(d=>d.category===c);const o={c,n:r.length};keys.forEach(([k])=>o[k]=r.filter(d=>d.verified.startsWith(k)).length);return o});
+  const W=560,H=280,m={t:6,r:40,b:10,l:150}; const svg=d3.select("#checks").attr("viewBox",`0 0 ${W} ${H}`); svg.selectAll("*").remove();
+  const y=d3.scaleBand(rows.map(r=>r.c),[m.t,H-m.b]).padding(.22), x=d3.scaleLinear([0,d3.max(rows,r=>r.n)],[m.l,W-m.r]);
+  const st=d3.stack().keys(keys.map(k=>k[0]))(rows);
+  svg.append("g").selectAll("g").data(st).join("g").attr("fill",(s,i)=>keys[i][1]).selectAll("rect").data((s,i)=>s.map(v=>Object.assign(v,{lab:keys[i][2]}))).join("rect")
+    .attr("y",d=>y(d.data.c)).attr("height",y.bandwidth()).attr("x",d=>x(d[0])).attr("width",d=>Math.max(0,x(d[1])-x(d[0])))
+    .on("mousemove",(e,d)=>showTip(`<div class="m">${esc(d.data.c)}</div><b>${esc(d.lab)}</b> · ${d[1]-d[0]} of ${d.data.n}`,e.clientX,e.clientY)).on("mouseleave",hideTip);
+  svg.append("g").selectAll("text").data(rows).join("text").attr("class","lbl").attr("x",m.l-8).attr("y",r=>y(r.c)+y.bandwidth()/2+4).attr("text-anchor","end").text(r=>r.c.toUpperCase());
+  svg.append("g").selectAll("text").data(rows).join("text").attr("class","lbl").attr("x",r=>x(r.n)+6).attr("y",r=>y(r.c)+y.bandwidth()/2+4).style("fill","#fff").text(r=>r.n);
+}
+
+/* ---------- filter controls ---------- */
+function fillSelects(){
+  const cs=$("catSel"); cs.innerHTML=`<option value="">All categories</option>`+CATS.map(([c])=>`<option value="${esc(c)}">${esc(c)} (${DATA.filter(d=>d.category===c).length})</option>`).join("");
+  const counts=d3.rollups(DATA.flatMap(d=>d.tags),v=>v.length,t=>t);
+  const byFam=d3.group(counts,([t])=>familyOfTag(t));
+  const ts=$("themeSel"); let h=`<option value="">All themes</option>`;
+  [...FAMILIES.map(f=>f.key),"other"].forEach(k=>{const list=(byFam.get(k)||[]).sort((a,b)=>b[1]-a[1]); if(!list.length) return;
+    h+=`<optgroup label="${esc(k==="other"?"Other themes":famByKey[k].label)}">`+list.map(([t,n])=>`<option value="${esc(t)}">${esc(t)} (${n})</option>`).join("")+`</optgroup>`;});
+  ts.innerHTML=h;
+}
+function syncControls(){ $("catSel").value=state.cat; $("themeSel").value=state.theme; $("statusSel").value=state.status; $("linkSel").value=state.link; $("q").value=state.q; }
+function setFilter(p, scroll=true){ Object.assign(state,p,{shown:60}); syncControls(); renderList(); net&&net.highlight(); if(scroll) document.getElementById("h-net").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); }
+
+/* ---------- cards & table ---------- */
+function patternFor(d){
+  const fam=familyOfTag(d.tags[0]||""); const c="rgba(255,255,255,.22)";
+  const P={sphere:`radial-gradient(circle at 70% 30%, ${c} 0 18%, transparent 19%), radial-gradient(circle at 70% 30%, transparent 0 30%, ${c} 31% 32%, transparent 33%)`,
+    tetra:`repeating-linear-gradient(60deg, transparent 0 14px, ${c} 14px 16px)`,
+    cube:`repeating-linear-gradient(0deg, transparent 0 22px, ${c} 22px 24px), repeating-linear-gradient(90deg, transparent 0 22px, ${c} 22px 24px)`,
+    octa:`repeating-linear-gradient(45deg, transparent 0 18px, ${c} 18px 20px), repeating-linear-gradient(-45deg, transparent 0 18px, ${c} 18px 20px)`,
+    icosa:`radial-gradient(${c} 2px, transparent 2.5px) 0 0/14px 14px`,
+    cone:`repeating-radial-gradient(circle at 100% 0%, transparent 0 16px, ${c} 16px 18px)`,
+    torus:`repeating-radial-gradient(circle at 50% 120%, transparent 0 20px, ${c} 20px 23px)`,
+    dodeca:`repeating-linear-gradient(90deg, transparent 0 8px, ${c} 8px 10px)`,
+    other:`radial-gradient(${c} 1.5px, transparent 2px) 0 0/10px 10px`};
+  const shape=(famByKey[fam]||{shape:"other"}).shape; return P[shape]||P.other;
+}
+function baseFor(cat){ return `color-mix(in srgb, ${COLOR[cat]} 42%, #1c0458)`; }
+function host(u){try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return ""}}
+function card(d){
+  const ok=d.verified.startsWith("verified"), srch=d.verified.startsWith("no link");
+  const top=`<div class="topline"><span>${esc(d.status==="active"?"Active":d.status)} · ${esc(d.category)}</span></div>`;
+  const bot=[d.year,d.place].filter(Boolean).join(" · ");
+  const layers=`<div class="base"></div><div class="pattern" style="background:${patternFor(d)}"></div><div class="glass"></div><div class="tgrad"></div>`;
+  return `<div class="card" tabindex="0" role="button" aria-pressed="false" aria-label="${esc(d.name)}, ${esc(d.category)}. Press to flip." style="--cb:${baseFor(d.category)}">
+   <div class="inner">
+    <div class="face front">${layers}<div class="txt">${top}<div><div class="venue">${esc(d.who)}</div><h3 class="title">${esc(d.name)}</h3><div class="botline">${esc(bot)||"&nbsp;"}</div></div></div></div>
+    <div class="face back">${layers}<div class="txt">${top}<h3 class="title" style="font-size:20px">${esc(d.name)}</h3>${d.note?`<p class="note">${esc(d.note)}</p>`:""}
+      <div class="tags">${d.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
+      <div class="check">${ok?"Checked 19 Nov 2026":(srch?"No link confirmed":"Link not yet checked")}</div>
+      <a class="visit" href="${esc(d.url)}" target="_blank" rel="noopener">${srch?"Search for it":"Visit "+esc(host(d.url))} ↗</a></div></div>
+   </div></div>`;
+}
+function table(rows){
+  const th=(k,l)=>{const on=state.sort.replace("-","")===k;const a=on?(state.sort.startsWith("-")?" ↓":" ↑"):"";return `<th scope="col"><button data-sortcol="${k}">${l}${a}</button></th>`};
+  return `<div class="tablewrap"><table><thead><tr>${th("name","Name")}${th("category","Category")}<th scope="col">Who</th>${th("year","Year")}${th("place","Place")}<th scope="col">Themes</th><th scope="col">Status</th></tr></thead><tbody>${rows.map(d=>`<tr><td><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.name)}</a></td><td class="cat" style="color:${COLOR[d.category]}">${esc(d.category)}</td><td>${esc(d.who)}</td><td class="num">${esc(d.year)}</td><td>${esc(d.place)}</td><td class="mono" style="font-size:12px">${esc(d.tags.join(", "))}</td><td>${d.status==="active"?"":esc(d.status)}</td></tr>`).join("")}</tbody></table></div>`;
+}
+function renderList(){
+  const rows=sorted(filtered());
+  $("count").innerHTML=`${rows.length} <span>of ${DATA.length} entries</span>`;
+  const list=$("list");
+  if(!rows.length){list.innerHTML=`<div class="empty">Nothing matches. Clear a filter or press Reset.</div>`;$("moreWrap").hidden=true;return;}
+  if(state.view==="table"){list.className="";list.innerHTML=table(rows);$("moreWrap").hidden=true;return;}
+  list.className="grid"; list.innerHTML=rows.slice(0,state.shown).map(card).join("");
+  $("moreWrap").hidden=rows.length<=state.shown; $("more").textContent=`Show more (${rows.length-state.shown} left)`;
+}
+
+/* ---------- 3D network ---------- */
+let net=null;
+function buildNetwork(){
+  const canvas=$("net");
+  let renderer; try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}); }catch(e){ $("netFallback").style.display="grid"; return null; }
+  if(!THREE.OrbitControls){ $("netFallback").style.display="grid"; return null; }
+  renderer.setPixelRatio(Math.min(2,devicePixelRatio));
+  const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(50,1,1,2000); camera.position.set(0,20,190);
+  const controls=new THREE.OrbitControls(camera,canvas); controls.enableDamping=true; controls.autoRotate=!matchMedia("(prefers-reduced-motion: reduce)").matches; controls.autoRotateSpeed=.6; controls.minDistance=40; controls.maxDistance=420;
+  scene.add(new THREE.AmbientLight(0xffffff,.55)); const dl=new THREE.DirectionalLight(0xffffff,.9); dl.position.set(60,80,120); scene.add(dl);
+  // seeded random
+  let s=7; const rnd=()=>{s=(s*16807)%2147483647;return (s-1)/2147483646}; const gauss=()=>{let u=rnd()||1e-9,v=rnd();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
+  // category hubs on a Fibonacci sphere
+  const R=72, catPos={};
+  CATS.forEach(([c],i)=>{const n=CATS.length,y=1-(i+.5)/n*2,r=Math.sqrt(1-y*y),th=i*2.39996;catPos[c]=new THREE.Vector3(Math.cos(th)*r*R,y*R,Math.sin(th)*r*R);});
+  // theme hubs: themes with >=5 entries
+  const tagCount=d3.rollup(DATA.flatMap(d=>d.tags),v=>v.length,t=>t);
+  const hubTags=[...tagCount].filter(([t,n])=>n>=5&&t!=="visualising-data-catalogue").map(([t])=>t);
+  const themePos={};
+  hubTags.forEach(t=>{const v=new THREE.Vector3();let n=0;DATA.forEach(d=>{if(d.tags.includes(t)){v.add(catPos[d.category]);n++;}});v.divideScalar(n);
+    const len=v.length(); const spread=len/R; v.multiplyScalar(.78); v.add(new THREE.Vector3(gauss()*6,gauss()*6,gauss()*6)); themePos[t]={pos:v,n,spread};});
+  // entry positions
+  const pos=new Float32Array(DATA.length*3), col=new Float32Array(DATA.length*3), baseCol=[];
+  const entryPos=DATA.map((d,i)=>{const c=catPos[d.category];const ts=d.tags.filter(t=>themePos[t]);const m=new THREE.Vector3();
+    if(ts.length){ts.forEach(t=>m.add(themePos[t].pos));m.divideScalar(ts.length);} else m.copy(c);
+    const p=c.clone().multiplyScalar(.6).add(m.multiplyScalar(.4)).add(new THREE.Vector3(gauss()*7,gauss()*7,gauss()*7));
+    pos.set([p.x,p.y,p.z],i*3); const cc=new THREE.Color(COLOR[d.category]); baseCol.push(cc); col.set([cc.r,cc.g,cc.b],i*3); return p;});
+  const dotTex=(()=>{const cv=document.createElement("canvas");cv.width=cv.height=64;const g=cv.getContext("2d");const gr=g.createRadialGradient(32,32,0,32,32,30);gr.addColorStop(0,"rgba(255,255,255,1)");gr.addColorStop(.55,"rgba(255,255,255,.95)");gr.addColorStop(1,"rgba(255,255,255,0)");g.fillStyle=gr;g.beginPath();g.arc(32,32,30,0,7);g.fill();return new THREE.CanvasTexture(cv)})();
+  const pg=new THREE.BufferGeometry(); pg.setAttribute("position",new THREE.BufferAttribute(pos,3)); pg.setAttribute("color",new THREE.BufferAttribute(col,3));
+  const points=new THREE.Points(pg,new THREE.PointsMaterial({size:3.4,map:dotTex,vertexColors:true,transparent:true,depthWrite:false,alphaTest:.05,sizeAttenuation:true})); scene.add(points);
+  // links
+  const segs=[], segCol=[];
+  DATA.forEach((d,i)=>{const p=entryPos[i];const cc=baseCol[i];
+    const add=(q,a)=>{segs.push(p.x,p.y,p.z,q.x,q.y,q.z);segCol.push(cc.r*a,cc.g*a,cc.b*a,cc.r*a,cc.g*a,cc.b*a)};
+    add(catPos[d.category],.35); d.tags.forEach(t=>{if(themePos[t]) add(themePos[t].pos,.22)});});
+  const lg=new THREE.BufferGeometry(); lg.setAttribute("position",new THREE.Float32BufferAttribute(segs,3)); lg.setAttribute("color",new THREE.Float32BufferAttribute(segCol,3));
+  const lines=new THREE.LineSegments(lg,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.55,depthWrite:false,blending:THREE.AdditiveBlending})); scene.add(lines);
+  // hub meshes
+  const geo={sphere:()=>new THREE.SphereGeometry(1,20,14),tetra:()=>new THREE.TetrahedronGeometry(1.3),cube:()=>new THREE.BoxGeometry(1.6,1.6,1.6),octa:()=>new THREE.OctahedronGeometry(1.3),
+    icosa:()=>new THREE.IcosahedronGeometry(1.2),cone:()=>new THREE.ConeGeometry(1,2,16),torus:()=>new THREE.TorusGeometry(1,.38,10,24),dodeca:()=>new THREE.DodecahedronGeometry(1.2),other:()=>new THREE.OctahedronGeometry(.9,0)};
+  const hubs=[];
+  hubTags.forEach(t=>{const f=familyOfTag(t), shape=(famByKey[f]||{shape:"other"}).shape;
+    const m=new THREE.Mesh(geo[shape](),new THREE.MeshStandardMaterial({color:0xffffff,emissive:0x5a2bd6,emissiveIntensity:.35,roughness:.4,metalness:.1}));
+    const sc=1.6+Math.sqrt(themePos[t].n)*.75; m.scale.setScalar(sc); m.position.copy(themePos[t].pos); m.userData={type:"theme",key:t,n:themePos[t].n,fam:f}; scene.add(m); hubs.push(m);});
+  CATS.forEach(([c])=>{const n=DATA.filter(d=>d.category===c).length;const r=4+Math.sqrt(n)*.55;
+    const ring=new THREE.Mesh(new THREE.TorusGeometry(r,.7,12,48),new THREE.MeshStandardMaterial({color:new THREE.Color(COLOR[c]),emissive:new THREE.Color(COLOR[c]),emissiveIntensity:.5}));
+    ring.position.copy(catPos[c]); ring.userData={type:"cat",key:c,n}; scene.add(ring); hubs.push(ring);
+    const cv=document.createElement("canvas");cv.width=512;cv.height=96;const g=cv.getContext("2d");g.font="500 40px 'DM Mono', monospace";g.fillStyle=COLOR[c];g.textAlign="center";g.fillText(c.toUpperCase(),256,60);
+    const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(cv),transparent:true,depthWrite:false}));sp.scale.set(40,7.5,1);sp.position.copy(catPos[c]).add(new THREE.Vector3(0,r+6,0));scene.add(sp);});
+  // interaction
+  const ray=new THREE.Raycaster(); ray.params.Points.threshold=1.6; const mouse=new THREE.Vector2(); let hover=null;
+  function pick(e){const r=canvas.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;ray.setFromCamera(mouse,camera);
+    const h=ray.intersectObjects(hubs,false)[0]; if(h) return {kind:h.object.userData.type,obj:h.object};
+    const p=ray.intersectObject(points)[0]; if(p&&visible[p.index]) return {kind:"entry",i:p.index}; return null;}
+  canvas.addEventListener("pointermove",e=>{const h=pick(e);hover=h;
+    if(!h){hideTip();canvas.style.cursor="grab";return;} canvas.style.cursor="pointer";
+    if(h.kind==="entry"){const d=DATA[h.i];showTip(`<div class="m">${esc(d.category)}</div><b>${esc(d.name)}</b><div class="m" style="margin-top:4px">${esc(d.tags.join(" · "))}</div>`,e.clientX,e.clientY);}
+    else {const u=h.obj.userData; showTip(`<div class="m">${u.type==="cat"?"Category":"Theme · "+esc((famByKey[u.fam]||{label:"Other"}).label)}</div><b>${esc(u.key)}</b> · ${u.n} entries<div class="m" style="margin-top:4px">Click to filter</div>`,e.clientX,e.clientY);}});
+  canvas.addEventListener("pointerleave",hideTip);
+  let down=null; canvas.addEventListener("pointerdown",e=>down=[e.clientX,e.clientY]);
+  canvas.addEventListener("pointerup",e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>5) return; const h=pick(e); if(!h) return;
+    if(h.kind==="cat") setFilter({cat:h.obj.userData.key},false); else if(h.kind==="theme") setFilter({theme:h.obj.userData.key},false);
+    else {setFilter({q:DATA[h.i].name,cat:"",theme:"",status:"",link:""},false); document.getElementById("list").scrollIntoView({behavior:"smooth"});} });
+  // highlight according to filters
+  let visible=DATA.map(()=>true);
+  function highlight(){ visible=DATA.map(matches); const any=visible.some(v=>!v);
+    DATA.forEach((d,i)=>{const c=baseCol[i], k=visible[i]?1:.13; col.set([c.r*k,c.g*k,c.b*k],i*3);}); pg.attributes.color.needsUpdate=true;
+    let j=0; DATA.forEach((d,i)=>{const k=(visible[i]?1:.06); const cc=baseCol[i];
+      const setSeg=a=>{for(let q=0;q<2;q++){segCol[j++]=cc.r*a*k;segCol[j++]=cc.g*a*k;segCol[j++]=cc.b*a*k;}};
+      setSeg(.35); d.tags.forEach(t=>{if(themePos[t]) setSeg(.22)});});
+    lg.attributes.color.array.set(segCol); lg.attributes.color.needsUpdate=true;
+    hubs.forEach(h=>{const u=h.userData; const on=!any || (u.type==="cat"? DATA.some((d,i)=>visible[i]&&d.category===u.key) : DATA.some((d,i)=>visible[i]&&d.tags.includes(u.key)));
+      h.material.transparent=true; h.material.opacity=on?1:.18; const sel=(u.type==="cat"&&state.cat===u.key)||(u.type==="theme"&&state.theme===u.key); h.material.emissive.set(sel?0xffd23f:(u.type==="cat"?COLOR[u.key]:0x5a2bd6)); h.material.emissiveIntensity=sel?.9:(u.type==="cat"?.5:.35);});
+  }
+  function size(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
+  new ResizeObserver(size).observe(canvas); size();
+  let running=true; const io=new IntersectionObserver(es=>{running=es[0].isIntersecting;if(running) loop();}); io.observe(canvas);
+  function loop(){ if(!running) return; requestAnimationFrame(loop); hubs.forEach(h=>{if(h.userData.type==="theme") h.rotation.y+=.004;}); controls.update(); renderer.render(scene,camera); }
+  loop();
+  // legend
+  $("netLegend").innerHTML=FAMILIES.map(f=>`<div>${shapeIcon(f.shape)}${esc(f.label)}</div>`).join("")+`<div>${shapeIcon("other")}Other themes</div><div><svg width="14" height="14"><circle cx="7" cy="7" r="4" fill="#fff"/></svg>Entry (colour = category)</div>`;
+  $("spin").onclick=()=>{controls.autoRotate=!controls.autoRotate;$("spin").setAttribute("aria-pressed",controls.autoRotate)};
+  $("links").onclick=()=>{lines.visible=!lines.visible;$("links").setAttribute("aria-pressed",lines.visible)};
+  $("netReset").onclick=()=>{camera.position.set(0,20,190);controls.target.set(0,0,0);};
+  return {highlight};
+}
+function shapeIcon(s){const P={sphere:'<circle cx="7" cy="7" r="5"/>',tetra:'<polygon points="7,1 13,12 1,12"/>',cube:'<rect x="2" y="2" width="10" height="10"/>',octa:'<polygon points="7,1 13,7 7,13 1,7"/>',
+  icosa:'<polygon points="7,1 12.7,4.5 12.7,9.5 7,13 1.3,9.5 1.3,4.5"/>',cone:'<polygon points="7,1 12,13 2,13"/>',torus:'<circle cx="7" cy="7" r="4.5" fill="none" stroke="#fff" stroke-width="2.5"/>',
+  dodeca:'<polygon points="7,1 12.7,5.2 10.5,12 3.5,12 1.3,5.2"/>',other:'<polygon points="7,3 11,7 7,11 3,7"/>'};return `<svg width="14" height="14" fill="#fff">${P[s]}</svg>`;}
+
+/* ---------- DPA data-mark wordmark ---------- */
+const GROUPS={D:{label:"Data",cats:["Data Portal","Dataset Source","Weird Dataset","Tool"]},P:{label:"Practice",cats:["Person","Studio & Lab","Festival & Conference"]},A:{label:"Atlas reading",cats:["Book","Website & Publication","Video & Podcast"]}};
+async function wordmark(){
+  const cv=$("wordmark"), ctx=cv.getContext("2d");
+  try{await document.fonts.load("800 300px Manrope");}catch(e){}
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let marks=[], W=0,H=0,dpr=Math.min(2,devicePixelRatio);
+  function layout(){
+    W=cv.clientWidth; H=Math.round(W*.34); cv.width=W*dpr; cv.height=H*dpr; cv.style.height=H+"px";
+    const off=document.createElement("canvas"); off.width=W; off.height=H; const g=off.getContext("2d");
+    const fs=H*1.08; g.font=`800 ${fs}px Manrope, Arial, sans-serif`; g.textBaseline="alphabetic";
+    const letters=["D","P","A"], widths=letters.map(l=>g.measureText(l).width), gap=fs*.04, total=widths.reduce((a,b)=>a+b,0)+gap*2; let x=(W-total)/2; const base=H*.86;
+    const boxes=letters.map((l,i)=>{const b={l,x,w:widths[i]}; x+=widths[i]+gap; return b;});
+    marks=[]; boxes.forEach(b=>{
+      g.clearRect(0,0,W,H); g.fillStyle="#000"; g.fillText(b.l,b.x,base); const img=g.getImageData(0,0,W,H).data;
+      const inside=(px,py)=>{px|=0;py|=0;return px>=0&&py>=0&&px<W&&py<H&&img[(py*W+px)*4+3]>128};
+      const rows=DATA.filter(d=>GROUPS[b.l].cats.includes(d.category)); let s=b.l.charCodeAt(0)*97; const rnd=()=>{s=(s*16807)%2147483647;return (s-1)/2147483646};
+      rows.forEach(d=>{let px,py,tries=0;do{px=b.x+rnd()*b.w;py=H*.02+rnd()*H*.9;tries++;}while(!inside(px,py)&&tries<400);
+        marks.push({x:px,y:py,ox:px,oy:py,ph:rnd()*6.28,c:COLOR[d.category],shape:(famByKey[familyOfTag(d.tags[0]||"")]||{shape:"other"}).shape,inside});});
+      b.outline=new Path2D(); });
+    boxes.forEach(b=>{}); layout.boxes=boxes; layout.fs=fs; layout.base=base;
+    const cap=Object.entries(GROUPS).map(([k,v])=>`${k} = ${v.label} ${DATA.filter(d=>v.cats.includes(d.category)).length}`).join(" · ");
+    $("wmCap").textContent=`One mark per entry · colour = category · shape = theme family · ${cap}`;
+  }
+  const sz=()=>Math.max(3,W/260);
+  function drawMark(m){const r=sz();ctx.fillStyle=m.c;ctx.strokeStyle=m.c;ctx.lineWidth=r*.55;ctx.beginPath();
+    switch(m.shape){case"sphere":ctx.arc(m.x,m.y,r,0,7);ctx.fill();break;case"cube":ctx.fillRect(m.x-r,m.y-r,r*2,r*2);break;
+      case"tetra":ctx.moveTo(m.x,m.y-r*1.2);ctx.lineTo(m.x+r*1.1,m.y+r);ctx.lineTo(m.x-r*1.1,m.y+r);ctx.closePath();ctx.fill();break;
+      case"octa":ctx.moveTo(m.x,m.y-r*1.3);ctx.lineTo(m.x+r*1.3,m.y);ctx.lineTo(m.x,m.y+r*1.3);ctx.lineTo(m.x-r*1.3,m.y);ctx.closePath();ctx.fill();break;
+      case"icosa":ctx.moveTo(m.x-r,m.y-r);ctx.lineTo(m.x+r,m.y+r);ctx.moveTo(m.x+r,m.y-r);ctx.lineTo(m.x-r,m.y+r);ctx.stroke();break;
+      case"cone":ctx.moveTo(m.x-r*1.2,m.y+r*.6);ctx.lineTo(m.x,m.y-r*.8);ctx.lineTo(m.x+r*1.2,m.y+r*.6);ctx.stroke();break;
+      case"torus":ctx.arc(m.x,m.y,r*.9,0,7);ctx.stroke();break;
+      case"dodeca":ctx.moveTo(m.x-r*1.3,m.y);ctx.lineTo(m.x+r*1.3,m.y);ctx.stroke();break;
+      default:ctx.arc(m.x,m.y,r*.6,0,7);ctx.fill();}
+  }
+  function frame(t){
+    ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+    ctx.font=`800 ${layout.fs}px Manrope, Arial, sans-serif`; ctx.lineWidth=1; ctx.strokeStyle="rgba(255,255,255,.12)"; layout.boxes.forEach(b=>ctx.strokeText(b.l,b.x,layout.base));
+    marks.forEach(m=>{ if(!reduce){const nx=m.ox+Math.sin(t/1400+m.ph)*2.2, ny=m.oy+Math.cos(t/1700+m.ph)*2.2; if(m.inside(nx,ny)){m.x=nx;m.y=ny;}} drawMark(m); });
+    if(!reduce&&wmRunning) requestAnimationFrame(frame);
+  }
+  let wmRunning=true; new IntersectionObserver(es=>{wmRunning=es[0].isIntersecting; if(wmRunning) requestAnimationFrame(frame);}).observe(cv);
+  layout(); requestAnimationFrame(frame);
+  let rt; new ResizeObserver(()=>{clearTimeout(rt);rt=setTimeout(()=>{layout();requestAnimationFrame(frame);},150)}).observe(cv);
+}
+
+/* ---------- events ---------- */
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1800)}
+const csvCell=s=>/[",\n]/.test(s)?`"${String(s).replace(/"/g,'""')}"`:String(s);
+function wire(){
+  $("q").addEventListener("input",e=>{state.q=e.target.value;state.shown=60;renderList();net&&net.highlight()});
+  [["catSel","cat"],["themeSel","theme"],["statusSel","status"],["linkSel","link"]].forEach(([id,k])=>$(id).addEventListener("change",e=>{state[k]=e.target.value;state.shown=60;renderList();net&&net.highlight()}));
+  $("reset").onclick=()=>setFilter({cat:"",theme:"",status:"",link:"",q:""},false);
+  $("sortSel").onchange=e=>{state.sort=e.target.value;renderList()};
+  const setView=v=>{state.view=v;$("vCards").setAttribute("aria-pressed",v==="cards");$("vTable").setAttribute("aria-pressed",v==="table");try{localStorage.setItem("dpaView",v)}catch(e){};renderList()};
+  $("vCards").onclick=()=>setView("cards"); $("vTable").onclick=()=>setView("table");
+  try{if(localStorage.getItem("dpaView")==="table"){state.view="table";$("vCards").setAttribute("aria-pressed","false");$("vTable").setAttribute("aria-pressed","true")}}catch(e){}
+  $("more").onclick=()=>{state.shown+=60;renderList()};
+  $("copyCsv").onclick=async()=>{const cols=["name","category","who","year","place","tags","note","url","status","verified"];const rows=sorted(filtered());
+    try{await navigator.clipboard.writeText([cols.join(",")].concat(rows.map(d=>cols.map(c=>csvCell(c==="tags"?d.tags.join(";"):d[c])).join(","))).join("\n"));toast(`Copied ${rows.length} rows`)}catch(e){toast("Copy was blocked by the browser")}};
+  document.addEventListener("click",e=>{
+    const sc=e.target.closest("[data-sortcol]"); if(sc){const k=sc.dataset.sortcol;state.sort=state.sort===k?"-"+k:k;const o=[...$("sortSel").options].some(x=>x.value===state.sort);$("sortSel").value=o?state.sort:"name";renderList();return;}
+    if(e.target.closest("a")) return;
+    const c=e.target.closest(".card"); if(c){const f=c.classList.toggle("flipped");c.setAttribute("aria-pressed",f);}
+  });
+  document.addEventListener("keydown",e=>{const c=e.target.closest&&e.target.closest(".card");if(c&&(e.key==="Enter"||e.key===" ")){e.preventDefault();c.click();}});
+  let rt; addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(treemap,200)});
+}
+async function boot(){
+  if(INLINE) DATA=INLINE; else { try{DATA=await (await fetch("data/atlas.json")).json();}catch(e){$("list").innerHTML=`<div class="empty">Could not load data/atlas.json. Serve this folder over http (for example GitHub Pages).</div>`;return;} }
+  stats(); fillSelects(); treemap(); yearsChart(); checksChart(); wire(); renderList();
+  try{ await document.fonts.ready; }catch(e){}
+  try{ net=buildNetwork(); net&&net.highlight(); }catch(e){ $("netFallback").style.display="grid"; }
+  wordmark().catch(e=>console.warn("wordmark",e));
+}
+boot();
+</script>
+</body>
+</html>
