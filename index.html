@@ -82,6 +82,14 @@ section{margin:0 0 30px}
 .seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 #sortSel{height:40px;border-radius:999px;border:2px solid rgba(255,255,255,.3);background:#1a0352;color:var(--ink);font:700 14px var(--sans);padding:0 14px}
 /* idea cards */
+.cardkey{display:grid;gap:10px;margin:0 0 18px;padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(20,2,70,.45)}
+.cardkey .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.cardkey .lab{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:150px}
+.kf{display:inline-flex;align-items:center;gap:8px;padding:5px 10px 5px 5px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--ink);font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;cursor:pointer}
+.kf[aria-pressed="true"]{background:var(--yellow);color:#1a0352;border-color:var(--yellow)}
+.kf .tile{width:26px;height:26px;border-radius:7px;background-color:#3b1aa0}
+.kc{display:inline-flex;align-items:center;gap:6px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--ink)}
+.kc i{width:14px;height:14px;border-radius:4px;display:inline-block}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
 .card{aspect-ratio:3/4;perspective:1400px;cursor:pointer}
 .inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 560ms var(--ease), translate 320ms var(--ease)}
@@ -91,7 +99,7 @@ section{margin:0 0 30px}
   box-shadow:0 18px 40px -18px rgba(0,0,0,.7);border:2px solid rgba(255,255,255,.14)}
 .face.back{transform:rotateY(180deg)}
 .base{position:absolute;inset:0;background:var(--cb)}
-.pattern{position:absolute;inset:0;opacity:.55;mix-blend-mode:screen}
+.pattern{position:absolute;inset:0;opacity:1}
 .glass{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02) 40%,rgba(10,0,40,.0) 60%);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .tgrad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,0,48,.0) 30%,rgba(14,0,48,.78) 100%)}
@@ -105,8 +113,10 @@ section{margin:0 0 30px}
 .back .txt{justify-content:flex-start;gap:12px;background:rgba(14,0,48,.55)}
 .back .note{font:600 14px/1.45 var(--sans);margin:0;overflow:auto}
 .tags{display:flex;flex-wrap:wrap;gap:5px}
-.tag{font:500 10.5px var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:3px 7px;border-radius:999px;border:1px solid rgba(255,255,255,.35)}
+.tag{display:inline-flex;align-items:center;gap:4px;font:500 10.5px var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:3px 7px;border-radius:999px;border:1px solid rgba(255,255,255,.35)}
 .visit{margin-top:auto;align-self:flex-start;display:inline-flex;gap:8px;align-items:center;padding:9px 16px;border-radius:999px;background:var(--ink);color:#1a0352;font:800 14px var(--sans);text-decoration:none}
+.fam{display:inline-flex;opacity:.95}
+.famline{display:flex;align-items:center;gap:6px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em}
 .check{font:500 10.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;opacity:.8}
 .pager{display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap;margin:28px 0 10px}
 .pager[hidden]{display:none}
@@ -193,6 +203,7 @@ footer .inner2{max-width:1320px;margin:0 auto}
     </div>
   </div>
   <h2 class="h2" id="h-gal" style="position:absolute;left:-9999px">Entries</h2>
+  <div class="cardkey" id="cardKey"></div>
   <div id="list"></div>
   <nav class="pager" id="pager" aria-label="Gallery pages"></nav>
 
@@ -200,7 +211,7 @@ footer .inner2{max-width:1320px;margin:0 auto}
     <summary>Data governance and constraints</summary>
     <p><strong>Provenance.</strong> A personal list, expanded with Claude on 19 Nov 2026 in several rounds, plus a Tool category that reproduces Andy Kirk's Visualising Data resources catalogue (293 tools, read the same day) in its seven original sections, without descriptions. <span id="provcounts"></span></p>
     <p><strong>Corrections.</strong> On the Visualising Data catalogue page about a dozen links sit on the wrong tile (for example Vega and Vega-Lite, Plotly and Dash); the Atlas corrects them and says so on each card. RightsCon 2026 (Lusaka) was cancelled. "Super dot" is Superdot (Basel); its Venice work is listed as the Come ViVi Venezia project.</p>
-    <p><strong>How the pictures are made.</strong> Treemap groups use each entry's first theme. The decade chart only counts entries with a year. Network positions are computed, not drawn by hand: each theme sits at the average position of the categories its entries belong to, and each entry sits between its category and its themes. Theme families (the shapes) are an editorial grouping made for this page.</p>
+    <p><strong>How the pictures are made.</strong> Treemap groups use each entry's first theme. The decade chart only counts entries with a year. Network positions are computed, not drawn by hand: each theme sits at the average position of the categories its entries belong to, and each entry sits between its category and its themes. Theme families (the shapes) are an editorial grouping made for this page. Each entry's family is the family of its first theme that belongs to one (regions only when nothing else applies); the same shapes are used in the network, on the cards (pattern, badge and theme chips) and in the footer wordmark.</p>
     <p><strong>Gaps.</strong> Leans towards Europe, North America and English-language work despite deliberate additions from Latin America, Africa, MENA, South and Southeast Asia and Italy. Years and places are blank where not confirmed. Event dates change.</p>
     <p><strong>Permitted use.</strong> A starting reading, contacts and tools list for teaching, inspiration and programme research. <strong>Not for</strong> citation without checking each link, claims of completeness, or ranking people or studios.</p>
   </details>
@@ -232,18 +243,22 @@ const SECS = ["charting","coding","complex","mapping","data","colour","specialis
 
 /* ---------- theme families (editorial grouping, encoded as shapes) ---------- */
 const FAMILIES = [
- {key:"design", label:"Design & visualisation", shape:"sphere", tags:"information-design dataviz infographics data-art art storytelling data-humanism creative-coding generative physicalisation drawing illustration design craft process sound music sonification motion data-experience interaction-design speculative-design critical-design comics pictograms diagrams"},
- {key:"rights", label:"Rights, justice & ethics", shape:"tetra", tags:"human-rights ai-ethics data-feminism data-justice activism race gender power ethics surveillance privacy digital-rights algorithms data-gaps bias facial-recognition data-colonialism design-justice inequality welfare migration evidence civilian-harm"},
- {key:"civic", label:"Civic, cities & policy", shape:"cube", tags:"cities civic-data civic-tech government policy democracy open-data official-statistics development data-governance participatory tourism housing open-government smart-city regional public-spending transparency legibility"},
+ {key:"design", label:"Design & visualisation", shape:"sphere", tags:"information-design dataviz infographics data-art art storytelling data-humanism creative-coding generative physicalisation drawing illustration design craft process sound music sonification motion data-experience interaction-design speculative-design critical-design comics pictograms diagrams dashboards showcase web-dataviz graphics architecture product data-products creative-tech"},
+ {key:"rights", label:"Rights, justice & ethics", shape:"tetra", tags:"human-rights ai-ethics data-feminism data-justice activism race gender power ethics surveillance privacy digital-rights algorithms data-gaps bias facial-recognition data-colonialism design-justice inequality welfare migration evidence civilian-harm military arms hacking internet-health"},
+ {key:"civic", label:"Civic, cities & policy", shape:"cube", tags:"cities civic-data civic-tech government policy democracy open-data official-statistics development data-governance participatory tourism housing open-government smart-city regional public-spending transparency legibility politics humanitarian crisis census demography surveys society agriculture transport civic-systems decision-intelligence"},
  {key:"journalism", label:"Journalism & investigation", shape:"octa", tags:"journalism investigation fact-checking misinformation osint conflict literacy data-journalism media-startups"},
- {key:"research", label:"Science, stats & research", shape:"icosa", tags:"statistics research complexity networks economics science theory history classic academic humanities climate ml ai data-science forecasting information-theory hci cultural-analytics digital-humanities"},
- {key:"maps", label:"Maps & the natural world", shape:"cone", tags:"maps mapping spatial-analysis cartography counter-mapping trees nature animals space earth birds biodiversity oceans weather"},
+ {key:"research", label:"Research, stats & teaching", shape:"icosa", tags:"statistics research complexity networks economics science theory history classic academic humanities climate ml ai data-science forecasting information-theory hci cultural-analytics digital-humanities teaching critique trade health public-health classification nlp"},
+ {key:"maps", label:"Maps & the natural world", shape:"cone", tags:"maps mapping spatial-analysis cartography counter-mapping trees nature animals space earth birds biodiversity oceans weather tracking aviation"},
  {key:"regions", label:"Regions", shape:"torus", tags:"italy latin-america africa asia india mena nordic europe"},
- {key:"tools", label:"Tools & catalogue sections", shape:"dodeca", tags:"coding charting specialist data complex colour tools tool open-source d3 r python reference visualising-data-catalogue datasets"},
+ {key:"culture", label:"Culture & curiosities", shape:"disc", tags:"weird food film games books toys citizen-reports crowdsourced community web internet digital-society open-knowledge public-domain archive search news events multidisciplinary"},
+ {key:"tools", label:"Tools & catalogue sections", shape:"dodeca", tags:"coding charting specialist data complex colour tools tool open-source d3 r python reference visualising-data-catalogue datasets knowledge-graph"},
 ];
 const famOf = {}; FAMILIES.forEach(f=>f.tags.split(" ").forEach(t=>famOf[t]=f.key));
 const famByKey = Object.fromEntries(FAMILIES.map(f=>[f.key,f]));
 const familyOfTag = t => famOf[t] || "other";
+const primaryFamily = d => { let region=""; for(const t of d.tags){ const f=famOf[t]; if(f==="regions"){region=region||f;continue;} if(f) return f; } return region||"other"; };
+const shapeOfFam = k => (famByKey[k]||{shape:"other"}).shape;
+const famLabel = k => (famByKey[k]||{label:"Other themes"}).label;
 
 
 /* ---------- elastic search: accents/case folded, prefixes, substrings, typo tolerance, ranked ---------- */
@@ -296,11 +311,12 @@ function runSearch(q){
 }
 
 /* ---------- state ---------- */
-const state = {cat:"", theme:"", status:"", link:"", q:"", sort:"name", view:"cards", page:1};
+const state = {fam:"", cat:"", theme:"", status:"", link:"", q:"", sort:"name", view:"cards", page:1};
 const PER=25;
 function matches(d){
   if(state.cat && d.category!==state.cat) return false;
   if(state.theme && !d.tags.includes(state.theme)) return false;
+  if(state.fam && primaryFamily(d)!==state.fam) return false;
   if(state.status && d.status!==state.status) return false;
   if(state.link && !d.verified.startsWith(state.link)) return false;
   if(state.q.trim()){ if(!runSearch(state.q.trim()).scores.has(d._i)) return false; }
@@ -412,31 +428,20 @@ function syncControls(){ $("catSel").value=state.cat; $("themeSel").value=state.
 function setFilter(p, scroll=true){ Object.assign(state,p,{page:1}); syncControls(); renderList(); net&&net.highlight(); if(scroll) document.getElementById("h-net").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); }
 
 /* ---------- cards & table ---------- */
-function patternFor(d){
-  const fam=familyOfTag(d.tags[0]||""); const c="rgba(255,255,255,.22)";
-  const P={sphere:`radial-gradient(circle at 70% 30%, ${c} 0 18%, transparent 19%), radial-gradient(circle at 70% 30%, transparent 0 30%, ${c} 31% 32%, transparent 33%)`,
-    tetra:`repeating-linear-gradient(60deg, transparent 0 14px, ${c} 14px 16px)`,
-    cube:`repeating-linear-gradient(0deg, transparent 0 22px, ${c} 22px 24px), repeating-linear-gradient(90deg, transparent 0 22px, ${c} 22px 24px)`,
-    octa:`repeating-linear-gradient(45deg, transparent 0 18px, ${c} 18px 20px), repeating-linear-gradient(-45deg, transparent 0 18px, ${c} 18px 20px)`,
-    icosa:`radial-gradient(${c} 2px, transparent 2.5px) 0 0/14px 14px`,
-    cone:`repeating-radial-gradient(circle at 100% 0%, transparent 0 16px, ${c} 16px 18px)`,
-    torus:`repeating-radial-gradient(circle at 50% 120%, transparent 0 20px, ${c} 20px 23px)`,
-    dodeca:`repeating-linear-gradient(90deg, transparent 0 8px, ${c} 8px 10px)`,
-    other:`radial-gradient(${c} 1.5px, transparent 2px) 0 0/10px 10px`};
-  const shape=(famByKey[fam]||{shape:"other"}).shape; return P[shape]||P.other;
-}
+function patternFor(d){ return patternURI(shapeOfFam(primaryFamily(d))); }
 function baseFor(cat){ return `color-mix(in srgb, ${COLOR[cat]} 42%, #1c0458)`; }
 function host(u){try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return ""}}
 function card(d){
   const ok=d.verified.startsWith("verified"), srch=d.verified.startsWith("no link");
-  const top=`<div class="topline"><span>${esc(d.status==="active"?"Active":d.status)} · ${esc(d.category)}</span></div>`;
+  const fk=primaryFamily(d);
+  const top=`<div class="topline"><span>${esc(d.status==="active"?"Active":d.status)} · ${esc(d.category)}</span><span class="fam" title="${esc(famLabel(fk))}">${shapeIcon(shapeOfFam(fk))}</span></div>`;
   const bot=[d.year,d.place].filter(Boolean).join(" · ");
   const layers=`<div class="base"></div><div class="pattern" style="background:${patternFor(d)}"></div><div class="glass"></div><div class="tgrad"></div>`;
   return `<div class="card" tabindex="0" role="button" aria-pressed="false" aria-label="${esc(d.name)}, ${esc(d.category)}. Press to flip." style="--cb:${baseFor(d.category)}">
    <div class="inner">
     <div class="face front">${layers}<div class="txt">${top}<div><div class="venue">${esc(d.who)}</div><h3 class="title">${esc(d.name)}</h3><div class="botline">${esc(bot)||"&nbsp;"}</div></div></div></div>
     <div class="face back">${layers}<div class="txt">${top}<h3 class="title" style="font-size:20px">${esc(d.name)}</h3>${d.note?`<p class="note">${esc(d.note)}</p>`:""}
-      <div class="tags">${d.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
+      <div class="famline">${shapeIcon(shapeOfFam(fk))} ${esc(famLabel(fk))}</div><div class="tags">${d.tags.map(t=>`<span class="tag">${shapeIcon(shapeOfFam(familyOfTag(t)),"#fff",10)}${esc(t)}</span>`).join("")}</div>
       <div class="check">${ok?"Checked 19 Nov 2026":(srch?"No link confirmed":"Link not yet checked")}</div>
       <a class="visit" href="${esc(d.url)}" target="_blank" rel="noopener">${srch?"Search for it":"Visit "+esc(host(d.url))} ↗</a></div></div>
    </div></div>`;
@@ -457,7 +462,14 @@ function renderPager(total){
     pageList(c,n).map(p=>p==="…"?`<span class="gap" aria-hidden="true">…</span>`:`<button class="pg" data-page="${p}" ${p===c?'aria-current="page"':""} aria-label="Page ${p}">${p}</button>`).join("")+
     `<button class="pg" data-page="${c+1}" ${c===n?"disabled":""} aria-label="Next page">→</button><div class="range">Showing ${from}–${to} of ${total} · page ${c} of ${n}</div>`;
 }
+function renderKey(){
+  const counts=d3.rollup(DATA,v=>v.length,primaryFamily);
+  const fams=[...FAMILIES.map(f=>f.key),"other"].filter(k=>counts.get(k));
+  $("cardKey").innerHTML=`<div class="row"><span class="lab">Card colour = category</span>${CATS.map(([c])=>`<span class="kc"><i style="background:${baseFor(c)};box-shadow:inset 0 0 0 2px ${COLOR[c]}"></i>${esc(c)}</span>`).join("")}</div>
+   <div class="row"><span class="lab">Pattern = theme family</span>${fams.map(k=>`<button class="kf" data-fam="${k}" aria-pressed="${state.fam===k}"><span class="tile" style="background:${patternURI(shapeOfFam(k))}, #3b1aa0"></span>${shapeIcon(shapeOfFam(k),"currentColor",12)}${esc(famLabel(k))} <span style="opacity:.6">${counts.get(k)}</span></button>`).join("")}</div>`;
+}
 function renderList(){
+  renderKey();
   const rows=sorted(filtered());
   let hint=""; if(state.q.trim()){const s=runSearch(state.q.trim()); if(s.hints.length) hint=` <span>· close matches for ${s.hints.map(([a,b])=>`“${esc(a)}” → ${esc(b)}`).join(", ")}</span>`; if(s.loose) hint+=` <span>· no entry matched every word, showing partial matches</span>`;}
   $("count").innerHTML=`${rows.length} <span>of ${DATA.length} entries</span>${hint}`;
@@ -508,7 +520,7 @@ function buildNetwork(){
   const lines=new THREE.LineSegments(lg,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.55,depthWrite:false,blending:THREE.AdditiveBlending})); scene.add(lines);
   // hub meshes
   const geo={sphere:()=>new THREE.SphereGeometry(1,20,14),tetra:()=>new THREE.TetrahedronGeometry(1.3),cube:()=>new THREE.BoxGeometry(1.6,1.6,1.6),octa:()=>new THREE.OctahedronGeometry(1.3),
-    icosa:()=>new THREE.IcosahedronGeometry(1.2),cone:()=>new THREE.ConeGeometry(1,2,16),torus:()=>new THREE.TorusGeometry(1,.38,10,24),dodeca:()=>new THREE.DodecahedronGeometry(1.2),other:()=>new THREE.OctahedronGeometry(.9,0)};
+    icosa:()=>new THREE.IcosahedronGeometry(1.2),cone:()=>new THREE.ConeGeometry(1,2,16),torus:()=>new THREE.TorusGeometry(1,.38,10,24),dodeca:()=>new THREE.DodecahedronGeometry(1.2),disc:()=>new THREE.CylinderGeometry(1.3,1.3,.45,24),other:()=>new THREE.OctahedronGeometry(.9,0)};
   const hubs=[];
   hubTags.forEach(t=>{const f=familyOfTag(t), shape=(famByKey[f]||{shape:"other"}).shape;
     const m=new THREE.Mesh(geo[shape](),new THREE.MeshStandardMaterial({color:0xffffff,emissive:0x5a2bd6,emissiveIntensity:.35,roughness:.4,metalness:.1}));
@@ -555,10 +567,18 @@ function buildNetwork(){
   $("netReset").onclick=()=>{camera.position.set(0,20,190);controls.target.set(0,0,0);};
   return {highlight};
 }
-function shapeIcon(s){const P={sphere:'<circle cx="7" cy="7" r="5"/>',tetra:'<polygon points="7,1 13,12 1,12"/>',cube:'<rect x="2" y="2" width="10" height="10"/>',octa:'<polygon points="7,1 13,7 7,13 1,7"/>',
-  icosa:'<polygon points="7,1 12.7,4.5 12.7,9.5 7,13 1.3,9.5 1.3,4.5"/>',cone:'<polygon points="7,1 12,13 2,13"/>',torus:'<circle cx="7" cy="7" r="4.5" fill="none" stroke="#fff" stroke-width="2.5"/>',
-  dodeca:'<polygon points="7,1 12.7,5.2 10.5,12 3.5,12 1.3,5.2"/>',other:'<polygon points="7,3 11,7 7,11 3,7"/>'};return `<svg width="14" height="14" fill="#fff">${P[s]}</svg>`;}
-
+const SHAPE_SVG={sphere:'<circle cx="7" cy="7" r="5"/>',tetra:'<polygon points="7,1.5 12.8,12 1.2,12"/>',cube:'<rect x="2" y="2" width="10" height="10"/>',octa:'<polygon points="7,1 13,7 7,13 1,7"/>',
+  icosa:'<polygon points="7,1 12.7,4.5 12.7,9.5 7,13 1.3,9.5 1.3,4.5"/>',cone:'<polygon points="7,1.5 12.5,12.5 1.5,12.5"/>',
+  torus:'<circle cx="7" cy="7" r="4.4" fill="none" stroke="FILL" stroke-width="2.6"/>',dodeca:'<polygon points="7,1 12.7,5.2 10.5,12.5 3.5,12.5 1.3,5.2"/>',
+  disc:'<ellipse cx="7" cy="7" rx="6" ry="3.4"/>',other:'<polygon points="7,3.5 10.5,7 7,10.5 3.5,7"/>'};
+// cone and tetra differ: cone gets a base line so the two read apart
+SHAPE_SVG.cone='<polygon points="7,1.5 12.5,11 1.5,11"/><rect x="1.5" y="11.6" width="11" height="1.6"/>';
+function shapeIcon(s,fill="#fff",size=14){return `<svg width="${size}" height="${size}" viewBox="0 0 14 14" fill="${fill}" aria-hidden="true">${(SHAPE_SVG[s]||SHAPE_SVG.other).replaceAll("FILL",fill)}</svg>`;}
+const PATTERN_CACHE={};
+function patternURI(shape){ if(PATTERN_CACHE[shape]) return PATTERN_CACHE[shape];
+  const g=(SHAPE_SVG[shape]||SHAPE_SVG.other).replaceAll("FILL","#fff");
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="#fff" fill-opacity=".26" stroke-opacity=".26"><g transform="translate(4 4)">${g}</g><g transform="translate(26 26)">${g}</g></svg>`;
+  return PATTERN_CACHE[shape]=`url('data:image/svg+xml,${encodeURIComponent(svg)}') 0 0/44px 44px`; }
 /* ---------- DPA data-mark wordmark ---------- */
 const GROUPS={D:{label:"Data",cats:["Data Portal","Dataset Source","Weird Dataset","Tool"]},P:{label:"Practice",cats:["Person","Studio & Lab","Festival & Conference"]},A:{label:"Atlas reading",cats:["Book","Website & Publication","Video & Podcast"]}};
 async function wordmark(){
@@ -577,7 +597,7 @@ async function wordmark(){
       const inside=(px,py)=>{px|=0;py|=0;return px>=0&&py>=0&&px<W&&py<H&&img[(py*W+px)*4+3]>128};
       const rows=DATA.filter(d=>GROUPS[b.l].cats.includes(d.category)); let s=b.l.charCodeAt(0)*97; const rnd=()=>{s=(s*16807)%2147483647;return (s-1)/2147483646};
       rows.forEach(d=>{let px,py,tries=0;do{px=b.x+rnd()*b.w;py=H*.02+rnd()*H*.9;tries++;}while(!inside(px,py)&&tries<400);
-        marks.push({x:px,y:py,ox:px,oy:py,ph:rnd()*6.28,c:COLOR[d.category],shape:(famByKey[familyOfTag(d.tags[0]||"")]||{shape:"other"}).shape,inside});});
+        marks.push({x:px,y:py,ox:px,oy:py,ph:rnd()*6.28,c:COLOR[d.category],shape:shapeOfFam(primaryFamily(d)),inside});});
       b.outline=new Path2D(); });
     boxes.forEach(b=>{}); layout.boxes=boxes; layout.fs=fs; layout.base=base;
     const cap=Object.entries(GROUPS).map(([k,v])=>`${k} = ${v.label} ${DATA.filter(d=>v.cats.includes(d.category)).length}`).join(" · ");
@@ -591,6 +611,7 @@ async function wordmark(){
       case"icosa":ctx.moveTo(m.x-r,m.y-r);ctx.lineTo(m.x+r,m.y+r);ctx.moveTo(m.x+r,m.y-r);ctx.lineTo(m.x-r,m.y+r);ctx.stroke();break;
       case"cone":ctx.moveTo(m.x-r*1.2,m.y+r*.6);ctx.lineTo(m.x,m.y-r*.8);ctx.lineTo(m.x+r*1.2,m.y+r*.6);ctx.stroke();break;
       case"torus":ctx.arc(m.x,m.y,r*.9,0,7);ctx.stroke();break;
+      case"disc":ctx.ellipse(m.x,m.y,r*1.3,r*.7,0,0,7);ctx.fill();break;
       case"dodeca":ctx.moveTo(m.x-r*1.3,m.y);ctx.lineTo(m.x+r*1.3,m.y);ctx.stroke();break;
       default:ctx.arc(m.x,m.y,r*.6,0,7);ctx.fill();}
   }
@@ -614,11 +635,12 @@ function wire(){
     if(!state.q.trim()&&state.sort==="relevance"){state.sort="name";$("sortSel").value="name";}
     renderList();net&&net.highlight();},120)});
   [["catSel","cat"],["themeSel","theme"],["statusSel","status"],["linkSel","link"]].forEach(([id,k])=>$(id).addEventListener("change",e=>{state[k]=e.target.value;state.page=1;renderList();net&&net.highlight()}));
-  $("reset").onclick=()=>{setFilter({cat:"",theme:"",status:"",link:"",q:"",sort:"name"},false);$("sortSel").value="name";};
+  $("reset").onclick=()=>{setFilter({fam:"",cat:"",theme:"",status:"",link:"",q:"",sort:"name"},false);$("sortSel").value="name";};
   $("sortSel").onchange=e=>{state.sort=e.target.value;state.page=1;renderList()};
   const setView=v=>{state.view=v;$("vCards").setAttribute("aria-pressed",v==="cards");$("vTable").setAttribute("aria-pressed",v==="table");try{localStorage.setItem("dpaView",v)}catch(e){};renderList()};
   $("vCards").onclick=()=>setView("cards"); $("vTable").onclick=()=>setView("table");
   try{if(localStorage.getItem("dpaView")==="table"){state.view="table";$("vCards").setAttribute("aria-pressed","false");$("vTable").setAttribute("aria-pressed","true")}}catch(e){}
+  $("cardKey").addEventListener("click",e=>{const b=e.target.closest("[data-fam]"); if(!b) return; state.fam=state.fam===b.dataset.fam?"":b.dataset.fam; state.page=1; renderList(); net&&net.highlight();});
   $("pager").addEventListener("click",e=>{const b=e.target.closest("[data-page]"); if(!b||b.disabled) return; goPage(+b.dataset.page);});
   $("copyCsv").onclick=async()=>{const cols=["name","category","who","year","place","tags","note","url","status","verified"];const rows=sorted(filtered());
     try{await navigator.clipboard.writeText([cols.join(",")].concat(rows.map(d=>cols.map(c=>csvCell(c==="tags"?d.tags.join(";"):d[c])).join(","))).join("\n"));toast(`Copied ${rows.length} rows`)}catch(e){toast("Copy was blocked by the browser")}};
