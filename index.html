@@ -337,7 +337,7 @@ details.gov summary{font:700 24px var(--dhead)}
 
 <section aria-labelledby="h-net">
   <div class="sechead"><h2 id="h-net">How it all connects</h2><span class="pg">Section 2</span></div>
-  <p class="sub">Drag to spin, scroll to zoom. Rings are categories; shapes are themes (shape and colour show the theme family); dots are entries, inked by category. Themes near the centre cross many categories; themes near a ring belong mostly to it. Click any dot, shape or ring to pin its label; click it again or click empty space to close.</p>
+  <p class="sub">Drag to spin, scroll to zoom. Rings are categories; shapes are themes (shape and colour show the theme family); dots are entries, inked by category. Themes near the centre cross many categories; themes near a ring belong mostly to it. Click any dot, shape or ring to pin its label and filter the Index below; click it again or click empty space to close and clear.</p>
   <div class="netwrap">
     <canvas id="net" aria-label="Interactive 3D network of entries, themes and categories"></canvas>
     <div class="netui"><button class="chip" id="spin" aria-pressed="true">Auto-spin</button><button class="chip" id="links" aria-pressed="true">Show links</button><button class="chip" id="netReset">Reset view</button></div>
@@ -732,11 +732,13 @@ function buildNetwork(){
   const pinEl=$("netPin"); let pinned=null;
   const sameAs=(a,b)=>a&&b&&a.kind===b.kind&&(a.kind==="entry"?a.i===b.i:a.obj===b.obj);
   function pinHTML(h){
-    if(h.kind==="entry"){const d=DATA[h.i];return `<button class="pinx" aria-label="Close">×</button><div class="m">${esc(d.category)}</div><b>${esc(d.name)}</b>${d.who?`<div class="pw">${esc(d.who)}</div>`:""}<div class="m" style="margin-top:6px">${esc(d.tags.join(" · "))}</div><div class="pa"><button data-pin="index">Show in the Index</button><a href="${esc(d.url)}" target="_blank" rel="noopener">Visit ↗</a></div>`;}
-    const u=h.obj.userData; return `<button class="pinx" aria-label="Close">×</button><div class="m">${u.type==="cat"?"Category":"Theme · "+esc(famLabel(u.fam))}</div><b>${esc(u.key)}</b><div class="pw">${u.n} entries</div><div class="pa"><button data-pin="filter">Filter the Index</button></div>`;
+    if(h.kind==="entry"){const d=DATA[h.i];return `<button class="pinx" aria-label="Close">×</button><div class="m">${esc(d.category)}</div><b>${esc(d.name)}</b>${d.who?`<div class="pw">${esc(d.who)}</div>`:""}<div class="m" style="margin-top:6px">${esc(d.tags.join(" · "))}</div><div class="pa"><button data-pin="index">Go to the Index ↓</button><a href="${esc(d.url)}" target="_blank" rel="noopener">Visit ↗</a></div>`;}
+    const u=h.obj.userData; return `<button class="pinx" aria-label="Close">×</button><div class="m">${u.type==="cat"?"Category":"Theme · "+esc(famLabel(u.fam))}</div><b>${esc(u.key)}</b><div class="pw">${u.n} entries</div><div class="pa"><button data-pin="index">Go to the Index ↓</button></div>`;
   }
-  function openPin(h){ pinned=h; pinEl.innerHTML=pinHTML(h); pinEl.hidden=false; hideTip(); placePin(); }
-  function closePin(){ pinned=null; pinEl.hidden=true; }
+  function pinFilter(h){ if(h.kind==="entry"){ $("sortSel").value="relevance"; return {q:DATA[h.i].name,cat:"",theme:"",status:"",link:"",sort:"relevance"}; }
+    const u=h.obj.userData; return u.type==="cat"?{cat:u.key,theme:"",q:""}:{theme:u.key,cat:"",q:""}; }
+  function openPin(h){ pinned=h; pinEl.innerHTML=pinHTML(h); pinEl.hidden=false; hideTip(); setFilter(pinFilter(h),false); placePin(); }
+  function closePin(){ if(!pinned) return; pinned=null; pinEl.hidden=true; const s=state.sort==="relevance"?"name":state.sort; $("sortSel").value=s; setFilter({q:"",cat:"",theme:"",sort:s},false); }
   const tmpV=new THREE.Vector3();
   function placePin(){ if(!pinned) return; tmpV.copy(pinned.kind==="entry"?entryPos[pinned.i]:pinned.obj.position).project(camera);
     if(tmpV.z>1){pinEl.style.visibility="hidden";return;} pinEl.style.visibility="visible";
@@ -745,8 +747,7 @@ function buildNetwork(){
   pinEl.addEventListener("click",e=>{
     if(e.target.closest(".pinx")){closePin();return;}
     const b=e.target.closest("[data-pin]"); if(!b||!pinned) return;
-    if(pinned.kind==="entry"){ setFilter({q:DATA[pinned.i].name,cat:"",theme:"",status:"",link:"",sort:"relevance"},false); $("sortSel").value="relevance"; document.getElementById("list").scrollIntoView({behavior:"smooth"}); }
-    else { const u=pinned.obj.userData; setFilter(u.type==="cat"?{cat:u.key}:{theme:u.key},false); document.getElementById("list").scrollIntoView({behavior:"smooth"}); }
+    document.getElementById("h-gal").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
   });
   canvas.addEventListener("pointerup",e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>5) return; const h=pick(e);
     if(!h||sameAs(h,pinned)) closePin(); else openPin(h); });
