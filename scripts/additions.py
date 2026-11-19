@@ -403,3 +403,6 @@ add += [
 add += [
 ("Sarah Slobin","Person","Visual and data journalist; graphics editor at Reuters","","Brooklyn, New York","journalism;information-design;teaching","Began on the New York Times graphics desks, where she ran the business graphics team, then worked at Fortune and The Wall Street Journal before joining Reuters' investigative and data team. Teaches data visualisation at The New School (Journalism + Design) and has taught on Columbia's Lede program.","https://www.linkedin.com/in/sarahslobin",1,"active",V),
 ]
+add += [
+("Jonathan Schwabish","Person","Economist; senior fellow at the Urban Institute; founder of PolicyViz","","Washington, DC area","policy;information-design;teaching","Economist turned data communicator. Specialises in data visualisation and presentation design at the Urban Institute, runs the PolicyViz firm, podcast and newsletter, and teaches at Georgetown, MICA and Cornell. Author of 'Better Data Visualizations'.","https://www.linkedin.com/in/jonathanschwabish",1,"active",V),
+]

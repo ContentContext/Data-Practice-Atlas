@@ -537,289 +537,290 @@ id,name,category,who,year,place,tags,note,url,seed,status,verified
 536,Tableau Public Viz of the Day,Website & Publication,Tableau,,Web,showcase;community,Daily featured community visualisation; large public gallery.,https://public.tableau.com/app/discover/viz-of-the-day,False,active,from Claude's knowledge; check link
 537,WTF Visualizations (viz.wtf),Website & Publication,@WTFViz,,Web,critique;humour;teaching,Crowd-submitted collection of charts that make no sense. Great for teaching what not to do. No posts after January 2022.,https://viz.wtf,True,archived,verified this session
 538,Sarah Slobin,Person,Visual and data journalist; graphics editor at Reuters,,"Brooklyn, New York",journalism;information-design;teaching,"Began on the New York Times graphics desks, where she ran the business graphics team, then worked at Fortune and The Wall Street Journal before joining Reuters' investigative and data team. Teaches data visualisation at The New School (Journalism + Design) and has taught on Columbia's Lede program.",https://www.linkedin.com/in/sarahslobin,True,active,verified this session
-539,Adioma,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://adioma.com/,False,active,verified this session
-540,Amazon QuickSight,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://aws.amazon.com/quicksight/,False,active,verified this session
-541,Apache Superset,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://superset.apache.org/,False,active,verified this session
-542,Chartbuilder,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://quartz.github.io/Chartbuilder/,False,active,verified this session
-543,Chartle,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.chartle.app/,False,active,verified this session
-544,Charts to Go,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://chartstogo.io/chart-system-builder,False,active,verified this session
-545,Data Illustrator,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://data-illustrator.cs.umd.edu/,False,active,verified this session
-546,Datacopia,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://datacopia.com/,False,active,verified this session
-547,DataGraph,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.visualdatatools.com/DataGraph/,False,active,verified this session
-548,Datawrapper (tool),Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.datawrapper.de/,False,active,verified this session
-549,Easelly,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.easel.ly/,False,active,verified this session
-550,Flourish (tool),Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://flourish.studio,False,active,verified this session
-551,GraphItUp,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://graphitup.com/,False,active,verified this session
-552,IBM Cognos Analytics,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.ibm.com/products/cognos-analytics,False,active,verified this session
-553,Infogram,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://infogram.com/,False,active,verified this session
-554,JMP,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.jmp.com/en_gb/home.html,False,active,verified this session
-555,Logi Analytics,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://insightsoftware.com/logi-analytics/,False,active,verified this session
-556,Looker Studio,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://lookerstudio.google.com/overview,False,active,verified this session
-557,Lyra,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,http://idl.cs.washington.edu/projects/lyra/,False,active,verified this session
-558,Mappica,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.mappica.com/,False,active,verified this session
-559,Matlab,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://uk.mathworks.com/products/matlab.html,False,active,verified this session
-560,Mekko Graphics,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.mekkographics.com/,False,active,verified this session
-561,Metabase,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.metabase.com/,False,active,verified this session
-562,Microsoft Excel,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.microsoft.com/en-gb/microsoft-365/excel,False,active,verified this session
-563,Microsoft Power BI,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://powerbi.microsoft.com/en-us/,False,active,verified this session
-564,Mondrian,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,http://www.theusrus.de/Mondrian/,False,active,verified this session
-565,Numbers,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.apple.com/uk/numbers/,False,active,verified this session
-566,OfficeReports,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.officereports.com/,False,active,verified this session
-567,OpenOffice Calc,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,http://www.openoffice.org/product/calc.html,False,active,verified this session
-568,Origin,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.originlab.com/,False,active,verified this session
-569,Peltier Tech Chart Utility,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://peltiertech.com/charts-for-excel/,False,active,verified this session
-570,Perspective,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.pixxa.com/,False,active,verified this session
-571,PlotDB,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://plotdb.com/,False,active,verified this session
-572,Plotivy,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://plotivy.app/,False,active,verified this session
-573,Qlik Sense,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.qlik.com/us/products/qlik-sense,False,active,verified this session
-574,SAP BusinessObjects,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.sap.com/uk/products/technology-platform/bi-platform.html,False,active,verified this session
-575,Scimago Graphica,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://graphica.app/,False,active,verified this session
-576,Sisense,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.sisense.com/,False,active,verified this session
-577,SnappyCharts,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.snappycharts.com/,False,active,verified this session
-578,Stata,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.stata.com/,False,active,verified this session
-579,Tableau Desktop,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.tableau.com/products/desktop,False,active,verified this session
-580,Tableau Public,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://public.tableau.com/app/discover,False,active,verified this session
-581,TIBCO Spotfire,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.tibco.com/products/tibco-spotfire,False,active,verified this session
-582,TreeMap,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.treemap.com/,False,active,verified this session
-583,Visokio,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://visokio.com/,False,active,verified this session
-584,Vizzlo,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://vizzlo.com/,False,active,verified this session
-585,Wizard,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.wizardmac.com/,False,active,verified this session
-586,Wolfram Mathematica,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.wolfram.com/mathematica/,False,active,verified this session
-587,Yellowfin BI,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.yellowfinbi.com/,False,active,verified this session
-588,amCharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.amcharts.com/,False,active,verified this session
-589,AnyChart,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.anychart.com/,False,active,verified this session
-590,Apache ECharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://echarts.apache.org/en/index.html,False,active,verified this session
-591,Arbor.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://arborjs.org/,False,active,verified this session
-592,C3.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://c3js.org/,False,active,verified this session
-593,Chart Tool,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://globeandmail.github.io/chart-tool/,False,active,verified this session
-594,Chart.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.chartjs.org/,False,active,verified this session
-595,CodeFlower,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://www.redotheweb.com/CodeFlower/,False,active,verified this session
-596,Cubism.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://square.github.io/cubism/,False,active,verified this session
-597,D3 Plus,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://d3plus.org/,False,active,verified this session
-598,DataTables,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://datatables.net/,False,active,verified this session
-599,dc.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://dc-js.github.io/dc.js/,False,active,verified this session
-600,Deneb,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://deneb-viz.github.io/,False,active,verified this session
-601,Dimple,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://dimplejs.org/,False,active,verified this session
-602,EaselJS,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://createjs.com/easeljs,False,active,verified this session
-603,Envision,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://humblesoftware.com/envision,False,active,verified this session
-604,Foamtree,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://get.carrotsearch.com/foamtree/demo/,False,active,verified this session
-605,FusionCharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.fusioncharts.com/,False,active,verified this session
-606,ggplot2,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://ggplot2.tidyverse.org/,False,active,verified this session
-607,Gnuplot,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://www.gnuplot.info/,False,active,verified this session
-608,Google Charts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://developers.google.com/chart/,False,active,verified this session
-609,Heatmap.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.patrick-wied.at/static/heatmapjs/,False,active,verified this session
-610,Grapper,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.grapper.io/,False,active,verified this session
-611,Highcharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.highcharts.com/,False,active,verified this session
-612,HoloViews,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://holoviews.org/,False,active,verified this session
-613,htmlwidgets for R,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://www.htmlwidgets.org/index.html,False,active,verified this session
-614,Intro.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://usablica.github.io/intro.js/,False,active,verified this session
-615,iNZight,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://inzight.nz/,False,active,verified this session
-616,LightningChart,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://lightningchart.com/,False,active,verified this session
-617,matplotlib,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://matplotlib.org/,False,active,verified this session
-618,Observable Canvases,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://observablehq.com/platform/canvases,False,active,verified this session
-619,Observable Plot,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://observablehq.com/plot/,False,active,verified this session
-620,Odyssey.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://cartodb.github.io/odyssey.js/,False,active,verified this session
-621,p5.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://p5js.org/,False,active,verified this session
-622,Paper.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://paperjs.org/about/,False,active,verified this session
-623,Plotly Dash,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://plotly.com/dash/,False,active,verified this session
-624,Plotly,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://plotly.com/graphing-libraries/,False,active,verified this session
-625,Polychart.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://github.com/Polychart,False,active,verified this session
-626,Processing,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://processing.org/,False,active,verified this session
-627,Quadrigram,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.quadrigram.com/,False,active,verified this session
-628,Quarto,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://quarto.org/,False,active,verified this session
-629,R,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.r-project.org/,False,active,verified this session
-630,r2d3,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://rstudio.github.io/r2d3/,False,active,verified this session
-631,Ractive.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.ractivejs.org/,False,active,verified this session
-632,rCharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://ramnathv.github.io/rCharts/,False,active,verified this session
-633,React,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://react.dev/,False,active,verified this session
-634,Recharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://recharts.org/en-US/,False,active,verified this session
-635,RStudio,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://posit.co/products/open-source/rstudio/,False,active,verified this session
-636,Scriptographer,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://scriptographer.org/about/,False,active,verified this session
-637,Seaborn,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,http://seaborn.pydata.org/index.html,False,active,verified this session
-638,SciChart,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.scichart.com/,False,active,verified this session
-639,Shiny,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://shiny.posit.co/,False,active,verified this session
-640,Sigma.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.sigmajs.org/,False,active,verified this session
-641,Svelte,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://svelte.dev/,False,active,verified this session
-642,SveltePlot,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://svelteplot.dev/,False,active,verified this session
-643,Taucharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://taucharts.com/,False,active,verified this session
-644,Timeline.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://timeline.knightlab.com/,False,active,verified this session
-645,Vega Lite,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://vega.github.io/vega-lite/,False,active,verified this session
-646,Vega,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://vega.github.io/vega/,False,active,verified this session
-647,WebGL,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API,False,active,verified this session
-648,Yellowbrick,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.scikit-yb.org/en/latest/,False,active,verified this session
-649,ZingChart,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.zingchart.com/,False,active,verified this session
-650,ZoomCharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://zoomcharts.com/en/,False,active,verified this session
-651,Circos,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://circos.ca/,False,active,verified this session
-652,Cosmograph,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://cosmograph.app/,False,active,verified this session
-653,Cytoscape,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://cytoscape.org/,False,active,verified this session
-654,e!Sankey,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.ifu.com/e-sankey/,False,active,verified this session
-655,Gephi Lite,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://gephi.org/gephi-lite/,False,active,verified this session
-656,Graphext,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.graphext.com/,False,active,verified this session
-657,Hubscope,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.hubscope.com/,False,active,verified this session
-658,IN-SPIRE,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://in-spire.pnnl.gov/,False,active,verified this session
-659,KeyLines,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://cambridge-intelligence.com/keylines/,False,active,verified this session
-660,KronoGraph,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://cambridge-intelligence.com/kronograph/,False,active,verified this session
-661,Linkurious,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://linkurious.com/,False,active,verified this session
-662,Mirador,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://fathom.info/mirador/,False,active,verified this session
-663,NodeXL,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.smrfoundation.org/nodexl/,False,active,verified this session
-664,NVivo,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://lumivero.com/products/nvivo/,False,active,verified this session
-665,PhotoTrails,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://phototrails.net/,False,active,verified this session
-666,ReGraph,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://cambridge-intelligence.com/regraph/,False,active,verified this session
-667,Sankey Diagram (SquishLogic),Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://www.squishlogic.com/Sankey/,False,active,verified this session
-668,Sankey Diagram (sankeydiagram.net),Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://sankeydiagram.net/,False,active,verified this session
-669,Sankey Flow Show,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.sankeyflowshow.com/,False,active,verified this session
-670,SankeyMATIC,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://sankeymatic.com/,False,active,verified this session
-671,Sentinel Visualizer,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://fmsasg.com/,False,active,verified this session
-672,Sliver,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://www.sliversoftware.com/,False,active,verified this session
-673,Tagxedo,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://www.tagxedo.com/,False,active,verified this session
-674,Ternary Plot,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.ternaryplot.com/,False,active,verified this session
-675,Textal,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://www.textal.org/,False,active,verified this session
-676,Textexture,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://textexture.com/index.php,False,active,verified this session
-677,WordSeer,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://wordseer.berkeley.edu/,False,active,verified this session
-678,WordStat,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://provalisresearch.com/products/content-analysis-software/,False,active,verified this session
-679,WordTree,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.jasondavies.com/wordtree/,False,active,verified this session
-680,WordWanderer,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://wordwanderer.org/,False,active,verified this session
-681,ArcGIS Pro,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview,False,active,verified this session
-682,ArcGIS Insights,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.esri.com/en-us/arcgis/products/arcgis-insights/overview,False,active,verified this session
-683,ArcGIS StoryMaps,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.esri.com/en-us/arcgis/products/arcgis-storymaps/,False,active,verified this session
-684,Batchgeo,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://batchgeo.com/,False,active,verified this session
-685,CARTO,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://carto.com/blog/welcome-to-carto-builder,False,active,verified this session
-686,CartoKit,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://alpha.cartokit.dev/,False,active,verified this session
-687,CMaps Analytics,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://cmapsanalytics.wpengine.com/,False,active,verified this session
-688,DIVA-GIS,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://diva-gis.org/,False,active,verified this session
-689,DMTI Spatial,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.dmtispatial.com/,False,active,verified this session
-690,Dotspotting,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://dotspotting.org/,False,active,verified this session
-691,GlobeStudio,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://globestudio.app/,False,active,verified this session
-692,Google Earth,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://www.google.co.uk/intl/en_uk/earth/index.html,False,active,verified this session
-693,Google Maps API,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://developers.google.com/maps/,False,active,verified this session
-694,Kartograph,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://kartograph.vis4.net/,False,active,verified this session
-695,Khartis,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.sciencespo.fr/cartographie/khartis/en/,False,active,verified this session
-696,Leaflet.js,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://leafletjs.com/,False,active,verified this session
-697,Map Vectorizer,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://github.com/nypl-spacetime/map-vectorizer,False,active,verified this session
-698,Mapbox,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.mapbox.com/mapbox-studio/,False,active,verified this session
-699,MAPCITE,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.mapcite.com/,False,active,verified this session
-700,Maps4News,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://maps4news.com/,False,active,verified this session
-701,Maptive,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.maptive.com/,False,active,verified this session
-702,Mapzen,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.mapzen.com/,False,active,verified this session
-703,Modest Maps,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://modestmaps.com/,False,active,verified this session
-704,Natural Earth (tool),Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.naturalearthdata.com/,False,active,verified this session
-705,No Code Map App,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.nocodemapapp.com/,False,active,verified this session
-706,OpenLayers,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://openlayers.org/,False,active,verified this session
-707,Polymaps,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://polymaps.org/,False,active,verified this session
-708,Print Map Maker,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://github.com/datadesk/print-map-maker,False,active,verified this session
-709,Projection Wizard,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://projectionwizard.org/,False,active,verified this session
-710,Social Explorer,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.socialexplorer.com/,False,active,verified this session
-711,Stamen Maps,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://maps.stamen.com/,False,active,verified this session
-712,Unfolding,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://unfoldingmaps.org/,False,active,verified this session
-713,Visual Command Center,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.everbridge.com/products/visual-command-center/,False,active,verified this session
-714,ABBYY,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://pdf.abbyy.com/how-to/,False,active,verified this session
-715,Able2Extract,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.investintech.com/prod_a2e.htm,False,active,verified this session
-716,Alteryx,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.alteryx.com/,False,active,verified this session
-717,Amazon Textract,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://aws.amazon.com/textract/,False,active,verified this session
-718,BigQuery,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://cloud.google.com/bigquery,False,active,verified this session
-719,D3 Deconstructor,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,http://ucbvislab.github.io/d3-deconstructor/,False,active,verified this session
-720,Dataiku Data Science Studio,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.dataiku.com/product/,False,active,verified this session
-721,DataBasic,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.databasic.io/en/,False,active,verified this session
-722,DataPad,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.datapad.io/,False,active,verified this session
-723,Daytum,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.daytum.com/,False,active,verified this session
-724,DMI Tools,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://wiki.digitalmethods.net/Dmi/ToolDatabase,False,active,verified this session
-725,EasyMorph,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://easymorph.com/,False,active,verified this session
-726,Exploratory,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://exploratory.io/,False,active,verified this session
-727,FreeSight,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.freesightweb.com/,False,active,verified this session
-728,GenerateData,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://generatedata.com/,False,active,verified this session
-729,Geo DataMerger,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://funkeinteraktiv.github.io/geo-data-merger/,False,active,verified this session
-730,Google Sheets,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,http://www.google.co.uk/sheets/about/,False,active,verified this session
-731,Import.io,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.import.io/,False,active,verified this session
-732,KNIME,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.knime.com/,False,active,verified this session
-733,Lexalytics,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.lexalytics.com/,False,active,verified this session
-734,Leximancer,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.leximancer.com/,False,active,verified this session
-735,LibreOffice Calc,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.libreoffice.org,False,active,verified this session
-736,Mr. Data Converter,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,http://shancarter.github.io/mr-data-converter/,False,active,verified this session
-737,Octoparse,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.octoparse.com/,False,active,verified this session
-738,OpenRefine,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://github.com/OpenRefine,False,active,verified this session
-739,OutWit Hub,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.outwit.com/products/hub/outwit-hub-light-pro-expert-enterprise-editions/,False,active,verified this session
-740,ParseHub,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.parsehub.com/,False,active,verified this session
-741,pdf2xl,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://pdf2xl.com/,False,active,verified this session
-742,PDFtoExcel,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.pdftoexcel.com/,False,active,verified this session
-743,Python,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.python.org/,False,active,verified this session
-744,Reporter,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,http://reporter-app.com/,False,active,verified this session
-745,Rowboat,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://rowboat.net/product/,False,active,verified this session
-746,ScraperWiki,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://scraperwiki.com/,False,active,verified this session
-747,Scrapy,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://scrapy.org/,False,active,verified this session
-748,Snowflake,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.snowflake.com/en/,False,active,verified this session
-749,Streamtools,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://github.com/nytlabs/streamtools,False,active,verified this session
-750,Surveywonders,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.surveywonders.com/,False,active,verified this session
-751,Tableau Prep,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.tableau.com/en-gb/products/prep,False,active,verified this session
-752,Tabula,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://tabula.technology/,False,active,verified this session
-753,Tidyverse,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.tidyverse.org/,False,active,verified this session
-754,Typeform,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.typeform.com/,False,active,verified this session
-755,0 to 255,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://0to255.com/,False,active,verified this session
-756,Adobe Color,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://color.adobe.com/,False,active,verified this session
-757,Chroma.js Color Palette Helper,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://gka.github.io/palettes/,False,active,verified this session
-758,Color Calculator,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://www.sessions.edu/color-calculator/,False,active,verified this session
-759,Color Hunt,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://colorhunt.co/,False,active,verified this session
-760,Color Oracle,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://colororacle.org/,False,active,verified this session
-761,Colordot by Hailpixel,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://color.hailpixel.com/,False,active,verified this session
-762,ColorExplorer,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,http://colorexplorer.com/,False,active,verified this session
-763,Colorgorical,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,http://vrl.cs.brown.edu/color,False,active,verified this session
-764,Coolors,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://coolors.co/,False,active,verified this session
-765,HCL Colorpicker,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,http://tristen.ca/hcl-picker/,False,active,verified this session
-766,HCL Wizard,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://hclwizard.org/,False,active,verified this session
-767,HTML color picker,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://imagecolorpicker.com/,False,active,verified this session
-768,I want hue,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://medialab.github.io/iwanthue/,False,active,verified this session
-769,ImageLR,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://imagelr.com/,False,active,verified this session
-770,Obumbratta Colour,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://obumbratta.com/colour,False,active,verified this session
-771,Palettte,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://palettte.app/,False,active,verified this session
-772,Vischeck,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://www.vischeck.com/,False,active,verified this session
-773,Adobe After Effects,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.adobe.com/products/aftereffects.html,False,active,verified this session
-774,Adobe Illustrator,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.adobe.com/products/illustrator.html,False,active,verified this session
-775,Affinity Designer,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://affinity.serif.com/en-gb/designer/,False,active,verified this session
-776,Affinity Photo,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://affinity.serif.com/en-gb/photo/,False,active,verified this session
-777,Affinity Publisher,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://affinity.serif.com/en-gb/publisher/,False,active,verified this session
-778,Amadine,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://amadine.com/,False,active,verified this session
-779,Axure,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.axure.com/,False,active,verified this session
-780,Balsamiq,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://balsamiq.com/wireframes/,False,active,verified this session
-781,Beautiful.ai,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.beautiful.ai/,False,active,verified this session
-782,Bertifier,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.aviz.fr/bertifier,False,active,verified this session
-783,BigML,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://bigml.com/,False,active,verified this session
-784,BioRender,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.biorender.com/,False,active,verified this session
-785,Blender,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.blender.org/,False,active,verified this session
-786,Canva,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.canva.com/,False,active,verified this session
-787,Ceros,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.ceros.com/,False,active,verified this session
-788,Cinema 4D,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.maxon.net/en/cinema-4d,False,active,verified this session
-789,Creately,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://creately.com/lp/venn-diagram-maker/,False,active,verified this session
-790,Datylon,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.datylon.com/chart-design/datylon-for-illustrator,False,active,verified this session
-791,DesignCap,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.designcap.com/,False,active,verified this session
-792,Excalidraw,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://excalidraw.com/,False,active,verified this session
-793,FatFonts,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,http://fatfonts.org/?page_id=68,False,active,verified this session
-794,Figma,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.figma.com/design/,False,active,verified this session
-795,GIMP,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.gimp.org/,False,active,verified this session
-796,Gleek.io,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.gleek.io,False,active,verified this session
-797,Google Slides,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://workspace.google.com/products/slides/,False,active,verified this session
-798,Graphviz,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.graphviz.org,False,active,verified this session
-799,Houdini,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.sidefx.com/products/houdini/,False,active,verified this session
-800,Inkscape,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://inkscape.org/,False,active,verified this session
-801,Keynote,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.apple.com/uk/keynote/,False,active,verified this session
-802,Lapis,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://lapis-story.com/,False,active,verified this session
-803,Lovely Charts,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://lovelycharts.com/,False,active,verified this session
-804,Maya,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.autodesk.com/products/maya/overview,False,active,verified this session
-805,Microsoft PowerPoint,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.microsoft.com/en-gb/microsoft-365/powerpoint,False,active,verified this session
-806,Nitro,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.gonitro.com/,False,active,verified this session
-807,OmniGraffle,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.omnigroup.com/omnigraffle/,False,active,verified this session
-808,Penpot,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://penpot.app/,False,active,verified this session
-809,Piktochart,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://piktochart.com/,False,active,verified this session
-810,Procreate,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://procreate.com/,False,active,verified this session
-811,Proto.io,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://proto.io/,False,active,verified this session
-812,Simpleshow,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://simpleshow.com/,False,active,verified this session
-813,Sketch,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.sketch.com/,False,active,verified this session
-814,SketchUp,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.sketchup.com/,False,active,verified this session
-815,Streamline,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.streamlinehq.com/,False,active,verified this session
-816,Streamlit,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://streamlit.io/,False,active,verified this session
-817,think-cell,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.think-cell.com/en,False,active,verified this session
-818,TimeFlow,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,http://flowingmedia.com/timeflow.html,False,active,verified this session
-819,TwoTone,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://twotone.io/,False,active,verified this session
-820,Vectr,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://vectr.com/,False,active,verified this session
-821,Vexlio,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.vexlio.com/,False,active,verified this session
-822,Visme,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.visme.co/make-infographics/,False,active,verified this session
-823,Wrapify,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.wrapify.tech/,False,active,verified this session
-824,Zoom.it,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://zoom.it/,False,active,verified this session
+539,Jonathan Schwabish,Person,Economist; senior fellow at the Urban Institute; founder of PolicyViz,,"Washington, DC area",policy;information-design;teaching,"Economist turned data communicator. Specialises in data visualisation and presentation design at the Urban Institute, runs the PolicyViz firm, podcast and newsletter, and teaches at Georgetown, MICA and Cornell. Author of 'Better Data Visualizations'.",https://www.linkedin.com/in/jonathanschwabish,True,active,verified this session
+540,Adioma,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://adioma.com/,False,active,verified this session
+541,Amazon QuickSight,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://aws.amazon.com/quicksight/,False,active,verified this session
+542,Apache Superset,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://superset.apache.org/,False,active,verified this session
+543,Chartbuilder,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://quartz.github.io/Chartbuilder/,False,active,verified this session
+544,Chartle,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.chartle.app/,False,active,verified this session
+545,Charts to Go,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://chartstogo.io/chart-system-builder,False,active,verified this session
+546,Data Illustrator,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://data-illustrator.cs.umd.edu/,False,active,verified this session
+547,Datacopia,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://datacopia.com/,False,active,verified this session
+548,DataGraph,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.visualdatatools.com/DataGraph/,False,active,verified this session
+549,Datawrapper (tool),Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.datawrapper.de/,False,active,verified this session
+550,Easelly,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.easel.ly/,False,active,verified this session
+551,Flourish (tool),Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://flourish.studio,False,active,verified this session
+552,GraphItUp,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://graphitup.com/,False,active,verified this session
+553,IBM Cognos Analytics,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.ibm.com/products/cognos-analytics,False,active,verified this session
+554,Infogram,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://infogram.com/,False,active,verified this session
+555,JMP,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.jmp.com/en_gb/home.html,False,active,verified this session
+556,Logi Analytics,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://insightsoftware.com/logi-analytics/,False,active,verified this session
+557,Looker Studio,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://lookerstudio.google.com/overview,False,active,verified this session
+558,Lyra,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,http://idl.cs.washington.edu/projects/lyra/,False,active,verified this session
+559,Mappica,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.mappica.com/,False,active,verified this session
+560,Matlab,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://uk.mathworks.com/products/matlab.html,False,active,verified this session
+561,Mekko Graphics,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.mekkographics.com/,False,active,verified this session
+562,Metabase,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.metabase.com/,False,active,verified this session
+563,Microsoft Excel,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.microsoft.com/en-gb/microsoft-365/excel,False,active,verified this session
+564,Microsoft Power BI,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://powerbi.microsoft.com/en-us/,False,active,verified this session
+565,Mondrian,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,http://www.theusrus.de/Mondrian/,False,active,verified this session
+566,Numbers,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.apple.com/uk/numbers/,False,active,verified this session
+567,OfficeReports,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.officereports.com/,False,active,verified this session
+568,OpenOffice Calc,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,http://www.openoffice.org/product/calc.html,False,active,verified this session
+569,Origin,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.originlab.com/,False,active,verified this session
+570,Peltier Tech Chart Utility,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://peltiertech.com/charts-for-excel/,False,active,verified this session
+571,Perspective,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.pixxa.com/,False,active,verified this session
+572,PlotDB,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://plotdb.com/,False,active,verified this session
+573,Plotivy,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://plotivy.app/,False,active,verified this session
+574,Qlik Sense,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.qlik.com/us/products/qlik-sense,False,active,verified this session
+575,SAP BusinessObjects,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.sap.com/uk/products/technology-platform/bi-platform.html,False,active,verified this session
+576,Scimago Graphica,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://graphica.app/,False,active,verified this session
+577,Sisense,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.sisense.com/,False,active,verified this session
+578,SnappyCharts,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.snappycharts.com/,False,active,verified this session
+579,Stata,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.stata.com/,False,active,verified this session
+580,Tableau Desktop,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.tableau.com/products/desktop,False,active,verified this session
+581,Tableau Public,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://public.tableau.com/app/discover,False,active,verified this session
+582,TIBCO Spotfire,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.tibco.com/products/tibco-spotfire,False,active,verified this session
+583,TreeMap,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.treemap.com/,False,active,verified this session
+584,Visokio,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://visokio.com/,False,active,verified this session
+585,Vizzlo,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://vizzlo.com/,False,active,verified this session
+586,Wizard,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.wizardmac.com/,False,active,verified this session
+587,Wolfram Mathematica,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.wolfram.com/mathematica/,False,active,verified this session
+588,Yellowfin BI,Tool,Visualising Data · Charting,,,charting;visualising-data-catalogue,,https://www.yellowfinbi.com/,False,active,verified this session
+589,amCharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.amcharts.com/,False,active,verified this session
+590,AnyChart,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.anychart.com/,False,active,verified this session
+591,Apache ECharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://echarts.apache.org/en/index.html,False,active,verified this session
+592,Arbor.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://arborjs.org/,False,active,verified this session
+593,C3.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://c3js.org/,False,active,verified this session
+594,Chart Tool,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://globeandmail.github.io/chart-tool/,False,active,verified this session
+595,Chart.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.chartjs.org/,False,active,verified this session
+596,CodeFlower,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://www.redotheweb.com/CodeFlower/,False,active,verified this session
+597,Cubism.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://square.github.io/cubism/,False,active,verified this session
+598,D3 Plus,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://d3plus.org/,False,active,verified this session
+599,DataTables,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://datatables.net/,False,active,verified this session
+600,dc.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://dc-js.github.io/dc.js/,False,active,verified this session
+601,Deneb,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://deneb-viz.github.io/,False,active,verified this session
+602,Dimple,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://dimplejs.org/,False,active,verified this session
+603,EaselJS,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://createjs.com/easeljs,False,active,verified this session
+604,Envision,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://humblesoftware.com/envision,False,active,verified this session
+605,Foamtree,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://get.carrotsearch.com/foamtree/demo/,False,active,verified this session
+606,FusionCharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.fusioncharts.com/,False,active,verified this session
+607,ggplot2,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://ggplot2.tidyverse.org/,False,active,verified this session
+608,Gnuplot,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://www.gnuplot.info/,False,active,verified this session
+609,Google Charts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://developers.google.com/chart/,False,active,verified this session
+610,Heatmap.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.patrick-wied.at/static/heatmapjs/,False,active,verified this session
+611,Grapper,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.grapper.io/,False,active,verified this session
+612,Highcharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.highcharts.com/,False,active,verified this session
+613,HoloViews,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://holoviews.org/,False,active,verified this session
+614,htmlwidgets for R,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://www.htmlwidgets.org/index.html,False,active,verified this session
+615,Intro.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://usablica.github.io/intro.js/,False,active,verified this session
+616,iNZight,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://inzight.nz/,False,active,verified this session
+617,LightningChart,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://lightningchart.com/,False,active,verified this session
+618,matplotlib,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://matplotlib.org/,False,active,verified this session
+619,Observable Canvases,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://observablehq.com/platform/canvases,False,active,verified this session
+620,Observable Plot,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://observablehq.com/plot/,False,active,verified this session
+621,Odyssey.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://cartodb.github.io/odyssey.js/,False,active,verified this session
+622,p5.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://p5js.org/,False,active,verified this session
+623,Paper.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,http://paperjs.org/about/,False,active,verified this session
+624,Plotly Dash,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://plotly.com/dash/,False,active,verified this session
+625,Plotly,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://plotly.com/graphing-libraries/,False,active,verified this session
+626,Polychart.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://github.com/Polychart,False,active,verified this session
+627,Processing,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://processing.org/,False,active,verified this session
+628,Quadrigram,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.quadrigram.com/,False,active,verified this session
+629,Quarto,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://quarto.org/,False,active,verified this session
+630,R,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.r-project.org/,False,active,verified this session
+631,r2d3,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://rstudio.github.io/r2d3/,False,active,verified this session
+632,Ractive.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.ractivejs.org/,False,active,verified this session
+633,rCharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://ramnathv.github.io/rCharts/,False,active,verified this session
+634,React,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://react.dev/,False,active,verified this session
+635,Recharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://recharts.org/en-US/,False,active,verified this session
+636,RStudio,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://posit.co/products/open-source/rstudio/,False,active,verified this session
+637,Scriptographer,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://scriptographer.org/about/,False,active,verified this session
+638,Seaborn,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,http://seaborn.pydata.org/index.html,False,active,verified this session
+639,SciChart,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.scichart.com/,False,active,verified this session
+640,Shiny,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://shiny.posit.co/,False,active,verified this session
+641,Sigma.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.sigmajs.org/,False,active,verified this session
+642,Svelte,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://svelte.dev/,False,active,verified this session
+643,SveltePlot,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://svelteplot.dev/,False,active,verified this session
+644,Taucharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://taucharts.com/,False,active,verified this session
+645,Timeline.js,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://timeline.knightlab.com/,False,active,verified this session
+646,Vega Lite,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://vega.github.io/vega-lite/,False,active,verified this session
+647,Vega,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://vega.github.io/vega/,False,active,verified this session
+648,WebGL,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API,False,active,verified this session
+649,Yellowbrick,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.scikit-yb.org/en/latest/,False,active,verified this session
+650,ZingChart,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://www.zingchart.com/,False,active,verified this session
+651,ZoomCharts,Tool,Visualising Data · Coding,,,coding;visualising-data-catalogue,,https://zoomcharts.com/en/,False,active,verified this session
+652,Circos,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://circos.ca/,False,active,verified this session
+653,Cosmograph,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://cosmograph.app/,False,active,verified this session
+654,Cytoscape,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://cytoscape.org/,False,active,verified this session
+655,e!Sankey,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.ifu.com/e-sankey/,False,active,verified this session
+656,Gephi Lite,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://gephi.org/gephi-lite/,False,active,verified this session
+657,Graphext,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.graphext.com/,False,active,verified this session
+658,Hubscope,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.hubscope.com/,False,active,verified this session
+659,IN-SPIRE,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://in-spire.pnnl.gov/,False,active,verified this session
+660,KeyLines,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://cambridge-intelligence.com/keylines/,False,active,verified this session
+661,KronoGraph,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://cambridge-intelligence.com/kronograph/,False,active,verified this session
+662,Linkurious,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://linkurious.com/,False,active,verified this session
+663,Mirador,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://fathom.info/mirador/,False,active,verified this session
+664,NodeXL,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.smrfoundation.org/nodexl/,False,active,verified this session
+665,NVivo,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://lumivero.com/products/nvivo/,False,active,verified this session
+666,PhotoTrails,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://phototrails.net/,False,active,verified this session
+667,ReGraph,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://cambridge-intelligence.com/regraph/,False,active,verified this session
+668,Sankey Diagram (SquishLogic),Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://www.squishlogic.com/Sankey/,False,active,verified this session
+669,Sankey Diagram (sankeydiagram.net),Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://sankeydiagram.net/,False,active,verified this session
+670,Sankey Flow Show,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.sankeyflowshow.com/,False,active,verified this session
+671,SankeyMATIC,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://sankeymatic.com/,False,active,verified this session
+672,Sentinel Visualizer,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://fmsasg.com/,False,active,verified this session
+673,Sliver,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://www.sliversoftware.com/,False,active,verified this session
+674,Tagxedo,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://www.tagxedo.com/,False,active,verified this session
+675,Ternary Plot,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.ternaryplot.com/,False,active,verified this session
+676,Textal,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://www.textal.org/,False,active,verified this session
+677,Textexture,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://textexture.com/index.php,False,active,verified this session
+678,WordSeer,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,http://wordseer.berkeley.edu/,False,active,verified this session
+679,WordStat,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://provalisresearch.com/products/content-analysis-software/,False,active,verified this session
+680,WordTree,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://www.jasondavies.com/wordtree/,False,active,verified this session
+681,WordWanderer,Tool,Visualising Data · Complex,,,complex;visualising-data-catalogue,,https://wordwanderer.org/,False,active,verified this session
+682,ArcGIS Pro,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview,False,active,verified this session
+683,ArcGIS Insights,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.esri.com/en-us/arcgis/products/arcgis-insights/overview,False,active,verified this session
+684,ArcGIS StoryMaps,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.esri.com/en-us/arcgis/products/arcgis-storymaps/,False,active,verified this session
+685,Batchgeo,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://batchgeo.com/,False,active,verified this session
+686,CARTO,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://carto.com/blog/welcome-to-carto-builder,False,active,verified this session
+687,CartoKit,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://alpha.cartokit.dev/,False,active,verified this session
+688,CMaps Analytics,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://cmapsanalytics.wpengine.com/,False,active,verified this session
+689,DIVA-GIS,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://diva-gis.org/,False,active,verified this session
+690,DMTI Spatial,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.dmtispatial.com/,False,active,verified this session
+691,Dotspotting,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://dotspotting.org/,False,active,verified this session
+692,GlobeStudio,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://globestudio.app/,False,active,verified this session
+693,Google Earth,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://www.google.co.uk/intl/en_uk/earth/index.html,False,active,verified this session
+694,Google Maps API,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://developers.google.com/maps/,False,active,verified this session
+695,Kartograph,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://kartograph.vis4.net/,False,active,verified this session
+696,Khartis,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.sciencespo.fr/cartographie/khartis/en/,False,active,verified this session
+697,Leaflet.js,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://leafletjs.com/,False,active,verified this session
+698,Map Vectorizer,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://github.com/nypl-spacetime/map-vectorizer,False,active,verified this session
+699,Mapbox,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.mapbox.com/mapbox-studio/,False,active,verified this session
+700,MAPCITE,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.mapcite.com/,False,active,verified this session
+701,Maps4News,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://maps4news.com/,False,active,verified this session
+702,Maptive,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.maptive.com/,False,active,verified this session
+703,Mapzen,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.mapzen.com/,False,active,verified this session
+704,Modest Maps,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://modestmaps.com/,False,active,verified this session
+705,Natural Earth (tool),Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.naturalearthdata.com/,False,active,verified this session
+706,No Code Map App,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.nocodemapapp.com/,False,active,verified this session
+707,OpenLayers,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://openlayers.org/,False,active,verified this session
+708,Polymaps,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://polymaps.org/,False,active,verified this session
+709,Print Map Maker,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://github.com/datadesk/print-map-maker,False,active,verified this session
+710,Projection Wizard,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://projectionwizard.org/,False,active,verified this session
+711,Social Explorer,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.socialexplorer.com/,False,active,verified this session
+712,Stamen Maps,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://maps.stamen.com/,False,active,verified this session
+713,Unfolding,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,http://unfoldingmaps.org/,False,active,verified this session
+714,Visual Command Center,Tool,Visualising Data · Mapping,,,mapping;visualising-data-catalogue,,https://www.everbridge.com/products/visual-command-center/,False,active,verified this session
+715,ABBYY,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://pdf.abbyy.com/how-to/,False,active,verified this session
+716,Able2Extract,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.investintech.com/prod_a2e.htm,False,active,verified this session
+717,Alteryx,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.alteryx.com/,False,active,verified this session
+718,Amazon Textract,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://aws.amazon.com/textract/,False,active,verified this session
+719,BigQuery,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://cloud.google.com/bigquery,False,active,verified this session
+720,D3 Deconstructor,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,http://ucbvislab.github.io/d3-deconstructor/,False,active,verified this session
+721,Dataiku Data Science Studio,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.dataiku.com/product/,False,active,verified this session
+722,DataBasic,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,Link corrected: on Andy's page this tool's link sits on a neighbouring tile.,https://www.databasic.io/en/,False,active,verified this session
+723,DataPad,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.datapad.io/,False,active,verified this session
+724,Daytum,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.daytum.com/,False,active,verified this session
+725,DMI Tools,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://wiki.digitalmethods.net/Dmi/ToolDatabase,False,active,verified this session
+726,EasyMorph,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://easymorph.com/,False,active,verified this session
+727,Exploratory,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://exploratory.io/,False,active,verified this session
+728,FreeSight,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.freesightweb.com/,False,active,verified this session
+729,GenerateData,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://generatedata.com/,False,active,verified this session
+730,Geo DataMerger,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://funkeinteraktiv.github.io/geo-data-merger/,False,active,verified this session
+731,Google Sheets,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,http://www.google.co.uk/sheets/about/,False,active,verified this session
+732,Import.io,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.import.io/,False,active,verified this session
+733,KNIME,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.knime.com/,False,active,verified this session
+734,Lexalytics,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.lexalytics.com/,False,active,verified this session
+735,Leximancer,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.leximancer.com/,False,active,verified this session
+736,LibreOffice Calc,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.libreoffice.org,False,active,verified this session
+737,Mr. Data Converter,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,http://shancarter.github.io/mr-data-converter/,False,active,verified this session
+738,Octoparse,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.octoparse.com/,False,active,verified this session
+739,OpenRefine,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://github.com/OpenRefine,False,active,verified this session
+740,OutWit Hub,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.outwit.com/products/hub/outwit-hub-light-pro-expert-enterprise-editions/,False,active,verified this session
+741,ParseHub,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.parsehub.com/,False,active,verified this session
+742,pdf2xl,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://pdf2xl.com/,False,active,verified this session
+743,PDFtoExcel,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.pdftoexcel.com/,False,active,verified this session
+744,Python,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.python.org/,False,active,verified this session
+745,Reporter,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,http://reporter-app.com/,False,active,verified this session
+746,Rowboat,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://rowboat.net/product/,False,active,verified this session
+747,ScraperWiki,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://scraperwiki.com/,False,active,verified this session
+748,Scrapy,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://scrapy.org/,False,active,verified this session
+749,Snowflake,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.snowflake.com/en/,False,active,verified this session
+750,Streamtools,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://github.com/nytlabs/streamtools,False,active,verified this session
+751,Surveywonders,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.surveywonders.com/,False,active,verified this session
+752,Tableau Prep,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.tableau.com/en-gb/products/prep,False,active,verified this session
+753,Tabula,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://tabula.technology/,False,active,verified this session
+754,Tidyverse,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.tidyverse.org/,False,active,verified this session
+755,Typeform,Tool,Visualising Data · Data,,,data;visualising-data-catalogue,,https://www.typeform.com/,False,active,verified this session
+756,0 to 255,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://0to255.com/,False,active,verified this session
+757,Adobe Color,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://color.adobe.com/,False,active,verified this session
+758,Chroma.js Color Palette Helper,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://gka.github.io/palettes/,False,active,verified this session
+759,Color Calculator,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://www.sessions.edu/color-calculator/,False,active,verified this session
+760,Color Hunt,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://colorhunt.co/,False,active,verified this session
+761,Color Oracle,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://colororacle.org/,False,active,verified this session
+762,Colordot by Hailpixel,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://color.hailpixel.com/,False,active,verified this session
+763,ColorExplorer,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,http://colorexplorer.com/,False,active,verified this session
+764,Colorgorical,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,http://vrl.cs.brown.edu/color,False,active,verified this session
+765,Coolors,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://coolors.co/,False,active,verified this session
+766,HCL Colorpicker,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,http://tristen.ca/hcl-picker/,False,active,verified this session
+767,HCL Wizard,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://hclwizard.org/,False,active,verified this session
+768,HTML color picker,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://imagecolorpicker.com/,False,active,verified this session
+769,I want hue,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://medialab.github.io/iwanthue/,False,active,verified this session
+770,ImageLR,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://imagelr.com/,False,active,verified this session
+771,Obumbratta Colour,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://obumbratta.com/colour,False,active,verified this session
+772,Palettte,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://palettte.app/,False,active,verified this session
+773,Vischeck,Tool,Visualising Data · Colour,,,colour;visualising-data-catalogue,,https://www.vischeck.com/,False,active,verified this session
+774,Adobe After Effects,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.adobe.com/products/aftereffects.html,False,active,verified this session
+775,Adobe Illustrator,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.adobe.com/products/illustrator.html,False,active,verified this session
+776,Affinity Designer,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://affinity.serif.com/en-gb/designer/,False,active,verified this session
+777,Affinity Photo,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://affinity.serif.com/en-gb/photo/,False,active,verified this session
+778,Affinity Publisher,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://affinity.serif.com/en-gb/publisher/,False,active,verified this session
+779,Amadine,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://amadine.com/,False,active,verified this session
+780,Axure,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.axure.com/,False,active,verified this session
+781,Balsamiq,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://balsamiq.com/wireframes/,False,active,verified this session
+782,Beautiful.ai,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.beautiful.ai/,False,active,verified this session
+783,Bertifier,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.aviz.fr/bertifier,False,active,verified this session
+784,BigML,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://bigml.com/,False,active,verified this session
+785,BioRender,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.biorender.com/,False,active,verified this session
+786,Blender,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.blender.org/,False,active,verified this session
+787,Canva,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.canva.com/,False,active,verified this session
+788,Ceros,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.ceros.com/,False,active,verified this session
+789,Cinema 4D,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.maxon.net/en/cinema-4d,False,active,verified this session
+790,Creately,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://creately.com/lp/venn-diagram-maker/,False,active,verified this session
+791,Datylon,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.datylon.com/chart-design/datylon-for-illustrator,False,active,verified this session
+792,DesignCap,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.designcap.com/,False,active,verified this session
+793,Excalidraw,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://excalidraw.com/,False,active,verified this session
+794,FatFonts,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,http://fatfonts.org/?page_id=68,False,active,verified this session
+795,Figma,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.figma.com/design/,False,active,verified this session
+796,GIMP,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.gimp.org/,False,active,verified this session
+797,Gleek.io,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.gleek.io,False,active,verified this session
+798,Google Slides,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://workspace.google.com/products/slides/,False,active,verified this session
+799,Graphviz,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.graphviz.org,False,active,verified this session
+800,Houdini,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.sidefx.com/products/houdini/,False,active,verified this session
+801,Inkscape,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://inkscape.org/,False,active,verified this session
+802,Keynote,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.apple.com/uk/keynote/,False,active,verified this session
+803,Lapis,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://lapis-story.com/,False,active,verified this session
+804,Lovely Charts,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://lovelycharts.com/,False,active,verified this session
+805,Maya,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.autodesk.com/products/maya/overview,False,active,verified this session
+806,Microsoft PowerPoint,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.microsoft.com/en-gb/microsoft-365/powerpoint,False,active,verified this session
+807,Nitro,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.gonitro.com/,False,active,verified this session
+808,OmniGraffle,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.omnigroup.com/omnigraffle/,False,active,verified this session
+809,Penpot,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://penpot.app/,False,active,verified this session
+810,Piktochart,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://piktochart.com/,False,active,verified this session
+811,Procreate,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://procreate.com/,False,active,verified this session
+812,Proto.io,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://proto.io/,False,active,verified this session
+813,Simpleshow,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://simpleshow.com/,False,active,verified this session
+814,Sketch,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.sketch.com/,False,active,verified this session
+815,SketchUp,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.sketchup.com/,False,active,verified this session
+816,Streamline,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.streamlinehq.com/,False,active,verified this session
+817,Streamlit,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://streamlit.io/,False,active,verified this session
+818,think-cell,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.think-cell.com/en,False,active,verified this session
+819,TimeFlow,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,http://flowingmedia.com/timeflow.html,False,active,verified this session
+820,TwoTone,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://twotone.io/,False,active,verified this session
+821,Vectr,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://vectr.com/,False,active,verified this session
+822,Vexlio,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.vexlio.com/,False,active,verified this session
+823,Visme,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.visme.co/make-infographics/,False,active,verified this session
+824,Wrapify,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://www.wrapify.tech/,False,active,verified this session
+825,Zoom.it,Tool,Visualising Data · Specialist,,,specialist;visualising-data-catalogue,,https://zoom.it/,False,active,verified this session
