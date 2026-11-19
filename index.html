@@ -273,6 +273,20 @@ section{border-bottom:0!important}
 section{padding:20px 0 22px!important}
 .lead{padding:17px 0 17px!important}
 .filters{margin-top:6px}
+
+/* pinned network label */
+.netpin{position:absolute;z-index:6;transform:translate(-50%,calc(-100% - 14px));background:var(--paper);color:var(--ink);border:1px solid var(--rule);padding:10px 30px 10px 12px;max-width:270px;min-width:170px;font:400 15px/1.35 var(--serif);box-shadow:0 12px 28px -14px rgba(0,0,0,.45)}
+.netpin::after{content:"";position:absolute;left:50%;bottom:-7px;width:12px;height:12px;background:var(--paper);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);transform:translateX(-50%) rotate(45deg)}
+.netpin.below{transform:translate(-50%,16px)}
+.netpin.below::after{top:-7px;bottom:auto;transform:translateX(-50%) rotate(225deg)}
+.netpin b{display:block;font:700 18px/1.15 var(--dhead);margin:2px 0}
+.netpin .m{font:400 10px var(--head);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+.netpin .pw{font-style:italic;color:var(--ink2);font-size:14px}
+.netpin .pa{display:flex;gap:12px;align-items:center;margin-top:8px;font:400 10.5px var(--head);letter-spacing:.12em;text-transform:uppercase}
+.netpin .pa button{all:unset;cursor:pointer;border-bottom:1px solid currentColor}
+.netpin .pa a{text-decoration:none;border-bottom:1px solid currentColor}
+.netpin .pinx{all:unset;position:absolute;right:8px;top:4px;font:400 20px var(--serif);cursor:pointer;line-height:1}
+.netpin[hidden]{display:none}
 /* titles: Sentient Bold (Fontshare), Fraunces as fallback */
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
 h1{font-weight:700;letter-spacing:-.025em}
@@ -323,12 +337,13 @@ details.gov summary{font:700 24px var(--dhead)}
 
 <section aria-labelledby="h-net">
   <div class="sechead"><h2 id="h-net">How it all connects</h2><span class="pg">Section 2</span></div>
-  <p class="sub">Drag to spin, scroll to zoom. Rings are categories; shapes are themes (shape and colour show the theme family); dots are entries, inked by category. Themes near the centre cross many categories; themes near a ring belong mostly to it. Click a theme or category to filter.</p>
+  <p class="sub">Drag to spin, scroll to zoom. Rings are categories; shapes are themes (shape and colour show the theme family); dots are entries, inked by category. Themes near the centre cross many categories; themes near a ring belong mostly to it. Click any dot, shape or ring to pin its label; click it again or click empty space to close.</p>
   <div class="netwrap">
     <canvas id="net" aria-label="Interactive 3D network of entries, themes and categories"></canvas>
     <div class="netui"><button class="chip" id="spin" aria-pressed="true">Auto-spin</button><button class="chip" id="links" aria-pressed="true">Show links</button><button class="chip" id="netReset">Reset view</button></div>
     <div class="netlegend" id="netLegend"></div>
-    <div class="nethelp" id="netHelp">Hover for names</div>
+    <div class="nethelp" id="netHelp">Hover for names · tap or click to pin a label</div>
+    <div class="netpin" id="netPin" hidden role="dialog" aria-label="Selected item"></div>
     <div class="netfallback" id="netFallback">The 3D view needs WebGL, which this browser has turned off. The catalogue below still has everything.</div>
   </div>
 </section>
@@ -707,15 +722,34 @@ function buildNetwork(){
   function pick(e){const r=canvas.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;ray.setFromCamera(mouse,camera);
     const h=ray.intersectObjects(hubs,false)[0]; if(h) return {kind:h.object.userData.type,obj:h.object};
     const p=ray.intersectObject(points)[0]; if(p&&visible[p.index]) return {kind:"entry",i:p.index}; return null;}
-  canvas.addEventListener("pointermove",e=>{const h=pick(e);hover=h;
+  canvas.addEventListener("pointermove",e=>{const h=pick(e);hover=h; if(h&&sameAs(h,pinned)){hideTip();canvas.style.cursor="pointer";return;}
     if(!h){hideTip();canvas.style.cursor="grab";return;} canvas.style.cursor="pointer";
     if(h.kind==="entry"){const d=DATA[h.i];showTip(`<div class="m">${esc(d.category)}</div><b>${esc(d.name)}</b><div class="m" style="margin-top:4px">${esc(d.tags.join(" · "))}</div>`,e.clientX,e.clientY);}
     else {const u=h.obj.userData; showTip(`<div class="m">${u.type==="cat"?"Category":"Theme · "+esc((famByKey[u.fam]||{label:"Other"}).label)}</div><b>${esc(u.key)}</b> · ${u.n} entries<div class="m" style="margin-top:4px">Click to filter</div>`,e.clientX,e.clientY);}});
   canvas.addEventListener("pointerleave",hideTip);
   let down=null; canvas.addEventListener("pointerdown",e=>down=[e.clientX,e.clientY]);
-  canvas.addEventListener("pointerup",e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>5) return; const h=pick(e); if(!h) return;
-    if(h.kind==="cat") setFilter({cat:h.obj.userData.key},false); else if(h.kind==="theme") setFilter({theme:h.obj.userData.key},false);
-    else {setFilter({q:DATA[h.i].name,cat:"",theme:"",status:"",link:"",sort:"relevance"},false); $("sortSel").value="relevance"; document.getElementById("list").scrollIntoView({behavior:"smooth"});} });
+  // pinned label: click/tap an object to keep its label open; click it again, or empty space, to close
+  const pinEl=$("netPin"); let pinned=null;
+  const sameAs=(a,b)=>a&&b&&a.kind===b.kind&&(a.kind==="entry"?a.i===b.i:a.obj===b.obj);
+  function pinHTML(h){
+    if(h.kind==="entry"){const d=DATA[h.i];return `<button class="pinx" aria-label="Close">×</button><div class="m">${esc(d.category)}</div><b>${esc(d.name)}</b>${d.who?`<div class="pw">${esc(d.who)}</div>`:""}<div class="m" style="margin-top:6px">${esc(d.tags.join(" · "))}</div><div class="pa"><button data-pin="index">Show in the Index</button><a href="${esc(d.url)}" target="_blank" rel="noopener">Visit ↗</a></div>`;}
+    const u=h.obj.userData; return `<button class="pinx" aria-label="Close">×</button><div class="m">${u.type==="cat"?"Category":"Theme · "+esc(famLabel(u.fam))}</div><b>${esc(u.key)}</b><div class="pw">${u.n} entries</div><div class="pa"><button data-pin="filter">Filter the Index</button></div>`;
+  }
+  function openPin(h){ pinned=h; pinEl.innerHTML=pinHTML(h); pinEl.hidden=false; hideTip(); placePin(); }
+  function closePin(){ pinned=null; pinEl.hidden=true; }
+  const tmpV=new THREE.Vector3();
+  function placePin(){ if(!pinned) return; tmpV.copy(pinned.kind==="entry"?entryPos[pinned.i]:pinned.obj.position).project(camera);
+    if(tmpV.z>1){pinEl.style.visibility="hidden";return;} pinEl.style.visibility="visible";
+    const w=canvas.clientWidth,hh=canvas.clientHeight; const x=(tmpV.x*.5+.5)*w, y=(-tmpV.y*.5+.5)*hh;
+    pinEl.style.left=Math.max(8,Math.min(w-8,x))+"px"; pinEl.style.top=Math.max(8,y)+"px"; pinEl.classList.toggle("below", y<pinEl.offsetHeight+30); }
+  pinEl.addEventListener("click",e=>{
+    if(e.target.closest(".pinx")){closePin();return;}
+    const b=e.target.closest("[data-pin]"); if(!b||!pinned) return;
+    if(pinned.kind==="entry"){ setFilter({q:DATA[pinned.i].name,cat:"",theme:"",status:"",link:"",sort:"relevance"},false); $("sortSel").value="relevance"; document.getElementById("list").scrollIntoView({behavior:"smooth"}); }
+    else { const u=pinned.obj.userData; setFilter(u.type==="cat"?{cat:u.key}:{theme:u.key},false); document.getElementById("list").scrollIntoView({behavior:"smooth"}); }
+  });
+  canvas.addEventListener("pointerup",e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>5) return; const h=pick(e);
+    if(!h||sameAs(h,pinned)) closePin(); else openPin(h); });
   // highlight according to filters
   let visible=DATA.map(()=>true);
   function highlight(){ visible=DATA.map(matches); const any=visible.some(v=>!v);
@@ -730,7 +764,7 @@ function buildNetwork(){
   function size(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
   new ResizeObserver(size).observe(canvas); size();
   let running=true; const io=new IntersectionObserver(es=>{running=es[0].isIntersecting;if(running) loop();}); io.observe(canvas);
-  function loop(){ if(!running) return; requestAnimationFrame(loop); hubs.forEach(h=>{if(h.userData.type==="theme") h.rotation.y+=.0022;}); controls.update(); renderer.render(scene,camera); }
+  function loop(){ if(!running) return; requestAnimationFrame(loop); hubs.forEach(h=>{if(h.userData.type==="theme") h.rotation.y+=.0022;}); controls.update(); renderer.render(scene,camera); placePin(); }
   loop();
   // legend
   $("netLegend").innerHTML=legendHTML();
