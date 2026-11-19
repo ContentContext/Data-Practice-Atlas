@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Data Practice Atlas</title>
 <script>try{var p=localStorage.getItem("dpaPaper");if(p==="dark"||p==="light")document.documentElement.setAttribute("data-paper",p);}catch(e){}</script>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=sentient@700,700i&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Epilogue:wght@400&family=Courier+Prime:wght@400;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,0..100,0..1&display=swap" rel="stylesheet">
@@ -15,7 +17,7 @@
 :root{
   --serif:"Newsreader", Georgia, "Times New Roman", serif;
   --display:"Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
-  --dhead:"Windsor", "Windsor BT", "Windsor Pro", "Fraunces", "Libre Caslon Text", Georgia, serif;
+  --dhead:"Sentient", "Fraunces", "Libre Caslon Text", Georgia, serif;
   --head:"Epilogue", "Helvetica Neue", Arial, sans-serif;
   --type:"Courier Prime", "Courier New", ui-monospace, monospace;
   --ease:cubic-bezier(.4,.2,.2,1);
@@ -243,10 +245,9 @@ footer{border-top:3px double var(--rule)}
 
 /* sans-serif: Epilogue Regular throughout */
 .topstrip,.paperswitch button,.mastsub,.function h2,.stats span,.sechead .pg,.axis text,.lbl,.legend,.tip .m,.f label,.btn,.chip,.netlegend,.seg2 button,.sect,.plate .cap,.themes span,.stamp,th,td.cat,.fcap{font-family:var(--head)!important;font-weight:400!important}
-/* titles: Windsor where installed (or self-hosted under a web licence), Fraunces as the free fallback */
-@font-face{font-family:"Windsor";src:local("Windsor"),local("Windsor BT"),local("Windsor Pro"),local("WindsorBT-Roman"),local("Windsor-Bold");font-display:swap}
+/* titles: Sentient Bold (Fontshare), Fraunces as fallback */
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
-h1{font-weight:800;letter-spacing:-.025em}
+h1{font-weight:700;letter-spacing:-.025em}
 .entry h3{font-weight:700;font-variation-settings:"SOFT" 100,"WONK" 0,"opsz" 36}
 /* bold titles */
 h1{font:700 clamp(46px,8.6vw,126px)/.98 var(--dhead);letter-spacing:-.02em}
@@ -733,13 +734,13 @@ function patternURI(shape){ if(PATTERN_CACHE[shape]) return PATTERN_CACHE[shape]
 const GROUPS={D:{label:"Data",cats:["Data Portal","Dataset Source","Weird Dataset","Tool"]},P:{label:"Practice",cats:["Person","Studio & Lab","Festival & Conference"]},A:{label:"Atlas reading",cats:["Book","Website & Publication","Video & Podcast"]}};
 async function wordmark(){
   const cv=$("wordmark"), ctx=cv.getContext("2d");
-  try{await document.fonts.load("800 300px Windsor, Fraunces");}catch(e){}
+  try{await document.fonts.load("700 300px Sentient");}catch(e){}
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   let marks=[], W=0,H=0,dpr=Math.min(2,devicePixelRatio);
   function layout(){
     W=cv.clientWidth; H=Math.round(W*.34); cv.width=W*dpr; cv.height=H*dpr; cv.style.height=H+"px";
     const off=document.createElement("canvas"); off.width=W; off.height=H; const g=off.getContext("2d");
-    const fs=H*1.08; g.font=`800 ${fs}px Windsor, Fraunces, Georgia, serif`; g.textBaseline="alphabetic";
+    const fs=H*1.08; g.font=`700 ${fs}px Sentient, Fraunces, Georgia, serif`; g.textBaseline="alphabetic";
     const letters=["D","P","A"], widths=letters.map(l=>g.measureText(l).width), gap=fs*.04, total=widths.reduce((a,b)=>a+b,0)+gap*2; let x=(W-total)/2; const base=H*.86;
     const boxes=letters.map((l,i)=>{const b={l,x,w:widths[i]}; x+=widths[i]+gap; return b;});
     marks=[]; boxes.forEach(b=>{
@@ -767,7 +768,7 @@ async function wordmark(){
   }
   function frame(t){
     ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
-    ctx.font=`800 ${layout.fs}px Windsor, Fraunces, Georgia, serif`; ctx.lineWidth=1; ctx.strokeStyle=cssv("--hair"); layout.boxes.forEach(b=>ctx.strokeText(b.l,b.x,layout.base));
+    ctx.font=`700 ${layout.fs}px Sentient, Fraunces, Georgia, serif`; ctx.lineWidth=1; ctx.strokeStyle=cssv("--hair"); layout.boxes.forEach(b=>ctx.strokeText(b.l,b.x,layout.base));
     marks.forEach(m=>{ if(!reduce){const nx=m.ox+Math.sin(t/1400+m.ph)*2.2, ny=m.oy+Math.cos(t/1700+m.ph)*2.2; if(m.inside(nx,ny)){m.x=nx;m.y=ny;}} drawMark(m); });
     if(!reduce&&wmRunning) requestAnimationFrame(frame);
   }
