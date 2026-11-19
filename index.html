@@ -253,8 +253,12 @@ footer{border-top:3px double var(--rule)}
 th,td{border-left:0;border-right:0}
 
 /* entry tab: theme-family colour block behind the category line, 3px inside padding */
-.sect{background:var(--cat);color:var(--onfill)!important;padding:3px 6px;margin:0 0 10px;align-items:center;line-height:1.35}
-.sect .no{color:var(--onfill)!important;opacity:.85}
+.entry{padding-top:0!important}
+.entry::before{display:none!important}
+.sect{background:none;margin:0 0 12px;align-items:flex-start;line-height:1.2}
+.sect .tabl{display:inline-block;background:var(--cat);color:var(--onfill);padding:3px}
+.sect .tabl span{display:inline-block;margin-right:-.16em}
+.sect .no{color:var(--ink2)!important;padding-top:4px}
 /* titles: Sentient Bold (Fontshare), Fraunces as fallback */
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
 h1{font-weight:700;letter-spacing:-.025em}
@@ -590,7 +594,7 @@ function card(d){
   const meta=[d.year,d.place].filter(Boolean).join(" · ");
   const stamp=d.status!=="active"?`<span class="stamp">${esc(d.status)}</span>`:"";
   return `<article class="entry" style="--cat:${fc}">
-    <div class="sect"><span>${esc(d.category)}</span><span class="no">No. ${String(d.id).padStart(3,"0")}</span></div>
+    <div class="sect"><span class="tabl"><span>${esc(d.category)}</span></span><span class="no">No. ${String(d.id).padStart(3,"0")}</span></div>
     <div class="plate" style="background:${patternFor(d)}, var(--paper2)"><span class="badge" title="${esc(famLabel(fk))}">${shapeIcon(shapeOfFam(fk),fc,25)}</span><span class="cap" style="color:${fc}">${esc(famLabel(fk))}</span></div>
     <h3>${esc(d.name)}${stamp}</h3>
     ${d.who?`<div class="who">${esc(d.who)}</div>`:""}
