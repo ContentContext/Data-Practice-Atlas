@@ -259,6 +259,11 @@ th,td{border-left:0;border-right:0}
 .sect .tabl{display:inline-block;background:var(--cat);color:var(--tabtext);padding:3px}
 .sect .tabl span{display:inline-block;margin-right:-.16em}
 .sect .no{color:var(--ink2)!important;padding-top:4px}
+
+/* section kicker above title, 3px leader line */
+.sechead{display:flex;flex-direction:column;align-items:flex-start;gap:8px;border-top:3px solid var(--rule)!important;border-bottom:1px solid var(--rule);padding:10px 0 12px!important}
+.sechead .pg{order:-1}
+.mastsub{justify-content:flex-start!important}
 /* titles: Sentient Bold (Fontshare), Fraunces as fallback */
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
 h1{font-weight:700;letter-spacing:-.025em}
@@ -280,12 +285,12 @@ details.gov summary{font:700 24px var(--dhead)}
 <div class="wrap">
 <div class="topstrip">
   <span>Vol. 1 · Autumn 2026 · Free</span>
-  <span class="paperswitch" role="group" aria-label="Paper colour">Paper
+  <span class="paperswitch" role="group" aria-label="Paper colour">
     <span class="seg"><button id="paperLight" aria-pressed="true">Cream</button><button id="paperDark" aria-pressed="false">Brown</button></span>
   </span>
 </div>
 <header class="mast"><h1>Data Practice Atlas</h1></header>
-<div class="mastsub"><span>Books · People · Studios · Festivals · Portals · Datasets · Tools</span><span>An evaluation and access device</span><span id="mastCount"></span></div>
+<div class="mastsub"><span>Books · People · Studios · Festivals · Portals · Datasets · Tools</span></div>
 
 <div class="lead">
   <div class="function">
@@ -490,7 +495,6 @@ function stats(){
   const c=k=>DATA.filter(d=>d.verified.startsWith(k)).length;
   const themes=new Set(DATA.flatMap(d=>d.tags)).size;
   $("stats").innerHTML=`<div><b>${DATA.length}</b><span>entries</span></div><div><b>${CATS.length}</b><span>categories</span></div><div><b>${themes}</b><span>themes</span></div><div><b>${c("verified")}</b><span>checked live 19 Nov 2026</span></div>`;
-  $("mastCount").textContent=`${DATA.length} entries · ${themes} themes`;
   $("provcounts").textContent=`${c("verified")} records were checked against live web sources that day; ${c("from")} rely on general knowledge with a direct link to check; ${c("no link")} have no confirmed link and point to a web search instead.`;
 }
 
