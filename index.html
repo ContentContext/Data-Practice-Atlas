@@ -269,6 +269,10 @@ th,td{border-left:0;border-right:0}
 section{border-bottom:0!important}
 .lead{border-bottom:0!important}
 .mastsub{border-bottom:1px solid var(--rule)!important}
+/* halve spacing between sections */
+section{padding:20px 0 22px!important}
+.lead{padding:17px 0 17px!important}
+.filters{margin-top:6px}
 /* titles: Sentient Bold (Fontshare), Fraunces as fallback */
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
 h1{font-weight:700;letter-spacing:-.025em}
@@ -317,15 +321,6 @@ details.gov summary{font:700 24px var(--dhead)}
   </div>
 </section>
 
-<div class="filters" role="search">
-  <div class="f"><label for="q">Search</label><input id="q" type="search" placeholder="Try a name, word or typo: lupi, feminism, bergamo"></div>
-  <div class="f"><label for="catSel">Category</label><select id="catSel" class="type-sel"></select></div>
-  <div class="f"><label for="statusSel">Status</label><select id="statusSel"><option value="">Any status</option><option value="active">Active</option><option value="archived">Archived</option><option value="historical">Historical</option><option value="unclear">Unclear</option></select></div>
-  <div class="f"><label for="linkSel">Link check</label><select id="linkSel"><option value="">Any</option><option value="verified">Checked 19 Nov 2026</option><option value="from">Check link</option><option value="no link">Search link only</option></select></div>
-  <div class="f"><label for="themeSel">Theme</label><select id="themeSel" class="type-sel"></select></div>
-  <div class="f"><button class="btn" id="reset">Reset</button></div>
-</div>
-
 <section aria-labelledby="h-net">
   <div class="sechead"><h2 id="h-net">How it all connects</h2><span class="pg">Section 2</span></div>
   <p class="sub">Drag to spin, scroll to zoom. Rings are categories; shapes are themes (shape and colour show the theme family); dots are entries, inked by category. Themes near the centre cross many categories; themes near a ring belong mostly to it. Click a theme or category to filter.</p>
@@ -337,6 +332,15 @@ details.gov summary{font:700 24px var(--dhead)}
     <div class="netfallback" id="netFallback">The 3D view needs WebGL, which this browser has turned off. The catalogue below still has everything.</div>
   </div>
 </section>
+
+<div class="filters" role="search">
+  <div class="f"><label for="q">Search</label><input id="q" type="search" placeholder="Try a name, word or typo: lupi, feminism, bergamo"></div>
+  <div class="f"><label for="catSel">Category</label><select id="catSel" class="type-sel"></select></div>
+  <div class="f"><label for="statusSel">Status</label><select id="statusSel"><option value="">Any status</option><option value="active">Active</option><option value="archived">Archived</option><option value="historical">Historical</option><option value="unclear">Unclear</option></select></div>
+  <div class="f"><label for="linkSel">Link check</label><select id="linkSel"><option value="">Any</option><option value="verified">Checked 19 Nov 2026</option><option value="from">Check link</option><option value="no link">Search link only</option></select></div>
+  <div class="f"><label for="themeSel">Theme</label><select id="themeSel" class="type-sel"></select></div>
+  <div class="f"><button class="btn" id="reset">Reset</button></div>
+</div>
 
 <section aria-labelledby="h-gal" style="border-bottom:0">
   <div class="sechead"><h2 id="h-gal">The Index</h2><span class="pg">Section 3</span></div>
