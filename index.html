@@ -162,7 +162,7 @@ footer .inner2{max-width:1320px;margin:0 auto}
 </section>
 
 <div class="filters" role="search">
-  <div class="f"><label for="q">Search</label><input id="q" type="search" placeholder="Name, person, place, idea"></div>
+  <div class="f"><label for="q">Search</label><input id="q" type="search" placeholder="Try a name, word or typo: lupi, feminism, bergamo"></div>
   <div class="f"><label for="catSel">Category</label><select id="catSel" class="mono-sel"></select></div>
   <div class="f"><label for="statusSel">Status</label><select id="statusSel"><option value="">Any status</option><option value="active">Active</option><option value="archived">Archived</option><option value="historical">Historical</option><option value="unclear">Unclear</option></select></div>
   <div class="f"><label for="linkSel">Link check</label><select id="linkSel"><option value="">Any</option><option value="verified">Checked 19 Nov 2026</option><option value="from">Check link</option><option value="no link">Search link only</option></select></div>
@@ -187,7 +187,7 @@ footer .inner2{max-width:1320px;margin:0 auto}
     <div class="count" id="count"></div>
     <div class="ctrl">
       <label for="sortSel" class="mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Sort</label>
-      <select id="sortSel"><option value="name">Name A–Z</option><option value="-name">Name Z–A</option><option value="category">Category</option><option value="year">Year, oldest first</option><option value="-year">Year, newest first</option><option value="place">Place</option></select>
+      <select id="sortSel"><option value="relevance">Best match</option><option value="name">Name A–Z</option><option value="-name">Name Z–A</option><option value="category">Category</option><option value="year">Year, oldest first</option><option value="-year">Year, newest first</option><option value="place">Place</option></select>
       <div class="seg" role="group" aria-label="View"><button id="vCards" aria-pressed="true">Cards</button><button id="vTable" aria-pressed="false">Table</button></div>
       <button class="btn" id="copyCsv">Copy CSV</button>
     </div>
@@ -245,6 +245,56 @@ const famOf = {}; FAMILIES.forEach(f=>f.tags.split(" ").forEach(t=>famOf[t]=f.ke
 const famByKey = Object.fromEntries(FAMILIES.map(f=>[f.key,f]));
 const familyOfTag = t => famOf[t] || "other";
 
+
+/* ---------- elastic search: accents/case folded, prefixes, substrings, typo tolerance, ranked ---------- */
+const STOP=new Set(["the","of","and","a","an","in","on","for","to","de","di","la","le","by","with"]);
+const fold=s=>String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const toks=s=>fold(s).split(/[^a-z0-9]+/).filter(Boolean);
+let VOCAB=[], VMAP=new Map(), DOCS=[];
+function buildIndex(){
+  VMAP=new Map(); DOCS=DATA.map((d,i)=>{
+    const fields=[[d.name,5],[d.who,3],[d.tags.join(" "),2.5],[d.category,2],[d.place,2],[d.year,1.5],[d.note,1]];
+    const best=new Map(); fields.forEach(([txt,w])=>toks(txt).forEach(tk=>{if((best.get(tk)||0)<w) best.set(tk,w);}));
+    best.forEach((w,tk)=>{if(!VMAP.has(tk)) VMAP.set(tk,[]); VMAP.get(tk).push([i,w]);});
+    return {compact:fold(d.name+" "+d.who).replace(/[^a-z0-9]/g,"")};});
+  VOCAB=[...VMAP.keys()];
+}
+function dist(a,b,max){ // Damerau-Levenshtein (optimal string alignment) with cutoff
+  const la=a.length, lb=b.length; if(Math.abs(la-lb)>max) return max+1;
+  let p2=null, p=Array.from({length:lb+1},(_,j)=>j);
+  for(let i=1;i<=la;i++){const c=[i]; let rowMin=i;
+    for(let j=1;j<=lb;j++){const cost=a[i-1]===b[j-1]?0:1; let v=Math.min(p[j]+1,c[j-1]+1,p[j-1]+cost);
+      if(p2&&i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1]) v=Math.min(v,p2[j-2]+1); c[j]=v; if(v<rowMin) rowMin=v;}
+    if(rowMin>max) return max+1; p2=p; p=c;}
+  return p[lb];
+}
+let SEARCH={q:null,scores:null,hints:[]};
+function runSearch(q){
+  if(SEARCH.q===q) return SEARCH;
+  let qt=toks(q); if(qt.length>1) qt=qt.filter(t=>!STOP.has(t)); if(!qt.length) qt=toks(q);
+  const per=qt.map(tk=>{
+    const sc=new Map(); let bestKind="none", bestWord="", bestS=0;
+    const maxd=tk.length<=3?0:tk.length<=6?1:2;
+    VOCAB.forEach(w=>{let s=0,kind="";
+      if(w===tk){s=1;kind="exact";}
+      else if(tk.length>=2&&w.startsWith(tk)){s=.85;kind="prefix";}
+      else if(tk.length>=3&&w.includes(tk)){s=.6;kind="part";}
+      else if(maxd){const d=dist(tk,w,maxd); if(d<=maxd){s=.72-.12*d;kind="fuzzy";}
+        else if(w.length>tk.length){const d2=dist(tk,w.slice(0,tk.length),maxd); if(d2<=maxd){s=.5-.1*d2;kind="fuzzy";}}}
+      if(!s) return;
+      if(s>bestS){bestS=s;bestKind=kind;bestWord=w;}
+      VMAP.get(w).forEach(([i,wt])=>{const v=s*wt; if((sc.get(i)||0)<v) sc.set(i,v);});
+    });
+    if(tk.length>=4) DOCS.forEach((d,i)=>{if(d.compact.includes(tk)){const v=.8*4; if((sc.get(i)||0)<v) sc.set(i,v);}});
+    return {tk,sc,bestKind,bestWord};
+  });
+  const all=new Map(), any=new Map();
+  DATA.forEach((d,i)=>{let sum=0,hit=0; per.forEach(p=>{const v=p.sc.get(i); if(v){sum+=v;hit++;}}); if(hit===per.length) all.set(i,sum); if(hit) any.set(i,sum/per.length);});
+  const scores=all.size?all:any;
+  const hints=per.filter(p=>p.bestKind==="fuzzy"&&p.bestWord).map(p=>[p.tk,p.bestWord]);
+  SEARCH={q,scores,hints,loose:!all.size&&any.size>0}; return SEARCH;
+}
+
 /* ---------- state ---------- */
 const state = {cat:"", theme:"", status:"", link:"", q:"", sort:"name", view:"cards", page:1};
 const PER=25;
@@ -253,8 +303,7 @@ function matches(d){
   if(state.theme && !d.tags.includes(state.theme)) return false;
   if(state.status && d.status!==state.status) return false;
   if(state.link && !d.verified.startsWith(state.link)) return false;
-  const q=state.q.trim().toLowerCase();
-  if(q){const hay=[d.name,d.who,d.place,d.note,d.tags.join(" "),d.category].join(" ").toLowerCase(); if(!q.split(/\s+/).every(w=>hay.includes(w))) return false;}
+  if(state.q.trim()){ if(!runSearch(state.q.trim()).scores.has(d._i)) return false; }
   return true;
 }
 const filtered = () => DATA.filter(matches);
@@ -262,7 +311,10 @@ const yearOf = d => {const m=String(d.year||"").match(/\d{4}/);return m?+m[0]:nu
 function sorted(rows){
   const k=state.sort, desc=k.startsWith("-"), key=k.replace("-","");
   const nm=(a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:"base"});
+  const S=state.q.trim()?runSearch(state.q.trim()).scores:null;
   return [...rows].sort((a,b)=>{
+    if(key==="relevance"&&S) return (S.get(b._i)-S.get(a._i))||nm(a,b);
+    if(key==="relevance") return nm(a,b);
     if(key==="name") return desc?nm(b,a):nm(a,b);
     if(key==="category") return (catIdx[a.category]-catIdx[b.category])||nm(a,b);
     if(key==="place"){const pa=a.place||"￿",pb=b.place||"￿";return pa.localeCompare(pb)||nm(a,b);}
@@ -407,7 +459,8 @@ function renderPager(total){
 }
 function renderList(){
   const rows=sorted(filtered());
-  $("count").innerHTML=`${rows.length} <span>of ${DATA.length} entries</span>`;
+  let hint=""; if(state.q.trim()){const s=runSearch(state.q.trim()); if(s.hints.length) hint=` <span>· close matches for ${s.hints.map(([a,b])=>`“${esc(a)}” → ${esc(b)}`).join(", ")}</span>`; if(s.loose) hint+=` <span>· no entry matched every word, showing partial matches</span>`;}
+  $("count").innerHTML=`${rows.length} <span>of ${DATA.length} entries</span>${hint}`;
   const list=$("list"); const n=Math.max(1,Math.ceil(rows.length/PER)); if(state.page>n) state.page=n; if(state.page<1) state.page=1;
   if(!rows.length){list.className="";list.innerHTML=`<div class="empty">Nothing matches. Clear a filter or press Reset.</div>`;renderPager(0);return;}
   if(state.view==="table"){list.className="";list.innerHTML=table(rows);renderPager(rows.length);return;}
@@ -478,7 +531,7 @@ function buildNetwork(){
   let down=null; canvas.addEventListener("pointerdown",e=>down=[e.clientX,e.clientY]);
   canvas.addEventListener("pointerup",e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>5) return; const h=pick(e); if(!h) return;
     if(h.kind==="cat") setFilter({cat:h.obj.userData.key},false); else if(h.kind==="theme") setFilter({theme:h.obj.userData.key},false);
-    else {setFilter({q:DATA[h.i].name,cat:"",theme:"",status:"",link:""},false); document.getElementById("list").scrollIntoView({behavior:"smooth"});} });
+    else {setFilter({q:DATA[h.i].name,cat:"",theme:"",status:"",link:"",sort:"relevance"},false); $("sortSel").value="relevance"; document.getElementById("list").scrollIntoView({behavior:"smooth"});} });
   // highlight according to filters
   let visible=DATA.map(()=>true);
   function highlight(){ visible=DATA.map(matches); const any=visible.some(v=>!v);
@@ -556,9 +609,12 @@ async function wordmark(){
 function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1800)}
 const csvCell=s=>/[",\n]/.test(s)?`"${String(s).replace(/"/g,'""')}"`:String(s);
 function wire(){
-  $("q").addEventListener("input",e=>{state.q=e.target.value;state.page=1;renderList();net&&net.highlight()});
+  let qt; $("q").addEventListener("input",e=>{clearTimeout(qt); qt=setTimeout(()=>{const was=state.q.trim(); state.q=e.target.value; state.page=1;
+    if(state.q.trim()&&!was&&state.sort==="name"){state.sort="relevance";$("sortSel").value="relevance";}
+    if(!state.q.trim()&&state.sort==="relevance"){state.sort="name";$("sortSel").value="name";}
+    renderList();net&&net.highlight();},120)});
   [["catSel","cat"],["themeSel","theme"],["statusSel","status"],["linkSel","link"]].forEach(([id,k])=>$(id).addEventListener("change",e=>{state[k]=e.target.value;state.page=1;renderList();net&&net.highlight()}));
-  $("reset").onclick=()=>setFilter({cat:"",theme:"",status:"",link:"",q:""},false);
+  $("reset").onclick=()=>{setFilter({cat:"",theme:"",status:"",link:"",q:"",sort:"name"},false);$("sortSel").value="name";};
   $("sortSel").onchange=e=>{state.sort=e.target.value;state.page=1;renderList()};
   const setView=v=>{state.view=v;$("vCards").setAttribute("aria-pressed",v==="cards");$("vTable").setAttribute("aria-pressed",v==="table");try{localStorage.setItem("dpaView",v)}catch(e){};renderList()};
   $("vCards").onclick=()=>setView("cards"); $("vTable").onclick=()=>setView("table");
@@ -576,6 +632,7 @@ function wire(){
 }
 async function boot(){
   if(INLINE) DATA=INLINE; else { try{DATA=await (await fetch("data/atlas.json")).json();}catch(e){$("list").innerHTML=`<div class="empty">Could not load data/atlas.json. Serve this folder over http (for example GitHub Pages).</div>`;return;} }
+  DATA.forEach((d,i)=>d._i=i); buildIndex(); $("sortSel").value=state.sort;
   stats(); fillSelects(); treemap(); yearsChart(); checksChart(); wire(); renderList();
   try{ await document.fonts.ready; }catch(e){}
   try{ net=buildNetwork(); net&&net.highlight(); }catch(e){ $("netFallback").style.display="grid"; }
