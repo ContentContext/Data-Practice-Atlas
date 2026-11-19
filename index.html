@@ -7,7 +7,7 @@
 <script>try{var p=localStorage.getItem("dpaPaper");if(p==="dark"||p==="light")document.documentElement.setAttribute("data-paper",p);}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Libre+Franklin:wght@400;500;600;700&family=Courier+Prime:wght@400;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,0..100,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Epilogue:wght@400&family=Courier+Prime:wght@400;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,0..100,0..1&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: a 1970s counterculture mail-order catalogue on newsprint. Masthead with heavy rules, a "Function" statement,
    catalogue sections divided by thick/thin rules, entries set in ruled newspaper columns, each ending in a typewritten ACCESS block.
@@ -16,7 +16,7 @@
   --serif:"Newsreader", Georgia, "Times New Roman", serif;
   --display:"Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
   --dhead:"Windsor", "Windsor BT", "Windsor Pro", "Fraunces", "Libre Caslon Text", Georgia, serif;
-  --head:"Libre Franklin", "Franklin Gothic Medium", Arial, sans-serif;
+  --head:"Epilogue", "Helvetica Neue", Arial, sans-serif;
   --type:"Courier Prime", "Courier New", ui-monospace, monospace;
   --ease:cubic-bezier(.4,.2,.2,1);
 }
@@ -240,6 +240,9 @@ footer{border-top:3px double var(--rule)}
 .fcap{font:500 10.5px var(--head);letter-spacing:.14em;border-top:1px solid var(--rule)}
 
 
+
+/* sans-serif: Epilogue Regular throughout */
+.topstrip,.paperswitch button,.mastsub,.function h2,.stats span,.sechead .pg,.axis text,.lbl,.legend,.tip .m,.f label,.btn,.chip,.netlegend,.seg2 button,.sect,.plate .cap,.themes span,.stamp,th,td.cat,.fcap{font-family:var(--head)!important;font-weight:400!important}
 /* titles: Windsor where installed (or self-hosted under a web licence), Fraunces as the free fallback */
 @font-face{font-family:"Windsor";src:local("Windsor"),local("Windsor BT"),local("Windsor Pro"),local("WindsorBT-Roman"),local("Windsor-Bold");font-display:swap}
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
@@ -495,12 +498,12 @@ function treemap(){
   cats.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>d.x1-d.x0).attr("height",d=>d.y1-d.y0).attr("rx",0).style("fill","transparent").attr("stroke","none")
     .style("cursor","pointer").on("click",(e,d)=>{setFilter({cat:d.data.name,theme:""})});
   cats.append("text").attr("x",d=>d.x0+1).attr("y",d=>d.y0+15).attr("fill",d=>COLOR[d.data.name])
-    .style("font","600 10.5px 'Libre Franklin', sans-serif").style("text-transform","uppercase").style("letter-spacing",".14em").style("pointer-events","none")
+    .style("font","400 10.5px Epilogue, sans-serif").style("text-transform","uppercase").style("letter-spacing",".14em").style("pointer-events","none")
     .text(d=>{const w=d.x1-d.x0; const s=`${d.data.name} ${d.value}`; return w>s.length*8?s:(w>40?d.value:"")});
   const leaves=svg.selectAll("g.leaf").data(h.leaves()).join("g").attr("class","leaf").style("cursor","pointer");
   leaves.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>Math.max(0,d.x1-d.x0)).attr("height",d=>Math.max(0,d.y1-d.y0)).attr("rx",0)
     .attr("fill",d=>COLOR[d.data.cat]).attr("fill-opacity",(d,i)=>.9-.55*(d.parent.children.indexOf(d)/Math.max(1,d.parent.children.length-1)));
-  leaves.append("text").attr("x",d=>d.x0+6).attr("y",d=>d.y0+15).style("fill","var(--onfill)").style("font","600 10.5px 'Libre Franklin', sans-serif").style("pointer-events","none")
+  leaves.append("text").attr("x",d=>d.x0+6).attr("y",d=>d.y0+15).style("fill","var(--onfill)").style("font","400 10.5px Epilogue, sans-serif").style("pointer-events","none")
     .text(d=>{const w=d.x1-d.x0,hh=d.y1-d.y0; if(hh<18) return ""; const s=d.data.name; return w>s.length*6.8+8?s:""});
   leaves.on("mousemove",(e,d)=>showTip(`<div class="m">${esc(d.data.cat)}</div><b>${esc(d.data.name)}</b> · ${d.value} entries`,e.clientX,e.clientY)).on("mouseleave",hideTip)
     .on("click",(e,d)=>setFilter({cat:d.data.cat,theme:d.data.name==="other"?"":d.data.name}));
