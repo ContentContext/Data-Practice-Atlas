@@ -108,7 +108,14 @@ section{margin:0 0 30px}
 .tag{font:500 10.5px var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:3px 7px;border-radius:999px;border:1px solid rgba(255,255,255,.35)}
 .visit{margin-top:auto;align-self:flex-start;display:inline-flex;gap:8px;align-items:center;padding:9px 16px;border-radius:999px;background:var(--ink);color:#1a0352;font:800 14px var(--sans);text-decoration:none}
 .check{font:500 10.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;opacity:.8}
-.more{display:flex;justify-content:center;margin:26px 0 10px}
+.pager{display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap;margin:28px 0 10px}
+.pager[hidden]{display:none}
+.pg{min-width:44px;height:44px;padding:0 12px;border-radius:999px;border:2px solid rgba(255,255,255,.3);background:transparent;color:var(--ink);font:800 15px var(--sans);cursor:pointer;font-variant-numeric:tabular-nums}
+.pg:hover:not([disabled]){border-color:var(--ink)}
+.pg[aria-current="page"]{background:var(--yellow);border-color:var(--yellow);color:#1a0352}
+.pg[disabled]{opacity:.35;cursor:default}
+.gap{color:var(--muted);font:500 14px var(--mono);padding:0 4px}
+.range{width:100%;text-align:center;font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:8px}
 /* table */
 .tablewrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);background:rgba(20,2,70,.5)}
 table{border-collapse:collapse;width:100%;font-size:14px}
@@ -187,7 +194,7 @@ footer .inner2{max-width:1320px;margin:0 auto}
   </div>
   <h2 class="h2" id="h-gal" style="position:absolute;left:-9999px">Entries</h2>
   <div id="list"></div>
-  <div class="more" id="moreWrap"><button class="btn solid" id="more">Show more</button></div>
+  <nav class="pager" id="pager" aria-label="Gallery pages"></nav>
 
   <details class="gov">
     <summary>Data governance and constraints</summary>
@@ -239,7 +246,8 @@ const famByKey = Object.fromEntries(FAMILIES.map(f=>[f.key,f]));
 const familyOfTag = t => famOf[t] || "other";
 
 /* ---------- state ---------- */
-const state = {cat:"", theme:"", status:"", link:"", q:"", sort:"name", view:"cards", shown:60};
+const state = {cat:"", theme:"", status:"", link:"", q:"", sort:"name", view:"cards", page:1};
+const PER=25;
 function matches(d){
   if(state.cat && d.category!==state.cat) return false;
   if(state.theme && !d.tags.includes(state.theme)) return false;
@@ -349,7 +357,7 @@ function fillSelects(){
   ts.innerHTML=h;
 }
 function syncControls(){ $("catSel").value=state.cat; $("themeSel").value=state.theme; $("statusSel").value=state.status; $("linkSel").value=state.link; $("q").value=state.q; }
-function setFilter(p, scroll=true){ Object.assign(state,p,{shown:60}); syncControls(); renderList(); net&&net.highlight(); if(scroll) document.getElementById("h-net").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); }
+function setFilter(p, scroll=true){ Object.assign(state,p,{page:1}); syncControls(); renderList(); net&&net.highlight(); if(scroll) document.getElementById("h-net").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); }
 
 /* ---------- cards & table ---------- */
 function patternFor(d){
@@ -385,15 +393,28 @@ function table(rows){
   const th=(k,l)=>{const on=state.sort.replace("-","")===k;const a=on?(state.sort.startsWith("-")?" ↓":" ↑"):"";return `<th scope="col"><button data-sortcol="${k}">${l}${a}</button></th>`};
   return `<div class="tablewrap"><table><thead><tr>${th("name","Name")}${th("category","Category")}<th scope="col">Who</th>${th("year","Year")}${th("place","Place")}<th scope="col">Themes</th><th scope="col">Status</th></tr></thead><tbody>${rows.map(d=>`<tr><td><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.name)}</a></td><td class="cat" style="color:${COLOR[d.category]}">${esc(d.category)}</td><td>${esc(d.who)}</td><td class="num">${esc(d.year)}</td><td>${esc(d.place)}</td><td class="mono" style="font-size:12px">${esc(d.tags.join(", "))}</td><td>${d.status==="active"?"":esc(d.status)}</td></tr>`).join("")}</tbody></table></div>`;
 }
+function pageList(cur,n){
+  const s=new Set([1,n,cur-1,cur,cur+1]); if(cur<=3){s.add(2);s.add(3);s.add(4);} if(cur>=n-2){s.add(n-1);s.add(n-2);s.add(n-3);}
+  const arr=[...s].filter(p=>p>=1&&p<=n).sort((a,b)=>a-b); const out=[]; arr.forEach((p,i)=>{if(i&&p-arr[i-1]>1) out.push("…"); out.push(p);}); return out;
+}
+function renderPager(total){
+  const pg=$("pager"), n=Math.ceil(total/PER);
+  if(state.view==="table"||n<=1){pg.hidden=true;pg.innerHTML="";return;}
+  pg.hidden=false; const c=state.page, from=(c-1)*PER+1, to=Math.min(total,c*PER);
+  pg.innerHTML=`<button class="pg" data-page="${c-1}" ${c===1?"disabled":""} aria-label="Previous page">←</button>`+
+    pageList(c,n).map(p=>p==="…"?`<span class="gap" aria-hidden="true">…</span>`:`<button class="pg" data-page="${p}" ${p===c?'aria-current="page"':""} aria-label="Page ${p}">${p}</button>`).join("")+
+    `<button class="pg" data-page="${c+1}" ${c===n?"disabled":""} aria-label="Next page">→</button><div class="range">Showing ${from}–${to} of ${total} · page ${c} of ${n}</div>`;
+}
 function renderList(){
   const rows=sorted(filtered());
   $("count").innerHTML=`${rows.length} <span>of ${DATA.length} entries</span>`;
-  const list=$("list");
-  if(!rows.length){list.innerHTML=`<div class="empty">Nothing matches. Clear a filter or press Reset.</div>`;$("moreWrap").hidden=true;return;}
-  if(state.view==="table"){list.className="";list.innerHTML=table(rows);$("moreWrap").hidden=true;return;}
-  list.className="grid"; list.innerHTML=rows.slice(0,state.shown).map(card).join("");
-  $("moreWrap").hidden=rows.length<=state.shown; $("more").textContent=`Show more (${rows.length-state.shown} left)`;
+  const list=$("list"); const n=Math.max(1,Math.ceil(rows.length/PER)); if(state.page>n) state.page=n; if(state.page<1) state.page=1;
+  if(!rows.length){list.className="";list.innerHTML=`<div class="empty">Nothing matches. Clear a filter or press Reset.</div>`;renderPager(0);return;}
+  if(state.view==="table"){list.className="";list.innerHTML=table(rows);renderPager(rows.length);return;}
+  list.className="grid"; list.innerHTML=rows.slice((state.page-1)*PER,state.page*PER).map(card).join("");
+  renderPager(rows.length);
 }
+function goPage(p){ state.page=p; renderList(); document.querySelector(".gbar").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"}); }
 
 /* ---------- 3D network ---------- */
 let net=null;
@@ -535,14 +556,14 @@ async function wordmark(){
 function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1800)}
 const csvCell=s=>/[",\n]/.test(s)?`"${String(s).replace(/"/g,'""')}"`:String(s);
 function wire(){
-  $("q").addEventListener("input",e=>{state.q=e.target.value;state.shown=60;renderList();net&&net.highlight()});
-  [["catSel","cat"],["themeSel","theme"],["statusSel","status"],["linkSel","link"]].forEach(([id,k])=>$(id).addEventListener("change",e=>{state[k]=e.target.value;state.shown=60;renderList();net&&net.highlight()}));
+  $("q").addEventListener("input",e=>{state.q=e.target.value;state.page=1;renderList();net&&net.highlight()});
+  [["catSel","cat"],["themeSel","theme"],["statusSel","status"],["linkSel","link"]].forEach(([id,k])=>$(id).addEventListener("change",e=>{state[k]=e.target.value;state.page=1;renderList();net&&net.highlight()}));
   $("reset").onclick=()=>setFilter({cat:"",theme:"",status:"",link:"",q:""},false);
-  $("sortSel").onchange=e=>{state.sort=e.target.value;renderList()};
+  $("sortSel").onchange=e=>{state.sort=e.target.value;state.page=1;renderList()};
   const setView=v=>{state.view=v;$("vCards").setAttribute("aria-pressed",v==="cards");$("vTable").setAttribute("aria-pressed",v==="table");try{localStorage.setItem("dpaView",v)}catch(e){};renderList()};
   $("vCards").onclick=()=>setView("cards"); $("vTable").onclick=()=>setView("table");
   try{if(localStorage.getItem("dpaView")==="table"){state.view="table";$("vCards").setAttribute("aria-pressed","false");$("vTable").setAttribute("aria-pressed","true")}}catch(e){}
-  $("more").onclick=()=>{state.shown+=60;renderList()};
+  $("pager").addEventListener("click",e=>{const b=e.target.closest("[data-page]"); if(!b||b.disabled) return; goPage(+b.dataset.page);});
   $("copyCsv").onclick=async()=>{const cols=["name","category","who","year","place","tags","note","url","status","verified"];const rows=sorted(filtered());
     try{await navigator.clipboard.writeText([cols.join(",")].concat(rows.map(d=>cols.map(c=>csvCell(c==="tags"?d.tags.join(";"):d[c])).join(","))).join("\n"));toast(`Copied ${rows.length} rows`)}catch(e){toast("Copy was blocked by the browser")}};
   document.addEventListener("click",e=>{
