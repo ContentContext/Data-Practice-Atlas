@@ -245,6 +245,12 @@ footer{border-top:3px double var(--rule)}
 
 /* sans-serif: Epilogue Regular throughout */
 .topstrip,.paperswitch button,.mastsub,.function h2,.stats span,.sechead .pg,.axis text,.lbl,.legend,.tip .m,.f label,.btn,.chip,.netlegend,.seg2 button,.sect,.plate .cap,.themes span,.stamp,th,td.cat,.fcap{font-family:var(--head)!important;font-weight:400!important}
+
+/* entry top line 3px with category colour block; table without vertical borders */
+.entry{border-top:3px solid var(--rule)}
+.entry::before{top:-3px;height:3px;width:56px}
+.tablewrap{border-left:0!important;border-right:0!important;border-top:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule)}
+th,td{border-left:0;border-right:0}
 /* titles: Sentient Bold (Fontshare), Fraunces as fallback */
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
 h1{font-weight:700;letter-spacing:-.025em}
