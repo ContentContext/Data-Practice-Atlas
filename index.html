@@ -23,16 +23,16 @@
   --ease:cubic-bezier(.4,.2,.2,1);
 }
 :root[data-paper="light"]{
-  --paper:#f2e8d2; --paper2:#e9dcc0; --paper3:#ddcdab; --ink:#1b1712; --ink2:#4a3f33; --rule:#1b1712; --hair:rgba(27,23,18,.28); --onfill:#f6eedb; --accent:#a8461b;
-  --c-book:#9a3f15; --c-person:#1f4f80; --c-studio:#2f6a3c; --c-fest:#9b2f62; --c-portal:#6d6d14; --c-source:#5b3e82; --c-weird:#b17a07; --c-web:#24727b; --c-video:#7b5b38; --c-tool:#4c4c4c;
-  --check-a:#1b1712; --check-b:#9c8a6c; --check-c:#a8461b;
+  --paper:#f2e8d2; --paper2:#e9dcc0; --paper3:#ddcdab; --ink:#1b1712; --ink2:#4a3f33; --rule:#1b1712; --hair:rgba(27,23,18,.28); --onfill:#f6eedb; --accent:#ff5a36;
+  --c-book:#e63946; --c-person:#2e86de; --c-studio:#1fa363; --c-fest:#e84393; --c-portal:#8cb31c; --c-source:#7b5cd6; --c-weird:#f2b21b; --c-web:#14a3b8; --c-video:#ff8c42; --c-tool:#5a5a63;
+  --check-a:#1b1712; --check-b:#b7a98c; --check-c:#ff5a36;
   --netbg:radial-gradient(circle at 50% 45%, #f7efdc 0%, #e6d6b6 75%);
   color-scheme:light;
 }
 :root[data-paper="dark"]{
-  --paper:#2b1e15; --paper2:#352619; --paper3:#46331f; --ink:#f1e6cd; --ink2:#cdbb98; --rule:#f1e6cd; --hair:rgba(241,230,205,.24); --onfill:#22170f; --accent:#e9925a;
-  --c-book:#e58a5c; --c-person:#8fb7e3; --c-studio:#8fc79c; --c-fest:#e893bd; --c-portal:#cfcf6e; --c-source:#bba0dd; --c-weird:#ecc35a; --c-web:#7fc8cf; --c-video:#d9b68b; --c-tool:#c5b9a6;
-  --check-a:#f1e6cd; --check-b:#8f7b5d; --check-c:#e9925a;
+  --paper:#2b1e15; --paper2:#352619; --paper3:#46331f; --ink:#f1e6cd; --ink2:#cdbb98; --rule:#f1e6cd; --hair:rgba(241,230,205,.24); --onfill:#22170f; --accent:#ff7a50;
+  --c-book:#ff6b6b; --c-person:#6aa9ff; --c-studio:#4fd18b; --c-fest:#ff79b0; --c-portal:#b8dc4a; --c-source:#a993ff; --c-weird:#ffd166; --c-web:#4fd1e0; --c-video:#ffa45c; --c-tool:#a8a29a;
+  --check-a:#f1e6cd; --check-b:#8f7b5d; --check-c:#ff7a50;
   --netbg:radial-gradient(circle at 50% 45%, #3d2b1c 0%, #1f150e 75%);
   color-scheme:dark;
 }
@@ -256,7 +256,7 @@ th,td{border-left:0;border-right:0}
 .entry{padding-top:0!important}
 .entry::before{display:none!important}
 .sect{background:none;margin:0 0 12px;align-items:flex-start;line-height:1.2}
-.sect .tabl{display:inline-block;background:var(--cat);color:var(--onfill);padding:3px}
+.sect .tabl{display:inline-block;background:var(--cat);color:var(--tabtext);padding:3px}
 .sect .tabl span{display:inline-block;margin-right:-.16em}
 .sect .no{color:var(--ink2)!important;padding-top:4px}
 /* titles: Sentient Bold (Fontshare), Fraunces as fallback */
@@ -391,8 +391,9 @@ const FAMILIES = [
  {key:"culture", label:"Culture & curiosities", shape:"disc", tags:"weird food film games books toys citizen-reports crowdsourced community web internet digital-society open-knowledge public-domain archive search news events multidisciplinary"},
  {key:"tools", label:"Tools & catalogue sections", shape:"dodeca", tags:"coding charting specialist data complex colour tools tool open-source d3 r python reference visualising-data-catalogue datasets knowledge-graph"},
 ];
-const FAMCOL_L={design:"#b23e6c",rights:"#b3322a",civic:"#1f6f97",journalism:"#a07a10",research:"#3f7a2e",maps:"#16766a",regions:"#c0601f",culture:"#6f4a96",tools:"#6b6252",other:"#1b1712"};
-const FAMCOL_D={design:"#f08fb6",rights:"#f07a6e",civic:"#7cc7ea",journalism:"#ecc95a",research:"#a8db8a",maps:"#6fd6c3",regions:"#f2a066",culture:"#c9a6ee",tools:"#cfc4ae",other:"#f1e6cd"};
+const FAMCOL_L={design:"#ff4f86",rights:"#e8590c",civic:"#3a86ff",journalism:"#f4b400",research:"#2bb673",maps:"#00a6a6",regions:"#c77dff",culture:"#8a4fff",tools:"#6c6f78",other:"#1b1712"};
+const FAMCOL_D={design:"#ff8fab",rights:"#ff9f68",civic:"#7fb2ff",journalism:"#ffd166",research:"#72e0a3",maps:"#5fd4d4",regions:"#d4a5ff",culture:"#b48cff",tools:"#b8b2a7",other:"#f1e6cd"};
+const tabText = hex => { const n=parseInt(hex.slice(1),16), r=(n>>16&255)/255, g=(n>>8&255)/255, b=(n&255)/255; const L=v=>v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4); const lum=.2126*L(r)+.7152*L(g)+.0722*L(b); return lum>.36?"#1b1712":"#fbf6ea"; };
 const famColor = k => { const m=isDark()?FAMCOL_D:FAMCOL_L; return m[k]||m.other; };
 const famOf = {}; FAMILIES.forEach(f=>f.tags.split(" ").forEach(t=>famOf[t]=f.key));
 const famByKey = Object.fromEntries(FAMILIES.map(f=>[f.key,f]));
@@ -571,7 +572,7 @@ function setFilter(p, scroll=true){ Object.assign(state,p,{page:1}); syncControl
 
 /* ---------- cards & table ---------- */
 function famPattern(k){
-  const c=famColor(k), a=`color-mix(in srgb, ${c} 78%, transparent)`;
+  const c=famColor(k), a=`color-mix(in srgb, ${c} 85%, transparent)`;
   const P={
     design:`repeating-radial-gradient(circle at 75% 25%, transparent 0 14px, ${a} 14px 17px)`,
     rights:`repeating-linear-gradient(45deg, transparent 0 13px, ${a} 13px 17px)`,
@@ -593,7 +594,7 @@ function card(d){
   const fk=primaryFamily(d), fc=famColor(fk);
   const meta=[d.year,d.place].filter(Boolean).join(" · ");
   const stamp=d.status!=="active"?`<span class="stamp">${esc(d.status)}</span>`:"";
-  return `<article class="entry" style="--cat:${fc}">
+  return `<article class="entry" style="--cat:${fc};--tabtext:${tabText(fc)}">
     <div class="sect"><span class="tabl"><span>${esc(d.category)}</span></span><span class="no">No. ${String(d.id).padStart(3,"0")}</span></div>
     <div class="plate" style="background:${patternFor(d)}, var(--paper2)"><span class="badge" title="${esc(famLabel(fk))}">${shapeIcon(shapeOfFam(fk),fc,25)}</span><span class="cap" style="color:${fc}">${esc(famLabel(fk))}</span></div>
     <h3>${esc(d.name)}${stamp}</h3>
