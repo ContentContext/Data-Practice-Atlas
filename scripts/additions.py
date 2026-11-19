@@ -406,3 +406,6 @@ add += [
 add += [
 ("Jonathan Schwabish","Person","Economist; senior fellow at the Urban Institute; founder of PolicyViz","","Washington, DC area","policy;information-design;teaching","Economist turned data communicator. Specialises in data visualisation and presentation design at the Urban Institute, runs the PolicyViz firm, podcast and newsletter, and teaches at Georgetown, MICA and Cornell. Author of 'Better Data Visualizations'.","https://www.linkedin.com/in/jonathanschwabish",1,"active",V),
 ]
+add += [
+("Sheldon.studio","Studio & Lab","Co-founded by Matteo Moretti; Maurizio Lepore, founding partner","","Bolzano, Italy","information-design;storytelling;italy","Socially focused data design studio: data visualisation and storytelling, interactive reports, dashboards and data gamification for NGOs, public administration, research institutions and journalists. Projects include Covidash, Disabled Data and the Matera 2019 open-data portal.","https://sheldon.studio",1,"active",V),
+]
