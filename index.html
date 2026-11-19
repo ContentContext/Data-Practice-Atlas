@@ -70,6 +70,7 @@ section{margin:0 0 30px}
 .chip[aria-pressed="true"]{background:var(--yellow);color:#1a0352;border-color:var(--yellow)}
 .netlegend{position:absolute;right:14px;bottom:14px;max-width:300px;background:rgba(17,1,58,.78);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);display:grid;gap:5px}
 .netlegend svg{vertical-align:middle;margin-right:6px}
+.netlegend div{display:flex;align-items:center}
 .nethelp{position:absolute;left:14px;bottom:14px;font:500 12px var(--mono);color:var(--muted)}
 .netfallback{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:30px;color:var(--muted)}
 /* gallery bar */
@@ -84,7 +85,7 @@ section{margin:0 0 30px}
 /* idea cards */
 .cardkey{display:grid;gap:10px;margin:0 0 18px;padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(20,2,70,.45)}
 .cardkey .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.cardkey .lab{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:150px}
+.cardkey .lab{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:150px;max-width:220px}
 .kf{display:inline-flex;align-items:center;gap:8px;padding:5px 10px 5px 5px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--ink);font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;cursor:pointer}
 .kf[aria-pressed="true"]{background:var(--yellow);color:#1a0352;border-color:var(--yellow)}
 .kf .tile{width:26px;height:26px;border-radius:7px;background-color:#3b1aa0}
@@ -211,7 +212,7 @@ footer .inner2{max-width:1320px;margin:0 auto}
     <summary>Data governance and constraints</summary>
     <p><strong>Provenance.</strong> A personal list, expanded with Claude on 19 Nov 2026 in several rounds, plus a Tool category that reproduces Andy Kirk's Visualising Data resources catalogue (293 tools, read the same day) in its seven original sections, without descriptions. <span id="provcounts"></span></p>
     <p><strong>Corrections.</strong> On the Visualising Data catalogue page about a dozen links sit on the wrong tile (for example Vega and Vega-Lite, Plotly and Dash); the Atlas corrects them and says so on each card. RightsCon 2026 (Lusaka) was cancelled. "Super dot" is Superdot (Basel); its Venice work is listed as the Come ViVi Venezia project.</p>
-    <p><strong>How the pictures are made.</strong> Treemap groups use each entry's first theme. The decade chart only counts entries with a year. Network positions are computed, not drawn by hand: each theme sits at the average position of the categories its entries belong to, and each entry sits between its category and its themes. Theme families (the shapes) are an editorial grouping made for this page. Each entry's family is the family of its first theme that belongs to one (regions only when nothing else applies); the same shapes are used in the network, on the cards (pattern, badge and theme chips) and in the footer wordmark.</p>
+    <p><strong>How the pictures are made.</strong> Treemap groups use each entry's first theme. The decade chart only counts entries with a year. Network positions are computed, not drawn by hand: each theme sits at the average position of the categories its entries belong to, and each entry sits between its category and its themes. Theme families (the shapes) are an editorial grouping made for this page. Each entry's family is the family of its first theme that belongs to one (regions only when nothing else applies); each family has one shape, one pattern and one colour, used the same way in the network, on the cards (background pattern, corner badge, family line and theme chips) and in the footer wordmark. Card base colour is always the category.</p>
     <p><strong>Gaps.</strong> Leans towards Europe, North America and English-language work despite deliberate additions from Latin America, Africa, MENA, South and Southeast Asia and Italy. Years and places are blank where not confirmed. Event dates change.</p>
     <p><strong>Permitted use.</strong> A starting reading, contacts and tools list for teaching, inspiration and programme research. <strong>Not for</strong> citation without checking each link, claims of completeness, or ranking people or studios.</p>
   </details>
@@ -253,6 +254,8 @@ const FAMILIES = [
  {key:"culture", label:"Culture & curiosities", shape:"disc", tags:"weird food film games books toys citizen-reports crowdsourced community web internet digital-society open-knowledge public-domain archive search news events multidisciplinary"},
  {key:"tools", label:"Tools & catalogue sections", shape:"dodeca", tags:"coding charting specialist data complex colour tools tool open-source d3 r python reference visualising-data-catalogue datasets knowledge-graph"},
 ];
+const FAMCOL={design:"#ff7ab6",rights:"#ff5a5a",civic:"#3fd3ff",journalism:"#ffe14d",research:"#a6ff8f",maps:"#19e3b1",regions:"#ffab4d",culture:"#e2a8ff",tools:"#d6d3f2",other:"#ffffff"};
+const famColor = k => FAMCOL[k]||FAMCOL.other;
 const famOf = {}; FAMILIES.forEach(f=>f.tags.split(" ").forEach(t=>famOf[t]=f.key));
 const famByKey = Object.fromEntries(FAMILIES.map(f=>[f.key,f]));
 const familyOfTag = t => famOf[t] || "other";
@@ -428,20 +431,35 @@ function syncControls(){ $("catSel").value=state.cat; $("themeSel").value=state.
 function setFilter(p, scroll=true){ Object.assign(state,p,{page:1}); syncControls(); renderList(); net&&net.highlight(); if(scroll) document.getElementById("h-net").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); }
 
 /* ---------- cards & table ---------- */
-function patternFor(d){ return patternURI(shapeOfFam(primaryFamily(d))); }
+function famPattern(k){
+  const c=famColor(k), a=`color-mix(in srgb, ${c} 55%, transparent)`;
+  const P={
+    design:`repeating-radial-gradient(circle at 75% 25%, transparent 0 14px, ${a} 14px 17px)`,
+    rights:`repeating-linear-gradient(45deg, transparent 0 13px, ${a} 13px 17px)`,
+    civic:`repeating-linear-gradient(0deg, transparent 0 21px, ${a} 21px 24px), repeating-linear-gradient(90deg, transparent 0 21px, ${a} 21px 24px)`,
+    journalism:`repeating-linear-gradient(45deg, transparent 0 16px, ${a} 16px 18px), repeating-linear-gradient(-45deg, transparent 0 16px, ${a} 16px 18px)`,
+    research:`radial-gradient(${a} 3px, transparent 3.6px) 0 0/16px 16px`,
+    maps:`repeating-radial-gradient(circle at 100% 100%, transparent 0 12px, ${a} 12px 14px)`,
+    regions:`repeating-linear-gradient(0deg, transparent 0 12px, ${a} 12px 16px)`,
+    culture:`conic-gradient(${a} 25%, transparent 0 50%, ${a} 0 75%, transparent 0) 0 0/28px 28px`,
+    tools:`repeating-linear-gradient(90deg, transparent 0 10px, ${a} 10px 13px)`,
+    other:`radial-gradient(${a} 1.6px, transparent 2px) 0 0/10px 10px`};
+  return P[k]||P.other;
+}
+function patternFor(d){ return famPattern(primaryFamily(d)); }
 function baseFor(cat){ return `color-mix(in srgb, ${COLOR[cat]} 42%, #1c0458)`; }
 function host(u){try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return ""}}
 function card(d){
   const ok=d.verified.startsWith("verified"), srch=d.verified.startsWith("no link");
   const fk=primaryFamily(d);
-  const top=`<div class="topline"><span>${esc(d.status==="active"?"Active":d.status)} · ${esc(d.category)}</span><span class="fam" title="${esc(famLabel(fk))}">${shapeIcon(shapeOfFam(fk))}</span></div>`;
+  const top=`<div class="topline"><span>${esc(d.status==="active"?"Active":d.status)} · ${esc(d.category)}</span><span class="fam" title="${esc(famLabel(fk))}">${shapeIcon(shapeOfFam(fk),famColor(fk),16)}</span></div>`;
   const bot=[d.year,d.place].filter(Boolean).join(" · ");
   const layers=`<div class="base"></div><div class="pattern" style="background:${patternFor(d)}"></div><div class="glass"></div><div class="tgrad"></div>`;
   return `<div class="card" tabindex="0" role="button" aria-pressed="false" aria-label="${esc(d.name)}, ${esc(d.category)}. Press to flip." style="--cb:${baseFor(d.category)}">
    <div class="inner">
     <div class="face front">${layers}<div class="txt">${top}<div><div class="venue">${esc(d.who)}</div><h3 class="title">${esc(d.name)}</h3><div class="botline">${esc(bot)||"&nbsp;"}</div></div></div></div>
     <div class="face back">${layers}<div class="txt">${top}<h3 class="title" style="font-size:20px">${esc(d.name)}</h3>${d.note?`<p class="note">${esc(d.note)}</p>`:""}
-      <div class="famline">${shapeIcon(shapeOfFam(fk))} ${esc(famLabel(fk))}</div><div class="tags">${d.tags.map(t=>`<span class="tag">${shapeIcon(shapeOfFam(familyOfTag(t)),"#fff",10)}${esc(t)}</span>`).join("")}</div>
+      <div class="famline" style="color:${famColor(fk)}">${shapeIcon(shapeOfFam(fk),famColor(fk))} ${esc(famLabel(fk))}</div><div class="tags">${d.tags.map(t=>`<span class="tag">${shapeIcon(shapeOfFam(familyOfTag(t)),famColor(familyOfTag(t)),10)}${esc(t)}</span>`).join("")}</div>
       <div class="check">${ok?"Checked 19 Nov 2026":(srch?"No link confirmed":"Link not yet checked")}</div>
       <a class="visit" href="${esc(d.url)}" target="_blank" rel="noopener">${srch?"Search for it":"Visit "+esc(host(d.url))} ↗</a></div></div>
    </div></div>`;
@@ -466,7 +484,7 @@ function renderKey(){
   const counts=d3.rollup(DATA,v=>v.length,primaryFamily);
   const fams=[...FAMILIES.map(f=>f.key),"other"].filter(k=>counts.get(k));
   $("cardKey").innerHTML=`<div class="row"><span class="lab">Card colour = category</span>${CATS.map(([c])=>`<span class="kc"><i style="background:${baseFor(c)};box-shadow:inset 0 0 0 2px ${COLOR[c]}"></i>${esc(c)}</span>`).join("")}</div>
-   <div class="row"><span class="lab">Pattern = theme family</span>${fams.map(k=>`<button class="kf" data-fam="${k}" aria-pressed="${state.fam===k}"><span class="tile" style="background:${patternURI(shapeOfFam(k))}, #3b1aa0"></span>${shapeIcon(shapeOfFam(k),"currentColor",12)}${esc(famLabel(k))} <span style="opacity:.6">${counts.get(k)}</span></button>`).join("")}</div>`;
+   <div class="row"><span class="lab">Pattern, shape &amp; line colour = theme family</span>${fams.map(k=>`<button class="kf" data-fam="${k}" aria-pressed="${state.fam===k}"><span class="tile" style="background:${famPattern(k)}, #3b1aa0"></span>${shapeIcon(shapeOfFam(k),famColor(k),12)}${esc(famLabel(k))} <span style="opacity:.6">${counts.get(k)}</span></button>`).join("")}</div>`;
 }
 function renderList(){
   renderKey();
@@ -523,7 +541,7 @@ function buildNetwork(){
     icosa:()=>new THREE.IcosahedronGeometry(1.2),cone:()=>new THREE.ConeGeometry(1,2,16),torus:()=>new THREE.TorusGeometry(1,.38,10,24),dodeca:()=>new THREE.DodecahedronGeometry(1.2),disc:()=>new THREE.CylinderGeometry(1.3,1.3,.45,24),other:()=>new THREE.OctahedronGeometry(.9,0)};
   const hubs=[];
   hubTags.forEach(t=>{const f=familyOfTag(t), shape=(famByKey[f]||{shape:"other"}).shape;
-    const m=new THREE.Mesh(geo[shape](),new THREE.MeshStandardMaterial({color:0xffffff,emissive:0x5a2bd6,emissiveIntensity:.35,roughness:.4,metalness:.1}));
+    const fc=new THREE.Color(famColor(f)); const m=new THREE.Mesh(geo[shape](),new THREE.MeshStandardMaterial({color:fc,emissive:fc,emissiveIntensity:.3,roughness:.4,metalness:.1}));
     const sc=.9+Math.sqrt(themePos[t].n)*.32; m.scale.setScalar(sc); if(shape==="cone") m.rotation.x=Math.PI; m.position.copy(themePos[t].pos); m.userData={type:"theme",key:t,n:themePos[t].n,fam:f}; scene.add(m); hubs.push(m);});
   CATS.forEach(([c])=>{const n=DATA.filter(d=>d.category===c).length;const r=4+Math.sqrt(n)*.55;
     const ring=new THREE.Mesh(new THREE.TorusGeometry(r,.7,12,48),new THREE.MeshStandardMaterial({color:new THREE.Color(COLOR[c]),emissive:new THREE.Color(COLOR[c]),emissiveIntensity:.5}));
@@ -553,7 +571,7 @@ function buildNetwork(){
       setSeg(.35); d.tags.forEach(t=>{if(themePos[t]) setSeg(.22)});});
     lg.attributes.color.array.set(segCol); lg.attributes.color.needsUpdate=true;
     hubs.forEach(h=>{const u=h.userData; const on=!any || (u.type==="cat"? DATA.some((d,i)=>visible[i]&&d.category===u.key) : DATA.some((d,i)=>visible[i]&&d.tags.includes(u.key)));
-      h.material.transparent=true; h.material.opacity=on?1:.18; const sel=(u.type==="cat"&&state.cat===u.key)||(u.type==="theme"&&state.theme===u.key); h.material.emissive.set(sel?0xffd23f:(u.type==="cat"?COLOR[u.key]:0x5a2bd6)); h.material.emissiveIntensity=sel?.9:(u.type==="cat"?.5:.35);});
+      h.material.transparent=true; h.material.opacity=on?1:.18; const sel=(u.type==="cat"&&state.cat===u.key)||(u.type==="theme"&&state.theme===u.key); h.material.emissive.set(sel?0xffd23f:(u.type==="cat"?COLOR[u.key]:famColor(u.fam))); h.material.emissiveIntensity=sel?.9:(u.type==="cat"?.5:.3);});
   }
   function size(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
   new ResizeObserver(size).observe(canvas); size();
@@ -561,7 +579,7 @@ function buildNetwork(){
   function loop(){ if(!running) return; requestAnimationFrame(loop); hubs.forEach(h=>{if(h.userData.type==="theme") h.rotation.y+=.004;}); controls.update(); renderer.render(scene,camera); }
   loop();
   // legend
-  $("netLegend").innerHTML=FAMILIES.map(f=>`<div>${shapeIcon(f.shape)}${esc(f.label)}</div>`).join("")+`<div>${shapeIcon("other")}Other themes</div><div><svg width="14" height="14"><circle cx="7" cy="7" r="4" fill="#fff"/></svg>Entry (colour = category)</div>`;
+  $("netLegend").innerHTML=FAMILIES.map(f=>`<div style="color:${famColor(f.key)}">${shapeIcon(f.shape,famColor(f.key))}${esc(f.label)}</div>`).join("")+`<div>${shapeIcon("other")}Other themes</div><div><svg width="14" height="14"><circle cx="7" cy="7" r="4" fill="#fff"/></svg>Entry (colour = category)</div>`;
   $("spin").onclick=()=>{controls.autoRotate=!controls.autoRotate;$("spin").setAttribute("aria-pressed",controls.autoRotate)};
   $("links").onclick=()=>{lines.visible=!lines.visible;$("links").setAttribute("aria-pressed",lines.visible)};
   $("netReset").onclick=()=>{camera.position.set(0,20,190);controls.target.set(0,0,0);};
