@@ -7,13 +7,15 @@
 <script>try{var p=localStorage.getItem("dpaPaper");if(p==="dark"||p==="light")document.documentElement.setAttribute("data-paper",p);}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Libre+Franklin:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: a 1970s counterculture mail-order catalogue on newsprint. Masthead with heavy rules, a "Function" statement,
    catalogue sections divided by thick/thin rules, entries set in ruled newspaper columns, each ending in a typewritten ACCESS block.
    Paper switch: cream newsprint (light) or dark brown (dark). Ink colours are earthy spot inks. */
 :root{
-  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --display:"Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
+  --dhead:"Libre Caslon Text", Georgia, serif;
   --head:"Libre Franklin", "Franklin Gothic Medium", Arial, sans-serif;
   --type:"Courier Prime", "Courier New", ui-monospace, monospace;
   --ease:cubic-bezier(.4,.2,.2,1);
@@ -160,6 +162,82 @@ footer .inner2{max-width:1320px;margin:0 auto}
 .toast.on{opacity:1}
 .sr{position:absolute;left:-9999px}
 @media (prefers-reduced-motion:reduce){.toast,.tip{transition:none}}
+
+/* ---- elegance pass: newspaper serif display, news text face, letterspaced gothic labels, hairline rules ---- */
+body{font:400 18px/1.55 var(--serif)}
+.wrap{padding:22px 32px 0}
+.topstrip{font:500 11px var(--head);letter-spacing:.14em;border-bottom:1px solid var(--rule);padding-bottom:10px}
+.paperswitch .seg{border:1px solid var(--rule)}
+.paperswitch button{font:600 10.5px var(--head);letter-spacing:.14em;padding:6px 12px}
+.mast{border-bottom:0;padding:26px 0 18px;text-align:center}
+h1{font:400 clamp(48px,9vw,132px)/.95 var(--display);letter-spacing:-.01em;text-transform:none}
+.mastsub{justify-content:space-between;border-top:1px solid var(--rule);border-bottom:3px double var(--rule);padding:8px 0;font:500 11px var(--head);letter-spacing:.16em}
+.lead{gap:48px;padding:34px 0 34px;border-bottom:1px solid var(--rule)}
+.function h2{font:600 11px var(--head);letter-spacing:.2em;text-transform:uppercase;margin:0 0 12px;color:var(--accent)}
+.function p{font:400 21px/1.5 var(--serif);max-width:58ch}
+.function p:first-of-type::first-letter{font:400 4.1em/.78 var(--display);padding:8px 10px 0 0}
+.function p+p{font:italic 400 18px/1.55 var(--serif);color:var(--ink2)}
+.stats{border:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stats div{padding:16px 10px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.stats b{font:400 46px/1 var(--display);letter-spacing:0}
+.stats span{font:500 10.5px var(--head);letter-spacing:.14em;color:var(--ink2)}
+section{padding:40px 0 44px;border-bottom:1px solid var(--rule)}
+.sechead{border-top:0;border-bottom:1px solid var(--rule);padding:0 0 10px;margin-bottom:16px;align-items:flex-end}
+.sechead h2{font:400 clamp(28px,3.4vw,44px)/1.05 var(--dhead);text-transform:none;letter-spacing:-.005em}
+.sechead .pg{font:500 10.5px var(--head);letter-spacing:.18em;color:var(--ink2)}
+.sub{font:italic 400 17px/1.5 var(--serif)}
+.panel{border:0;border-top:1px solid var(--rule);padding:14px 0 0;background:transparent}
+.charts{gap:40px;margin-top:34px}
+.charts h3{font:600 20px var(--dhead);text-transform:none;letter-spacing:0;margin:0 0 4px}
+.axis text,.lbl{font:500 10.5px var(--head);letter-spacing:.06em}
+.legend{font:500 10.5px var(--head);letter-spacing:.12em}
+.sw{border:0}
+.tip{border:1px solid var(--rule);box-shadow:0 10px 30px -12px rgba(0,0,0,.35);font:400 15px var(--serif)}
+.tip b{font:600 16px var(--dhead)}
+.tip .m{font:500 10px var(--head);letter-spacing:.14em}
+.filters{border-top:0;border-bottom:1px solid var(--rule);padding:14px 0;gap:16px}
+.f label{font:600 10px var(--head);letter-spacing:.16em}
+.f input,.f select{border:0;border-bottom:1px solid var(--rule);background:transparent;height:40px;padding:0 2px;font:400 17px var(--serif)}
+.f select.type-sel{font:400 17px var(--serif);text-transform:none}
+.f input:focus,.f select:focus{outline:0;border-bottom:2px solid var(--accent)}
+.btn{border:1px solid var(--rule);font:600 11px var(--head);letter-spacing:.16em;height:40px}
+.netwrap{border:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);height:660px}
+.chip{font:600 10px var(--head);letter-spacing:.14em;border:1px solid var(--hair);background:color-mix(in srgb,var(--paper) 80%,transparent)}
+.chip[aria-pressed="true"]{border-color:var(--rule)}
+.netlegend{border:0;border-left:1px solid var(--rule);background:color-mix(in srgb,var(--paper) 82%,transparent);font:500 10px var(--head);letter-spacing:.1em;padding:8px 12px;gap:5px}
+.nethelp{font:italic 400 14px var(--serif);color:var(--ink2)}
+.gbar{border-top:0;border-bottom:1px solid var(--rule);padding:12px 0}
+.count{font:400 30px var(--dhead);text-transform:none}
+.count span{font:italic 400 15px var(--serif)}
+.seg2{border:1px solid var(--rule)}
+.seg2 button{font:600 10.5px var(--head);letter-spacing:.16em;padding:10px 14px}
+#sortSel{border:0;border-bottom:1px solid var(--rule);background:transparent;font:400 16px var(--serif);height:40px}
+.grid{columns:3 300px;column-gap:40px;column-rule:1px solid var(--hair)}
+.entry{border-top:1px solid var(--rule);padding-top:10px;margin-bottom:34px;position:relative}
+.entry::before{content:"";position:absolute;left:0;top:-1px;width:44px;height:3px;background:var(--cat)}
+.sect{font:600 10px var(--head);letter-spacing:.16em;margin-bottom:10px}
+.sect .no{font:400 11px var(--type);letter-spacing:.02em}
+.plate{height:86px;border:0;margin-bottom:12px;opacity:.85}
+.plate .badge{left:0;top:0;border:0;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:5px}
+.plate .cap{border:0;font:600 9.5px var(--head);letter-spacing:.14em;padding:3px 6px}
+.entry h3{font:600 25px/1.12 var(--dhead);letter-spacing:-.005em;margin:0 0 6px}
+.entry .who{font:italic 400 16.5px/1.4 var(--serif);margin-bottom:8px}
+.entry .note{font:400 16.5px/1.55 var(--serif)}
+.themes span{font:500 10.5px var(--head);letter-spacing:.06em;text-transform:uppercase}
+.access{border:0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:8px 0;font:400 13px/1.5 var(--type)}
+.access a{font-weight:700;text-decoration:none;border-bottom:1px solid currentColor}
+.stamp{font:600 9.5px var(--head);letter-spacing:.14em;border-width:1px;vertical-align:middle;transform:rotate(-3deg)}
+.pager{border-top:1px solid var(--rule)}
+.pgb{border:1px solid var(--hair);font:500 16px var(--serif);min-width:40px;height:40px}
+.pgb[aria-current="page"]{border-color:var(--ink)}
+.range{font:italic 400 14px var(--serif);text-transform:none;letter-spacing:0}
+th{font:600 10px var(--head);letter-spacing:.14em;background:var(--paper);border-bottom:1px solid var(--rule)}
+td a{font:600 17px var(--dhead)}
+td.cat{font:600 10px var(--head);letter-spacing:.12em}
+details.gov summary{font:400 24px var(--dhead);text-transform:none}
+details.gov p{font:400 17px/1.6 var(--serif)}
+footer{border-top:3px double var(--rule)}
+.fcap{font:500 10.5px var(--head);letter-spacing:.14em;border-top:1px solid var(--rule)}
 </style>
 </head>
 <body>
@@ -171,7 +249,7 @@ footer .inner2{max-width:1320px;margin:0 auto}
   </span>
 </div>
 <header class="mast"><h1>Data Practice Atlas</h1></header>
-<div class="mastsub"><span>Books · People · Studios · Festivals · Portals · Datasets · Tools</span><span id="mastCount"></span></div>
+<div class="mastsub"><span>Books · People · Studios · Festivals · Portals · Datasets · Tools</span><span>An evaluation and access device</span><span id="mastCount"></span></div>
 
 <div class="lead">
   <div class="function">
@@ -396,15 +474,15 @@ function treemap(){
   d3.treemap().size([W,H]).paddingOuter(3).paddingTop(24).paddingInner(2).round(true)(h);
   svg.selectAll("*").remove();
   const cats=svg.selectAll("g.cat").data(h.children).join("g").attr("class","cat");
-  cats.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>d.x1-d.x0).attr("height",d=>d.y1-d.y0).attr("rx",0).style("fill","var(--paper)").attr("stroke",d=>COLOR[d.data.name]).attr("stroke-width",2)
+  cats.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>d.x1-d.x0).attr("height",d=>d.y1-d.y0).attr("rx",0).style("fill","var(--paper)").attr("stroke",d=>COLOR[d.data.name]).attr("stroke-width",1)
     .style("cursor","pointer").on("click",(e,d)=>{setFilter({cat:d.data.name,theme:""})});
   cats.append("text").attr("x",d=>d.x0+8).attr("y",d=>d.y0+16).attr("fill",d=>COLOR[d.data.name])
-    .style("font","500 12px 'Courier Prime', monospace").style("text-transform","uppercase").style("letter-spacing",".06em").style("pointer-events","none")
+    .style("font","600 10.5px 'Libre Franklin', sans-serif").style("text-transform","uppercase").style("letter-spacing",".14em").style("pointer-events","none")
     .text(d=>{const w=d.x1-d.x0; const s=`${d.data.name} ${d.value}`; return w>s.length*8?s:(w>40?d.value:"")});
   const leaves=svg.selectAll("g.leaf").data(h.leaves()).join("g").attr("class","leaf").style("cursor","pointer");
   leaves.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>Math.max(0,d.x1-d.x0)).attr("height",d=>Math.max(0,d.y1-d.y0)).attr("rx",0)
-    .attr("fill",d=>COLOR[d.data.cat]).attr("fill-opacity",(d,i)=>.95-.5*(d.parent.children.indexOf(d)/Math.max(1,d.parent.children.length-1)));
-  leaves.append("text").attr("x",d=>d.x0+6).attr("y",d=>d.y0+15).style("fill","var(--onfill)").style("font","700 11px 'Courier Prime', monospace").style("pointer-events","none")
+    .attr("fill",d=>COLOR[d.data.cat]).attr("fill-opacity",(d,i)=>.9-.55*(d.parent.children.indexOf(d)/Math.max(1,d.parent.children.length-1)));
+  leaves.append("text").attr("x",d=>d.x0+6).attr("y",d=>d.y0+15).style("fill","var(--onfill)").style("font","600 10.5px 'Libre Franklin', sans-serif").style("pointer-events","none")
     .text(d=>{const w=d.x1-d.x0,hh=d.y1-d.y0; if(hh<18) return ""; const s=d.data.name; return w>s.length*6.8+8?s:""});
   leaves.on("mousemove",(e,d)=>showTip(`<div class="m">${esc(d.data.cat)}</div><b>${esc(d.data.name)}</b> · ${d.value} entries`,e.clientX,e.clientY)).on("mouseleave",hideTip)
     .on("click",(e,d)=>setFilter({cat:d.data.cat,theme:d.data.name==="other"?"":d.data.name}));
@@ -530,9 +608,10 @@ function buildNetwork(){
   let renderer; try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}); }catch(e){ $("netFallback").style.display="grid"; return null; }
   if(!THREE.OrbitControls){ $("netFallback").style.display="grid"; return null; }
   renderer.setPixelRatio(Math.min(2,devicePixelRatio));
-  const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(50,1,1,2000); camera.position.set(0,20,190);
-  const controls=new THREE.OrbitControls(camera,canvas); controls.enableDamping=true; controls.autoRotate=!matchMedia("(prefers-reduced-motion: reduce)").matches; controls.autoRotateSpeed=.6; controls.minDistance=40; controls.maxDistance=420;
-  scene.add(new THREE.AmbientLight(0xffffff,.55)); const dl=new THREE.DirectionalLight(0xffffff,.9); dl.position.set(60,80,120); scene.add(dl);
+  const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(38,1,1,2000); camera.position.set(0,26,235);
+  const fogCol=()=>new THREE.Color(cssv("--paper")); scene.fog=new THREE.Fog(fogCol(),170,330);
+  const controls=new THREE.OrbitControls(camera,canvas); controls.enableDamping=true; controls.autoRotate=!matchMedia("(prefers-reduced-motion: reduce)").matches; controls.autoRotateSpeed=.32; controls.dampingFactor=.06; controls.minDistance=40; controls.maxDistance=420;
+  scene.add(new THREE.AmbientLight(0xffffff,.75)); const dl=new THREE.DirectionalLight(0xffffff,.55); dl.position.set(60,80,120); scene.add(dl);
   // seeded random
   let s=7; const rnd=()=>{s=(s*16807)%2147483647;return (s-1)/2147483646}; const gauss=()=>{let u=rnd()||1e-9,v=rnd();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
   // category hubs on a Fibonacci sphere
@@ -552,26 +631,26 @@ function buildNetwork(){
     pos.set([p.x,p.y,p.z],i*3); const cc=new THREE.Color(COLOR[d.category]); baseCol.push(cc); col.set([cc.r,cc.g,cc.b],i*3); return p;});
   const dotTex=(()=>{const cv=document.createElement("canvas");cv.width=cv.height=64;const g=cv.getContext("2d");const gr=g.createRadialGradient(32,32,0,32,32,30);gr.addColorStop(0,"rgba(255,255,255,1)");gr.addColorStop(.55,"rgba(255,255,255,.95)");gr.addColorStop(1,"rgba(255,255,255,0)");g.fillStyle=gr;g.beginPath();g.arc(32,32,30,0,7);g.fill();return new THREE.CanvasTexture(cv)})();
   const pg=new THREE.BufferGeometry(); pg.setAttribute("position",new THREE.BufferAttribute(pos,3)); pg.setAttribute("color",new THREE.BufferAttribute(col,3));
-  const points=new THREE.Points(pg,new THREE.PointsMaterial({size:3.4,map:dotTex,vertexColors:true,transparent:true,depthWrite:false,alphaTest:.05,sizeAttenuation:true})); scene.add(points);
+  const points=new THREE.Points(pg,new THREE.PointsMaterial({size:2.3,map:dotTex,vertexColors:true,transparent:true,depthWrite:false,alphaTest:.05,sizeAttenuation:true})); scene.add(points);
   // links
   const segs=[], segCol=[];
   DATA.forEach((d,i)=>{const p=entryPos[i];const cc=baseCol[i];
     const add=(q,a)=>{segs.push(p.x,p.y,p.z,q.x,q.y,q.z);segCol.push(cc.r*a,cc.g*a,cc.b*a,cc.r*a,cc.g*a,cc.b*a)};
     add(catPos[d.category],.35); d.tags.forEach(t=>{if(themePos[t]) add(themePos[t].pos,.22)});});
   const lg=new THREE.BufferGeometry(); lg.setAttribute("position",new THREE.Float32BufferAttribute(segs,3)); lg.setAttribute("color",new THREE.Float32BufferAttribute(segCol,3));
-  const lineMat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:isDark()?.55:.42,depthWrite:false,blending:isDark()?THREE.AdditiveBlending:THREE.NormalBlending}); const lines=new THREE.LineSegments(lg,lineMat); scene.add(lines);
+  const lineMat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:isDark()?.22:.09,depthWrite:false,blending:isDark()?THREE.AdditiveBlending:THREE.NormalBlending}); const lines=new THREE.LineSegments(lg,lineMat); scene.add(lines);
   // hub meshes
   const geo={sphere:()=>new THREE.SphereGeometry(1,20,14),tetra:()=>new THREE.TetrahedronGeometry(1.3),cube:()=>new THREE.BoxGeometry(1.6,1.6,1.6),octa:()=>new THREE.OctahedronGeometry(1.3),
     icosa:()=>new THREE.IcosahedronGeometry(1.2),cone:()=>new THREE.ConeGeometry(1,2,16),torus:()=>new THREE.TorusGeometry(1,.38,10,24),dodeca:()=>new THREE.DodecahedronGeometry(1.2),disc:()=>new THREE.CylinderGeometry(1.3,1.3,.45,24),other:()=>new THREE.OctahedronGeometry(.9,0)};
   const hubs=[], sprites=[];
   hubTags.forEach(t=>{const f=familyOfTag(t), shape=(famByKey[f]||{shape:"other"}).shape;
-    const fc=new THREE.Color(famColor(f)); const m=new THREE.Mesh(geo[shape](),new THREE.MeshStandardMaterial({color:fc,emissive:fc,emissiveIntensity:.3,roughness:.4,metalness:.1}));
-    const sc=.9+Math.sqrt(themePos[t].n)*.32; m.scale.setScalar(sc); if(shape==="cone") m.rotation.x=Math.PI; m.position.copy(themePos[t].pos); m.userData={type:"theme",key:t,n:themePos[t].n,fam:f}; scene.add(m); hubs.push(m);});
+    const fc=new THREE.Color(famColor(f)); const m=new THREE.Mesh(geo[shape](),new THREE.MeshStandardMaterial({color:fc,emissive:fc,emissiveIntensity:.18,roughness:.55,metalness:0,flatShading:true,transparent:true,opacity:.92}));
+    const sc=.7+Math.sqrt(themePos[t].n)*.22; m.scale.setScalar(sc); if(shape==="cone") m.rotation.x=Math.PI; m.position.copy(themePos[t].pos); m.userData={type:"theme",key:t,n:themePos[t].n,fam:f}; scene.add(m); hubs.push(m);});
   CATS.forEach(([c])=>{const n=DATA.filter(d=>d.category===c).length;const r=4+Math.sqrt(n)*.55;
-    const ring=new THREE.Mesh(new THREE.TorusGeometry(r,.7,12,48),new THREE.MeshStandardMaterial({color:new THREE.Color(COLOR[c]),emissive:new THREE.Color(COLOR[c]),emissiveIntensity:.35}));
+    const ring=new THREE.Mesh(new THREE.TorusGeometry(r,.16,8,96),new THREE.MeshBasicMaterial({color:new THREE.Color(COLOR[c]),transparent:true,opacity:.9}));
     ring.position.copy(catPos[c]); ring.userData={type:"cat",key:c,n}; scene.add(ring); hubs.push(ring);
-    const cv=document.createElement("canvas");cv.width=512;cv.height=96;const g=cv.getContext("2d");g.font="700 40px 'Courier Prime', monospace";g.fillStyle=COLOR[c];g.textAlign="center";g.fillText(c.toUpperCase(),256,60);
-    const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(cv),transparent:true,depthWrite:false})); sprites.push({sp,c,g,cv});sp.scale.set(40,7.5,1);sp.position.copy(catPos[c]).add(new THREE.Vector3(0,r+6,0));scene.add(sp);});
+    const cv=document.createElement("canvas");cv.width=512;cv.height=96;const g=cv.getContext("2d");g.font="italic 44px Newsreader, Georgia, serif";g.fillStyle=COLOR[c];g.textAlign="center";g.fillText(c,256,60);
+    const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(cv),transparent:true,depthWrite:false})); sprites.push({sp,c,g,cv});sp.scale.set(34,6.4,1);sp.position.copy(catPos[c]).add(new THREE.Vector3(0,r+6,0));scene.add(sp);});
   // interaction
   const ray=new THREE.Raycaster(); ray.params.Points.threshold=1.6; const mouse=new THREE.Vector2(); let hover=null;
   function pick(e){const r=canvas.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;ray.setFromCamera(mouse,camera);
@@ -595,12 +674,12 @@ function buildNetwork(){
       setSeg(.35); d.tags.forEach(t=>{if(themePos[t]) setSeg(.22)});});
     lg.attributes.color.array.set(segCol); lg.attributes.color.needsUpdate=true;
     hubs.forEach(h=>{const u=h.userData; const on=!any || (u.type==="cat"? DATA.some((d,i)=>visible[i]&&d.category===u.key) : DATA.some((d,i)=>visible[i]&&d.tags.includes(u.key)));
-      h.material.transparent=true; h.material.opacity=on?1:.18; const sel=(u.type==="cat"&&state.cat===u.key)||(u.type==="theme"&&state.theme===u.key); h.material.emissive.set(sel?0xffd23f:(u.type==="cat"?COLOR[u.key]:famColor(u.fam))); h.material.emissiveIntensity=sel?.9:(u.type==="cat"?.5:.3);});
+      h.material.transparent=true; h.material.opacity=on?(u.type==="cat"?.9:.92):.12; const sel=(u.type==="cat"&&state.cat===u.key)||(u.type==="theme"&&state.theme===u.key); if(h.material.emissive){h.material.emissive.set(sel?cssv("--accent"):famColor(u.fam)); h.material.emissiveIntensity=sel?.7:.18;} else {h.material.color.set(sel?cssv("--accent"):COLOR[u.key]);} if(u.type==="cat") h.scale.setScalar(sel?1.25:1);});
   }
   function size(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
   new ResizeObserver(size).observe(canvas); size();
   let running=true; const io=new IntersectionObserver(es=>{running=es[0].isIntersecting;if(running) loop();}); io.observe(canvas);
-  function loop(){ if(!running) return; requestAnimationFrame(loop); hubs.forEach(h=>{if(h.userData.type==="theme") h.rotation.y+=.004;}); controls.update(); renderer.render(scene,camera); }
+  function loop(){ if(!running) return; requestAnimationFrame(loop); hubs.forEach(h=>{if(h.userData.type==="theme") h.rotation.y+=.0022;}); controls.update(); renderer.render(scene,camera); }
   loop();
   // legend
   $("netLegend").innerHTML=legendHTML();
@@ -609,9 +688,9 @@ function buildNetwork(){
   $("netReset").onclick=()=>{camera.position.set(0,20,190);controls.target.set(0,0,0);};
   function retheme(){
     DATA.forEach((d,i)=>baseCol[i].set(COLOR[d.category]));
-    lineMat.blending=isDark()?THREE.AdditiveBlending:THREE.NormalBlending; lineMat.opacity=isDark()?.55:.42; lineMat.needsUpdate=true;
+    lineMat.blending=isDark()?THREE.AdditiveBlending:THREE.NormalBlending; lineMat.opacity=isDark()?.22:.09; scene.fog.color=fogCol(); lineMat.needsUpdate=true;
     hubs.forEach(h=>{const u=h.userData; if(u.type==="cat"){h.material.color.set(COLOR[u.key]);} else {h.material.color.set(famColor(u.fam));}});
-    sprites.forEach(s=>{s.g.clearRect(0,0,512,96);s.g.font="700 40px 'Courier Prime', monospace";s.g.fillStyle=COLOR[s.c];s.g.textAlign="center";s.g.fillText(s.c.toUpperCase(),256,60);s.sp.material.map.needsUpdate=true;});
+    sprites.forEach(s=>{s.g.clearRect(0,0,512,96);s.g.font="italic 44px Newsreader, Georgia, serif";s.g.fillStyle=COLOR[s.c];s.g.textAlign="center";s.g.fillText(s.c,256,60);s.sp.material.map.needsUpdate=true;});
     $("netLegend").innerHTML=legendHTML(); highlight();
   }
   return {highlight,retheme};
@@ -633,13 +712,13 @@ function patternURI(shape){ if(PATTERN_CACHE[shape]) return PATTERN_CACHE[shape]
 const GROUPS={D:{label:"Data",cats:["Data Portal","Dataset Source","Weird Dataset","Tool"]},P:{label:"Practice",cats:["Person","Studio & Lab","Festival & Conference"]},A:{label:"Atlas reading",cats:["Book","Website & Publication","Video & Podcast"]}};
 async function wordmark(){
   const cv=$("wordmark"), ctx=cv.getContext("2d");
-  try{await document.fonts.load("900 300px 'Libre Franklin'");}catch(e){}
+  try{await document.fonts.load("400 300px 'Libre Caslon Display'");}catch(e){}
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   let marks=[], W=0,H=0,dpr=Math.min(2,devicePixelRatio);
   function layout(){
     W=cv.clientWidth; H=Math.round(W*.34); cv.width=W*dpr; cv.height=H*dpr; cv.style.height=H+"px";
     const off=document.createElement("canvas"); off.width=W; off.height=H; const g=off.getContext("2d");
-    const fs=H*1.08; g.font=`900 ${fs}px 'Libre Franklin', Arial, sans-serif`; g.textBaseline="alphabetic";
+    const fs=H*1.08; g.font=`400 ${fs}px 'Libre Caslon Display', Georgia, serif`; g.textBaseline="alphabetic";
     const letters=["D","P","A"], widths=letters.map(l=>g.measureText(l).width), gap=fs*.04, total=widths.reduce((a,b)=>a+b,0)+gap*2; let x=(W-total)/2; const base=H*.86;
     const boxes=letters.map((l,i)=>{const b={l,x,w:widths[i]}; x+=widths[i]+gap; return b;});
     marks=[]; boxes.forEach(b=>{
@@ -667,7 +746,7 @@ async function wordmark(){
   }
   function frame(t){
     ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
-    ctx.font=`900 ${layout.fs}px 'Libre Franklin', Arial, sans-serif`; ctx.lineWidth=1; ctx.strokeStyle=cssv("--hair"); layout.boxes.forEach(b=>ctx.strokeText(b.l,b.x,layout.base));
+    ctx.font=`400 ${layout.fs}px 'Libre Caslon Display', Georgia, serif`; ctx.lineWidth=1; ctx.strokeStyle=cssv("--hair"); layout.boxes.forEach(b=>ctx.strokeText(b.l,b.x,layout.base));
     marks.forEach(m=>{ if(!reduce){const nx=m.ox+Math.sin(t/1400+m.ph)*2.2, ny=m.oy+Math.cos(t/1700+m.ph)*2.2; if(m.inside(nx,ny)){m.x=nx;m.y=ny;}} drawMark(m); });
     if(!reduce&&wmRunning) requestAnimationFrame(frame);
   }
