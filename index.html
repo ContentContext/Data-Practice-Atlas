@@ -483,12 +483,12 @@ function treemap(){
     const rest=d3.sum(small,x=>x[1]); if(rest) kids.push({name:"other",value:rest,cat:c});
     return {name:c,children:kids};})};
   const h=d3.hierarchy(root).sum(d=>d.value||0).sort((a,b)=>b.value-a.value);
-  d3.treemap().size([W,H]).paddingOuter(3).paddingTop(24).paddingInner(2).round(true)(h);
+  d3.treemap().size([W,H]).paddingOuter(0).paddingTop(22).paddingInner(3).round(true)(h);
   svg.selectAll("*").remove();
   const cats=svg.selectAll("g.cat").data(h.children).join("g").attr("class","cat");
-  cats.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>d.x1-d.x0).attr("height",d=>d.y1-d.y0).attr("rx",0).style("fill","var(--paper)").attr("stroke",d=>COLOR[d.data.name]).attr("stroke-width",1)
+  cats.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>d.x1-d.x0).attr("height",d=>d.y1-d.y0).attr("rx",0).style("fill","transparent").attr("stroke","none")
     .style("cursor","pointer").on("click",(e,d)=>{setFilter({cat:d.data.name,theme:""})});
-  cats.append("text").attr("x",d=>d.x0+8).attr("y",d=>d.y0+16).attr("fill",d=>COLOR[d.data.name])
+  cats.append("text").attr("x",d=>d.x0+1).attr("y",d=>d.y0+15).attr("fill",d=>COLOR[d.data.name])
     .style("font","600 10.5px 'Libre Franklin', sans-serif").style("text-transform","uppercase").style("letter-spacing",".14em").style("pointer-events","none")
     .text(d=>{const w=d.x1-d.x0; const s=`${d.data.name} ${d.value}`; return w>s.length*8?s:(w>40?d.value:"")});
   const leaves=svg.selectAll("g.leaf").data(h.leaves()).join("g").attr("class","leaf").style("cursor","pointer");
