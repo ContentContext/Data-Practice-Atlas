@@ -398,3 +398,8 @@ add += [
 add += [
 ("WTF Visualizations (viz.wtf)","Website & Publication","@WTFViz","","Web","critique;humour;teaching","Crowd-submitted collection of charts that make no sense. Great for teaching what not to do. No posts after January 2022.","https://viz.wtf",1,"archived",V),
 ]
+
+# ================= Round 6 =================
+add += [
+("Sarah Slobin","Person","Visual and data journalist; graphics editor at Reuters","","Brooklyn, New York","journalism;information-design;teaching","Began on the New York Times graphics desks, where she ran the business graphics team, then worked at Fortune and The Wall Street Journal before joining Reuters' investigative and data team. Teaches data visualisation at The New School (Journalism + Design) and has taught on Columbia's Lede program.","https://www.linkedin.com/in/sarahslobin",1,"active",V),
+]
