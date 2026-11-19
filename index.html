@@ -289,12 +289,12 @@ function treemap(){
     const rest=d3.sum(small,x=>x[1]); if(rest) kids.push({name:"other",value:rest,cat:c});
     return {name:c,children:kids};})};
   const h=d3.hierarchy(root).sum(d=>d.value||0).sort((a,b)=>b.value-a.value);
-  d3.treemap().size([W,H]).paddingTop(26).paddingInner(2).paddingOuter(3).round(true)(h);
+  d3.treemap().size([W,H]).paddingOuter(3).paddingTop(24).paddingInner(2).round(true)(h);
   svg.selectAll("*").remove();
   const cats=svg.selectAll("g.cat").data(h.children).join("g").attr("class","cat");
   cats.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>d.x1-d.x0).attr("height",d=>d.y1-d.y0).attr("rx",6).attr("fill","rgba(10,0,40,.55)").attr("stroke",d=>COLOR[d.data.name]).attr("stroke-width",2)
     .style("cursor","pointer").on("click",(e,d)=>{setFilter({cat:d.data.name,theme:""})});
-  cats.append("text").attr("x",d=>d.x0+8).attr("y",d=>d.y0+18).attr("fill",d=>COLOR[d.data.name])
+  cats.append("text").attr("x",d=>d.x0+8).attr("y",d=>d.y0+16).attr("fill",d=>COLOR[d.data.name])
     .style("font","500 12px 'DM Mono', monospace").style("text-transform","uppercase").style("letter-spacing",".06em").style("pointer-events","none")
     .text(d=>{const w=d.x1-d.x0; const s=`${d.data.name} ${d.value}`; return w>s.length*8?s:(w>40?d.value:"")});
   const leaves=svg.selectAll("g.leaf").data(h.leaves()).join("g").attr("class","leaf").style("cursor","pointer");
@@ -438,7 +438,7 @@ function buildNetwork(){
   const hubs=[];
   hubTags.forEach(t=>{const f=familyOfTag(t), shape=(famByKey[f]||{shape:"other"}).shape;
     const m=new THREE.Mesh(geo[shape](),new THREE.MeshStandardMaterial({color:0xffffff,emissive:0x5a2bd6,emissiveIntensity:.35,roughness:.4,metalness:.1}));
-    const sc=1.6+Math.sqrt(themePos[t].n)*.75; m.scale.setScalar(sc); m.position.copy(themePos[t].pos); m.userData={type:"theme",key:t,n:themePos[t].n,fam:f}; scene.add(m); hubs.push(m);});
+    const sc=.9+Math.sqrt(themePos[t].n)*.32; m.scale.setScalar(sc); m.position.copy(themePos[t].pos); m.userData={type:"theme",key:t,n:themePos[t].n,fam:f}; scene.add(m); hubs.push(m);});
   CATS.forEach(([c])=>{const n=DATA.filter(d=>d.category===c).length;const r=4+Math.sqrt(n)*.55;
     const ring=new THREE.Mesh(new THREE.TorusGeometry(r,.7,12,48),new THREE.MeshStandardMaterial({color:new THREE.Color(COLOR[c]),emissive:new THREE.Color(COLOR[c]),emissiveIntensity:.5}));
     ring.position.copy(catPos[c]); ring.userData={type:"cat",key:c,n}; scene.add(ring); hubs.push(ring);
