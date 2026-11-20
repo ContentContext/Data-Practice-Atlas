@@ -354,12 +354,16 @@ th,th button{font-weight:700!important;color:var(--ink)}
 .netcap p:last-child{margin-bottom:0}
 .i3{display:inline-block;width:1em;height:1em;vertical-align:-.12em;margin:0 .3em 0 .05em}
 .i3 svg{width:100%;height:100%;display:block;overflow:visible}
+/* softer buttons: 10px corners */
+.btn,.chip,.pgb,.kf,.pa button,.pinx{border-radius:10px!important}
+.seg,.seg2,.paperswitch .seg{border-radius:10px!important;overflow:hidden}
+.seg button,.seg2 button{border-radius:0!important}
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="topstrip">
-  <span>Vol. 1 · Ed. 1.042 · Autumn 2026 · Free</span>
+  <span>Vol. 1 · Ed. 1.043 · Autumn 2026 · Free</span>
   <span class="paperswitch" role="group" aria-label="Paper colour">
     <span class="seg"><button id="paperLight" aria-pressed="true">Light</button><button id="paperDark" aria-pressed="false">Dark</button></span>
   </span>
