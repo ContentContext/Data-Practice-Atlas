@@ -9,13 +9,13 @@
 <link href="https://api.fontshare.com/v2/css?f[]=sentient@700,700i&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Epilogue:wght@400&family=Courier+Prime:wght@400;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,0..100,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&family=Epilogue:wght@400&family=Courier+Prime:wght@400;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,0..100,0..1&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: a 1970s counterculture mail-order catalogue on newsprint. Masthead with heavy rules, a "Function" statement,
    catalogue sections divided by thick/thin rules, entries set in ruled newspaper columns, each ending in a typewritten ACCESS block.
    Paper switch: cream newsprint (light) or dark brown (dark). Ink colours are earthy spot inks. */
 :root{
-  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --serif:"Manrope", "Helvetica Neue", Arial, sans-serif;
   --display:"Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
   --dhead:"Sentient", "Fraunces", "Libre Caslon Text", Georgia, serif;
   --head:"Epilogue", "Helvetica Neue", Arial, sans-serif;
@@ -287,6 +287,14 @@ section{padding:20px 0 22px!important}
 .netpin .pa a{text-decoration:none;border-bottom:1px solid currentColor}
 .netpin .pinx{all:unset;position:absolute;right:8px;top:4px;font:400 20px var(--serif);cursor:pointer;line-height:1}
 .netpin[hidden]{display:none}
+/* body text in Manrope (no italic cut): former italics set upright, muted */
+body{font-weight:400;letter-spacing:-.003em}
+.sub,.function p+p,.entry .who,.count span,.range,.nethelp,.netpin .pw,.netfallback,.empty{font-style:normal!important}
+.sub{font-size:15.5px!important;line-height:1.55!important}
+.function p{font-size:19px!important;line-height:1.55!important}
+.function p+p{font-size:16px!important}
+.entry .who{font-weight:500;font-size:15px!important}
+.entry .note{font-size:15.5px!important}
 /* titles: Sentient Bold (Fontshare), Fraunces as fallback */
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
 h1{font-weight:700;letter-spacing:-.025em}
@@ -715,7 +723,7 @@ function buildNetwork(){
   CATS.forEach(([c])=>{const n=DATA.filter(d=>d.category===c).length;const r=4+Math.sqrt(n)*.55;
     const ring=new THREE.Mesh(new THREE.TorusGeometry(r,.16,8,96),new THREE.MeshBasicMaterial({color:new THREE.Color(COLOR[c]),transparent:true,opacity:.9}));
     ring.position.copy(catPos[c]); ring.userData={type:"cat",key:c,n}; scene.add(ring); hubs.push(ring);
-    const cv=document.createElement("canvas");cv.width=512;cv.height=96;const g=cv.getContext("2d");g.font="italic 44px Newsreader, Georgia, serif";g.fillStyle=COLOR[c];g.textAlign="center";g.fillText(c,256,60);
+    const cv=document.createElement("canvas");cv.width=512;cv.height=96;const g=cv.getContext("2d");g.font="600 40px Manrope, Arial, sans-serif";g.fillStyle=COLOR[c];g.textAlign="center";g.fillText(c,256,60);
     const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(cv),transparent:true,depthWrite:false})); sprites.push({sp,c,g,cv});sp.scale.set(34,6.4,1);sp.position.copy(catPos[c]).add(new THREE.Vector3(0,r+6,0));scene.add(sp);});
   // interaction
   const ray=new THREE.Raycaster(); ray.params.Points.threshold=1.6; const mouse=new THREE.Vector2(); let hover=null;
@@ -776,7 +784,7 @@ function buildNetwork(){
     DATA.forEach((d,i)=>baseCol[i].set(COLOR[d.category]));
     lineMat.blending=isDark()?THREE.AdditiveBlending:THREE.NormalBlending; lineMat.opacity=isDark()?.22:.09; scene.fog.color=fogCol(); lineMat.needsUpdate=true;
     hubs.forEach(h=>{const u=h.userData; if(u.type==="cat"){h.material.color.set(COLOR[u.key]);} else {h.material.color.set(famColor(u.fam));}});
-    sprites.forEach(s=>{s.g.clearRect(0,0,512,96);s.g.font="italic 44px Newsreader, Georgia, serif";s.g.fillStyle=COLOR[s.c];s.g.textAlign="center";s.g.fillText(s.c,256,60);s.sp.material.map.needsUpdate=true;});
+    sprites.forEach(s=>{s.g.clearRect(0,0,512,96);s.g.font="600 40px Manrope, Arial, sans-serif";s.g.fillStyle=COLOR[s.c];s.g.textAlign="center";s.g.fillText(s.c,256,60);s.sp.material.map.needsUpdate=true;});
     $("netLegend").innerHTML=legendHTML(); highlight();
   }
   return {highlight,retheme};
