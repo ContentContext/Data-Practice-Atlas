@@ -334,12 +334,18 @@ details.gov summary{font:700 24px var(--dhead)}
 body{background-image:none}
 .filters,.gbar{border-bottom:0!important}
 .panel,.chip,.netlegend,.plate,.plate .badge,.plate .cap,.netpin,.tip,th,.f input,.f select,#sortSel{background-color:var(--paper)!important}
+/* sticky table header under the filters and sort bar; bold column headings */
+th,th button{font-weight:700!important;color:var(--ink)}
+@media (min-width:981px){
+  .tablewrap{overflow:visible!important}
+  th{position:sticky;top:calc(var(--fh,0px) + var(--gh,0px));z-index:12;box-shadow:inset 0 -1.5px 0 var(--rule)}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="topstrip">
-  <span>Vol. 1 · Ed. 1.034 · Autumn 2026 · Free</span>
+  <span>Vol. 1 · Ed. 1.035 · Autumn 2026 · Free</span>
   <span class="paperswitch" role="group" aria-label="Paper colour">
     <span class="seg"><button id="paperLight" aria-pressed="true">Light</button><button id="paperDark" aria-pressed="false">Dark</button></span>
   </span>
@@ -419,7 +425,7 @@ body{background-image:none}
   <div class="inner2">
     <canvas id="wordmark" aria-label="DPA wordmark drawn from the Atlas entries: one mark per entry"></canvas>
     <div class="fcap"><span id="wmCap"></span><span>Data Practice Atlas · 2026</span></div>
-    <p class="colophon">This is a self-initiated project by Michael Brenner. ContentContext is the sandbox for his design musings, inspired projects, marginalia and an archive of his work. The DPA is an educational resource. Should you find an error, or not wish to be included, please reach out and we will take care of it.</p>
+    <p class="colophon">This is a self-initiated project by Michael Brenner. ContentContext is the sandbox for his design musings, inspired projects, marginalia and an archive of his work. The DPA is an educational resource. Should you find an error, or not wish to be included, please <a href="https://github.com/ContentContext/Data-Practice-Atlas/issues" target="_blank" rel="noopener">open an issue on GitHub</a> and we will take care of it.</p>
   </div>
 </footer>
 <div class="tip" id="tip"></div>
@@ -910,8 +916,8 @@ function wire(){
     if(e.target.closest("a")) return;
   });
   let rt; addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(treemap,200)});
-  const fb=document.querySelector(".filters"); const setFh=()=>{const sticky=getComputedStyle(fb).position==="sticky"; document.documentElement.style.setProperty("--fh", sticky?(fb.offsetHeight+8)+"px":"0px");};
-  new ResizeObserver(setFh).observe(fb); addEventListener("resize",setFh); setFh();
+  const fb=document.querySelector(".filters"), gb=document.querySelector(".gbar"); const setFh=()=>{const sticky=getComputedStyle(fb).position==="sticky"; document.documentElement.style.setProperty("--fh", sticky?(fb.offsetHeight+8)+"px":"0px"); document.documentElement.style.setProperty("--gh", gb.offsetHeight+"px");};
+  const ro=new ResizeObserver(setFh); ro.observe(fb); ro.observe(gb); addEventListener("resize",setFh); setFh();
 }
 async function boot(){
   if(INLINE) DATA=INLINE; else { try{DATA=await (await fetch("data/atlas.json")).json();}catch(e){$("list").innerHTML=`<div class="empty">Could not load data/atlas.json. Serve this folder over http (for example GitHub Pages).</div>`;return;} }
