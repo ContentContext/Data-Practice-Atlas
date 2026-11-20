@@ -384,12 +384,14 @@ details.gov summary{font:400 23px var(--dhead)!important}
 .netpin b{font:400 17px/1.15 var(--dhead)!important}
 /* Young Serif in one weight, thickened with a hairline stroke in the text colour for a heavier title cut */
 h1,.stats b,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.netpin b{-webkit-text-stroke:.028em currentColor;paint-order:stroke fill;font-synthesis:none}
+/* optical centring: Epilogue caps sit .09em high in the line box, so push the label down by that much */
+.btn,.chip,.pgb,.pa button,.seg button,.seg2 button{line-height:1!important;padding-top:.18em!important;padding-bottom:0!important;align-items:center}
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="topstrip">
-  <span>Vol. 1 · Ed. 1.048 · Autumn 2026 · Free</span>
+  <span>Vol. 1 · Ed. 1.049 · Autumn 2026 · Free</span>
   <span class="paperswitch" role="group" aria-label="Paper colour">
     <span class="seg"><button id="paperLight" aria-pressed="true">Light</button><button id="paperDark" aria-pressed="false">Dark</button></span>
   </span>
