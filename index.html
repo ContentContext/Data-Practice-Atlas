@@ -358,12 +358,19 @@ th,th button{font-weight:700!important;color:var(--ink)}
 .btn,.chip,.pgb,.kf,.pa button,.pinx{border-radius:10px!important}
 .seg,.seg2,.paperswitch .seg{border-radius:10px!important;overflow:hidden}
 .seg button,.seg2 button{border-radius:0!important}
+:root[data-paper="light"]{--line:#d6d1c6}
+:root[data-paper="dark"]{--line:#3a2f26}
+.gbar{border-top-color:var(--line)!important}
+.ctrl{align-items:flex-end}
+.sortf{min-width:210px}
+.sortf select{width:100%}
+@media (min-width:981px){ th{box-shadow:inset 0 1px 0 var(--line),inset 0 -1.5px 0 var(--rule)!important} }
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="topstrip">
-  <span>Vol. 1 · Ed. 1.043 · Autumn 2026 · Free</span>
+  <span>Vol. 1 · Ed. 1.044 · Autumn 2026 · Free</span>
   <span class="paperswitch" role="group" aria-label="Paper colour">
     <span class="seg"><button id="paperLight" aria-pressed="true">Light</button><button id="paperDark" aria-pressed="false">Dark</button></span>
   </span>
@@ -423,8 +430,8 @@ th,th button{font-weight:700!important;color:var(--ink)}
   <div class="gbar">
     <div class="count" id="count"></div>
     <div class="ctrl">
-      <label for="sortSel" class="type" style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Sort</label>
-      <select id="sortSel"><option value="relevance">Best match</option><option value="name">Name A–Z</option><option value="-name">Name Z–A</option><option value="category">Category</option><option value="year">Year, oldest first</option><option value="-year">Year, newest first</option><option value="place">Place</option></select>
+      <div class="f sortf"><label for="sortSel">Sort</label>
+      <select id="sortSel"><option value="relevance">Best match</option><option value="name">Name A–Z</option><option value="-name">Name Z–A</option><option value="category">Category</option><option value="year">Year, oldest first</option><option value="-year">Year, newest first</option><option value="place">Place</option></select></div>
       <div class="seg2" role="group" aria-label="View"><button id="vCards" aria-pressed="true">Catalogue</button><button id="vTable" aria-pressed="false">Table</button></div>
       <button class="btn" id="copyCsv">Copy CSV</button>
     </div>
