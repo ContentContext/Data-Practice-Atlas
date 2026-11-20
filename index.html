@@ -26,14 +26,14 @@
   --paper:#f9f4e9; --paper2:#f4eee0; --paper3:#eee6d5; --ink:#1b1712; --ink2:#4a3f33; --rule:#1b1712; --hair:rgba(27,23,18,.28); --onfill:#fbf8f1; --accent:#ff5a36;
   --c-book:#e63946; --c-person:#2e86de; --c-studio:#1fa363; --c-fest:#e84393; --c-portal:#8cb31c; --c-source:#7b5cd6; --c-weird:#f2b21b; --c-web:#14a3b8; --c-video:#ff8c42; --c-tool:#5a5a63;
   --check-a:#1b1712; --check-b:#b7a98c; --check-c:#ff5a36;
-  --netbg:radial-gradient(circle at 50% 45%, #fcf8ee 0%, #f1e8d6 78%);
+  --netbg:var(--paper);
   color-scheme:light;
 }
 :root[data-paper="dark"]{
-  --paper:#2b1e15; --paper2:#352619; --paper3:#46331f; --ink:#f1e6cd; --ink2:#cdbb98; --rule:#f1e6cd; --hair:rgba(241,230,205,.24); --onfill:#22170f; --accent:#ff7a50;
+  --paper:#15100c; --paper2:#1e1712; --paper3:#2a2019; --ink:#f1e6cd; --ink2:#cdbb98; --rule:#f1e6cd; --hair:rgba(241,230,205,.24); --onfill:#15100c; --accent:#ff7a50;
   --c-book:#ff6b6b; --c-person:#6aa9ff; --c-studio:#4fd18b; --c-fest:#ff79b0; --c-portal:#b8dc4a; --c-source:#a993ff; --c-weird:#ffd166; --c-web:#4fd1e0; --c-video:#ffa45c; --c-tool:#a8a29a;
   --check-a:#f1e6cd; --check-b:#8f7b5d; --check-c:#ff7a50;
-  --netbg:radial-gradient(circle at 50% 45%, #3d2b1c 0%, #1f150e 75%);
+  --netbg:var(--paper);
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -310,6 +310,11 @@ body{font-weight:400;letter-spacing:-.003em}
 .mk{transition:opacity .18s ease, filter .18s ease}
 .focusing .mk:not(.on){opacity:.7;filter:saturate(.1)}
 @media (prefers-reduced-motion:reduce){.mk{transition:none}}
+/* footer caption */
+.colophon{max-width:70ch;margin:14px 0 0;font:400 13.5px/1.6 var(--serif);color:var(--ink2)}
+/* big numbers centred in their cells */
+.stats div{align-items:center!important;justify-content:center!important;text-align:center}
+.stats span{text-align:center}
 /* titles: Sentient Bold (Fontshare), Fraunces as fallback */
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
 h1{font-weight:700;letter-spacing:-.025em}
@@ -330,7 +335,7 @@ details.gov summary{font:700 24px var(--dhead)}
 <body>
 <div class="wrap">
 <div class="topstrip">
-  <span>Vol. 1 · Ed. 1.031 · Autumn 2026 · Free</span>
+  <span>Vol. 1 · Ed. 1.032 · Autumn 2026 · Free</span>
   <span class="paperswitch" role="group" aria-label="Paper colour">
     <span class="seg"><button id="paperLight" aria-pressed="true">Light</button><button id="paperDark" aria-pressed="false">Dark</button></span>
   </span>
@@ -410,6 +415,7 @@ details.gov summary{font:700 24px var(--dhead)}
   <div class="inner2">
     <canvas id="wordmark" aria-label="DPA wordmark drawn from the Atlas entries: one mark per entry"></canvas>
     <div class="fcap"><span id="wmCap"></span><span>Data Practice Atlas · 2026</span></div>
+    <p class="colophon">This is a self-initiated project by Michael Brenner. ContentContext is the sandbox for his design musings, inspired projects, marginalia and an archive of his work. The DPA is an educational resource. Should you find an error, or not wish to be included, please reach out and we will take care of it.</p>
   </div>
 </footer>
 <div class="tip" id="tip"></div>
