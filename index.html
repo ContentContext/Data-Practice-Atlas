@@ -5,11 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Data Practice Atlas</title>
 <script>try{var p=localStorage.getItem("dpaPaper");if(p==="dark"||p==="light")document.documentElement.setAttribute("data-paper",p);}catch(e){}</script>
-<link rel="preconnect" href="https://api.fontshare.com">
-<link href="https://api.fontshare.com/v2/css?f[]=sentient@700,700i&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&family=Epilogue:wght@400;700&family=Courier+Prime:wght@400;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,0..100,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&family=Epilogue:wght@400;700&family=Courier+Prime:wght@400;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,0..100,0..1&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: a 1970s counterculture mail-order catalogue on newsprint. Masthead with heavy rules, a "Function" statement,
    catalogue sections divided by thick/thin rules, entries set in ruled newspaper columns, each ending in a typewritten ACCESS block.
@@ -17,7 +15,7 @@
 :root{
   --serif:"Manrope", "Helvetica Neue", Arial, sans-serif;
   --display:"Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
-  --dhead:"Sentient", "Fraunces", "Libre Caslon Text", Georgia, serif;
+  --dhead:"Instrument Serif", "Fraunces", "Libre Caslon Text", Georgia, serif;
   --head:"Epilogue", "Helvetica Neue", Arial, sans-serif;
   --type:"Courier Prime", "Courier New", ui-monospace, monospace;
   --ease:cubic-bezier(.4,.2,.2,1);
@@ -315,7 +313,7 @@ body{font-weight:400;letter-spacing:-.003em}
 /* big numbers centred in their cells */
 .stats div{align-items:center!important;justify-content:center!important;text-align:center}
 .stats span{text-align:center}
-/* titles: Sentient Bold (Fontshare), Fraunces as fallback */
+/* titles: Instrument Serif (Google Fonts, OFL), Regular only */
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
 h1{font-weight:700;letter-spacing:-.025em}
 .entry h3{font-weight:700;font-variation-settings:"SOFT" 100,"WONK" 0,"opsz" 36}
@@ -373,12 +371,23 @@ th,th button{font-weight:700!important;color:var(--ink)}
 .f .btn{align-self:end}
 /* filter and sort labels match the section kickers exactly */
 .sechead .pg,.f label,th,th button{font-family:var(--head)!important;font-weight:400!important;font-size:10.5px!important;letter-spacing:.18em!important;text-transform:uppercase!important;color:var(--accent)!important}
+/* Instrument Serif has no bold: set every title at 400, a touch larger since the face is narrow */
+h1{font-weight:400!important;letter-spacing:-.01em!important;font-size:clamp(52px,9.6vw,140px)!important}
+.stats b{font:400 54px/1 var(--dhead)!important}
+.sechead h2{font:400 clamp(34px,4vw,54px)/1.02 var(--dhead)!important;letter-spacing:0!important}
+.charts h3{font:400 24px var(--dhead)!important}
+.entry h3{font:400 29px/1.08 var(--dhead)!important;letter-spacing:0!important}
+.count{font:400 38px var(--dhead)!important}
+.tip b{font:400 19px var(--dhead)!important}
+td a{font:400 20px var(--dhead)!important}
+details.gov summary{font:400 28px var(--dhead)!important}
+.netpin b{font:400 21px/1.1 var(--dhead)!important}
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="topstrip">
-  <span>Vol. 1 · Ed. 1.046 · Autumn 2026 · Free</span>
+  <span>Vol. 1 · Ed. 1.047 · Autumn 2026 · Free</span>
   <span class="paperswitch" role="group" aria-label="Paper colour">
     <span class="seg"><button id="paperLight" aria-pressed="true">Light</button><button id="paperDark" aria-pressed="false">Dark</button></span>
   </span>
@@ -888,13 +897,13 @@ function shapeIcon(s,fill="currentColor",size=14){return `<svg width="${size}" h
 const GROUPS={D:{label:"Data",cats:["Data Portal","Dataset Source","Weird Dataset","Tool"]},P:{label:"Practice",cats:["Person","Studio & Lab","Festival & Conference"]},A:{label:"Atlas reading",cats:["Book","Website & Publication","Video & Podcast"]}};
 async function wordmark(){
   const cv=$("wordmark"), ctx=cv.getContext("2d");
-  try{await document.fonts.load("700 300px Sentient");}catch(e){}
+  try{await document.fonts.load("400 300px 'Instrument Serif'");}catch(e){}
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   let marks=[], W=0,H=0,dpr=Math.min(2,devicePixelRatio);
   function layout(){
     W=cv.clientWidth; H=Math.round(W*.34); cv.width=W*dpr; cv.height=H*dpr; cv.style.height=H+"px";
     const off=document.createElement("canvas"); off.width=W; off.height=H; const g=off.getContext("2d");
-    const fs=H*1.08; g.font=`700 ${fs}px Sentient, Fraunces, Georgia, serif`; g.textBaseline="alphabetic";
+    const fs=H*1.08; g.font=`400 ${fs}px "Instrument Serif", Fraunces, Georgia, serif`; g.textBaseline="alphabetic";
     const letters=["D","P","A"], widths=letters.map(l=>g.measureText(l).width), gap=fs*.04, total=widths.reduce((a,b)=>a+b,0)+gap*2; let x=(W-total)/2; const base=H*.86;
     const boxes=letters.map((l,i)=>{const b={l,x,w:widths[i]}; x+=widths[i]+gap; return b;});
     marks=[]; boxes.forEach(b=>{
@@ -922,7 +931,7 @@ async function wordmark(){
   }
   function frame(t){
     ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
-    ctx.font=`700 ${layout.fs}px Sentient, Fraunces, Georgia, serif`; ctx.lineWidth=1; ctx.strokeStyle=cssv("--hair"); layout.boxes.forEach(b=>ctx.strokeText(b.l,b.x,layout.base));
+    ctx.font=`400 ${layout.fs}px "Instrument Serif", Fraunces, Georgia, serif`; ctx.lineWidth=1; ctx.strokeStyle=cssv("--hair"); layout.boxes.forEach(b=>ctx.strokeText(b.l,b.x,layout.base));
     marks.forEach(m=>{ if(!reduce){const nx=m.ox+Math.sin(t/1400+m.ph)*2.2, ny=m.oy+Math.cos(t/1700+m.ph)*2.2; if(m.inside(nx,ny)){m.x=nx;m.y=ny;}} drawMark(m); });
     if(!reduce&&wmRunning) requestAnimationFrame(frame);
   }
