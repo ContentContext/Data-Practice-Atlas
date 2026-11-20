@@ -23,14 +23,14 @@
   --ease:cubic-bezier(.4,.2,.2,1);
 }
 :root[data-paper="light"]{
-  --paper:#f9f4e9; --paper2:#f4eee0; --paper3:#eee6d5; --ink:#1b1712; --ink2:#4a3f33; --rule:#1b1712; --hair:rgba(27,23,18,.28); --onfill:#fbf8f1; --accent:#ff5a36;
+  --paper:#f4efe3; --paper2:#f4efe3; --paper3:#f4efe3; --ink:#1b1712; --ink2:#4a3f33; --rule:#1b1712; --hair:rgba(27,23,18,.28); --onfill:#fbf8f1; --accent:#ff5a36;
   --c-book:#e63946; --c-person:#2e86de; --c-studio:#1fa363; --c-fest:#e84393; --c-portal:#8cb31c; --c-source:#7b5cd6; --c-weird:#f2b21b; --c-web:#14a3b8; --c-video:#ff8c42; --c-tool:#5a5a63;
   --check-a:#1b1712; --check-b:#b7a98c; --check-c:#ff5a36;
   --netbg:var(--paper);
   color-scheme:light;
 }
 :root[data-paper="dark"]{
-  --paper:#15100c; --paper2:#1e1712; --paper3:#2a2019; --ink:#f1e6cd; --ink2:#cdbb98; --rule:#f1e6cd; --hair:rgba(241,230,205,.24); --onfill:#15100c; --accent:#ff7a50;
+  --paper:#15100c; --paper2:#15100c; --paper3:#15100c; --ink:#f1e6cd; --ink2:#cdbb98; --rule:#f1e6cd; --hair:rgba(241,230,205,.24); --onfill:#15100c; --accent:#ff7a50;
   --c-book:#ff6b6b; --c-person:#6aa9ff; --c-studio:#4fd18b; --c-fest:#ff79b0; --c-portal:#b8dc4a; --c-source:#a993ff; --c-weird:#ffd166; --c-web:#4fd1e0; --c-video:#ffa45c; --c-tool:#a8a29a;
   --check-a:#f1e6cd; --check-b:#8f7b5d; --check-c:#ff7a50;
   --netbg:var(--paper);
@@ -330,12 +330,16 @@ h1{font:700 clamp(46px,8.6vw,126px)/.98 var(--dhead);letter-spacing:-.02em}
 .tip b{font:700 16px var(--dhead)}
 td a{font:700 17px var(--dhead)}
 details.gov summary{font:700 24px var(--dhead)}
+/* one flat paper colour everywhere; no rules under filters or sort bar */
+body{background-image:none}
+.filters,.gbar{border-bottom:0!important}
+.panel,.chip,.netlegend,.plate,.plate .badge,.plate .cap,.netpin,.tip,th,.f input,.f select,#sortSel{background-color:var(--paper)!important}
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="topstrip">
-  <span>Vol. 1 · Ed. 1.032 · Autumn 2026 · Free</span>
+  <span>Vol. 1 · Ed. 1.034 · Autumn 2026 · Free</span>
   <span class="paperswitch" role="group" aria-label="Paper colour">
     <span class="seg"><button id="paperLight" aria-pressed="true">Light</button><button id="paperDark" aria-pressed="false">Dark</button></span>
   </span>
