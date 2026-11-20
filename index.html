@@ -23,10 +23,10 @@
   --ease:cubic-bezier(.4,.2,.2,1);
 }
 :root[data-paper="light"]{
-  --paper:#f2e8d2; --paper2:#e9dcc0; --paper3:#ddcdab; --ink:#1b1712; --ink2:#4a3f33; --rule:#1b1712; --hair:rgba(27,23,18,.28); --onfill:#f6eedb; --accent:#ff5a36;
+  --paper:#f9f4e9; --paper2:#f4eee0; --paper3:#eee6d5; --ink:#1b1712; --ink2:#4a3f33; --rule:#1b1712; --hair:rgba(27,23,18,.28); --onfill:#fbf8f1; --accent:#ff5a36;
   --c-book:#e63946; --c-person:#2e86de; --c-studio:#1fa363; --c-fest:#e84393; --c-portal:#8cb31c; --c-source:#7b5cd6; --c-weird:#f2b21b; --c-web:#14a3b8; --c-video:#ff8c42; --c-tool:#5a5a63;
   --check-a:#1b1712; --check-b:#b7a98c; --check-c:#ff5a36;
-  --netbg:radial-gradient(circle at 50% 45%, #f7efdc 0%, #e6d6b6 75%);
+  --netbg:radial-gradient(circle at 50% 45%, #fcf8ee 0%, #f1e8d6 78%);
   color-scheme:light;
 }
 :root[data-paper="dark"]{
@@ -297,6 +297,19 @@ body{font-weight:400;letter-spacing:-.003em}
 .entry .note{font-size:15.5px!important}
 /* drop cap in Manrope */
 .function p:first-of-type::first-letter{font-family:"Manrope", Arial, sans-serif!important;font-weight:700!important;font-variation-settings:normal!important;font-size:4.2em!important;line-height:.8!important;padding:6px 10px 0 0!important;letter-spacing:-.02em}
+/* stats fill the space beside Function, no top/bottom rules */
+.lead{align-items:stretch}
+.stats{border-top:0!important;border-bottom:0!important;align-self:stretch;grid-auto-rows:1fr}
+.stats div{display:flex;flex-direction:column;justify-content:center;padding:22px 18px!important}
+.stats div:nth-child(n+3){border-bottom:0}
+.stats b{font-size:clamp(52px,6vw,84px)!important;line-height:.95!important}
+.stats span{margin-top:8px;font-size:11px}
+/* section kickers in the accent, like Function */
+.sechead .pg{color:var(--accent)!important}
+/* focus: hovering or tapping a mark desaturates and fades the others */
+.mk{transition:opacity .18s ease, filter .18s ease}
+.focusing .mk:not(.on){opacity:.7;filter:saturate(.1)}
+@media (prefers-reduced-motion:reduce){.mk{transition:none}}
 /* titles: Sentient Bold (Fontshare), Fraunces as fallback */
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
 h1{font-weight:700;letter-spacing:-.025em}
@@ -317,9 +330,9 @@ details.gov summary{font:700 24px var(--dhead)}
 <body>
 <div class="wrap">
 <div class="topstrip">
-  <span>Vol. 1 · Autumn 2026 · Free</span>
+  <span>Vol. 1 · Ed. 1.031 · Autumn 2026 · Free</span>
   <span class="paperswitch" role="group" aria-label="Paper colour">
-    <span class="seg"><button id="paperLight" aria-pressed="true">Cream</button><button id="paperDark" aria-pressed="false">Brown</button></span>
+    <span class="seg"><button id="paperLight" aria-pressed="true">Light</button><button id="paperDark" aria-pressed="false">Dark</button></span>
   </span>
 </div>
 <header class="mast"><h1>Data Practice Atlas</h1></header>
@@ -336,7 +349,7 @@ details.gov summary{font:700 24px var(--dhead)}
 
 <section aria-labelledby="h-tree">
   <div class="sechead"><h2 id="h-tree">Understanding the collection</h2><span class="pg">Section 1</span></div>
-  <p class="sub">Every block is a group of entries, sized by count. Categories are split by each entry's first theme; tools keep the seven sections of Andy Kirk's Visualising Data catalogue. Click a block to filter.</p>
+  <p class="sub">Every block is a group of entries, sized by count. Each category is split by theme family, coloured as everywhere else on the page; tools keep the seven sections of Andy Kirk's Visualising Data catalogue. Hover or tap a block to bring it into focus; click to filter.</p>
   <div class="panel"><svg id="treemap" role="img" aria-label="Treemap of entries by category and primary theme"></svg></div>
   <div class="charts">
     <div class="panel"><h3>When it was made</h3><p class="sub" id="yrSub"></p><svg id="years" role="img" aria-label="Entries by decade, stacked by category"></svg></div>
@@ -347,7 +360,7 @@ details.gov summary{font:700 24px var(--dhead)}
 
 <section aria-labelledby="h-net">
   <div class="sechead"><h2 id="h-net">How it all connects</h2><span class="pg">Section 2</span></div>
-  <p class="sub">Drag to spin, scroll to zoom. Rings are categories; shapes are themes (shape and colour show the theme family); dots are entries, inked by category. Themes near the centre cross many categories; themes near a ring belong mostly to it. Click any dot, shape or ring to pin its label and filter the Index below; click it again or click empty space to close and clear.</p>
+  <p class="sub">Drag to spin, scroll to zoom. Rings are categories; shapes are themes; dots are entries. Colour and shape always mean theme family, as on the cards. Themes near the centre cross many categories; themes near a ring belong mostly to it. Click any dot, shape or ring to pin its label and filter the Index below; click it again or click empty space to close and clear.</p>
   <div class="netwrap">
     <canvas id="net" aria-label="Interactive 3D network of entries, themes and categories"></canvas>
     <div class="netui"><button class="chip" id="spin" aria-pressed="true">Auto-spin</button><button class="chip" id="links" aria-pressed="true">Show links</button><button class="chip" id="netReset">Reset view</button></div>
@@ -386,7 +399,7 @@ details.gov summary{font:700 24px var(--dhead)}
     <summary>Data governance and constraints</summary>
     <p><strong>Provenance.</strong> A personal list, expanded with Claude on 19 Nov 2026 in several rounds, plus a Tool category that reproduces Andy Kirk's Visualising Data resources catalogue (293 tools, read the same day) in its seven original sections, without descriptions. <span id="provcounts"></span></p>
     <p><strong>Corrections.</strong> On the Visualising Data catalogue page about a dozen links sit on the wrong tile (for example Vega and Vega-Lite, Plotly and Dash); the Atlas corrects them and says so on each entry. RightsCon 2026 (Lusaka) was cancelled. "Super dot" is Superdot (Basel); its Venice work is listed as the Come ViVi Venezia project.</p>
-    <p><strong>How the pictures are made.</strong> Treemap groups use each entry's first theme. The decade chart only counts entries with a year. Network positions are computed: each theme sits at the average position of the categories its entries belong to, and each entry sits between its category and its themes. Theme families are an editorial grouping: every theme belongs to exactly one family, and each entry's family is stored in the data (tools are always Tools; otherwise the family with the most themes, the first theme counting a little more, regions only when nothing else applies); each family has one shape, one pattern and one ink, used the same way in the network, on the entry plates and theme lines, and in the footer wordmark. On catalogue entries, the theme-family ink also colours the top rule block and the category tab; categories keep their own inks in the charts, network and table.</p>
+    <p><strong>How the pictures are made.</strong> Treemap blocks group each category by theme family (tools by catalogue section). The decade chart only counts entries with a year. Network positions are computed: each theme sits at the average position of the categories its entries belong to, and each entry sits between its category and its themes. Theme families are an editorial grouping: every theme belongs to exactly one family, and each entry's family is stored in the data (tools are always Tools; otherwise the family with the most themes, the first theme counting a little more, regions only when nothing else applies); each family has one shape, one pattern and one ink, used the same way in the network, on the entry plates and theme lines, and in the footer wordmark. One visual system throughout: colour, shape and pattern always mean theme family (cards, theme chips, treemap blocks, decade chart, network dots and shapes, footer marks); categories are always named in text (tabs, treemap labels, network rings, table).</p>
     <p><strong>Gaps.</strong> Leans towards Europe, North America and English-language work despite deliberate additions from Latin America, Africa, MENA, South and Southeast Asia and Italy. Years and places are blank where not confirmed. Event dates change.</p>
     <p><strong>Permitted use.</strong> A starting reading, contacts and tools list for teaching, inspiration and programme research. <strong>Not for</strong> citation without checking each link, claims of completeness, or ranking people or studios.</p>
   </details>
@@ -421,15 +434,15 @@ const SECS = ["charting","coding","complex","mapping","data","colour","specialis
 
 /* ---------- theme families (editorial grouping, encoded as shapes) ---------- */
 const FAMILIES = [
- {key:"design", label:"Design & visualisation", shape:"sphere", tags:"information-design dataviz infographics data-art art storytelling data-humanism creative-coding generative physicalisation drawing illustration design craft process sound music sonification motion data-experience interaction-design speculative-design critical-design comics pictograms diagrams dashboards showcase web-dataviz graphics architecture product data-products creative-tech"},
- {key:"rights", label:"Rights, justice & ethics", shape:"tetra", tags:"human-rights ai-ethics data-feminism data-justice activism race gender power ethics surveillance privacy digital-rights algorithms data-gaps bias facial-recognition data-colonialism design-justice inequality welfare migration evidence civilian-harm military arms hacking internet-health"},
- {key:"civic", label:"Civic, cities & policy", shape:"cube", tags:"cities civic-data civic-tech government policy democracy open-data official-statistics development data-governance participatory tourism housing open-government smart-city regional public-spending transparency legibility politics humanitarian crisis census demography surveys society agriculture transport civic-systems decision-intelligence"},
- {key:"journalism", label:"Journalism & investigation", shape:"octa", tags:"journalism investigation fact-checking misinformation osint conflict literacy data-journalism media-startups"},
- {key:"research", label:"Research, stats & teaching", shape:"icosa", tags:"statistics research complexity networks economics science theory history classic academic humanities climate ml ai data-science forecasting information-theory hci cultural-analytics digital-humanities teaching critique trade health public-health classification nlp"},
- {key:"maps", label:"Maps, climate & nature", shape:"cone", tags:"maps mapping spatial-analysis cartography counter-mapping trees nature animals space earth birds biodiversity oceans weather tracking aviation"},
- {key:"regions", label:"Regions", shape:"torus", tags:"italy latin-america africa asia india mena nordic europe"},
- {key:"culture", label:"Culture & curiosities", shape:"disc", tags:"weird food film games books toys citizen-reports crowdsourced community web internet digital-society open-knowledge public-domain archive search news events multidisciplinary"},
- {key:"tools", label:"Tools & catalogue sections", shape:"dodeca", tags:"coding charting specialist data complex colour tools tool open-source d3 r python reference visualising-data-catalogue datasets knowledge-graph"},
+ {key:"design", label:"Design & visualisation", shape:"sphere", tags:""},
+ {key:"rights", label:"Rights, justice & ethics", shape:"tetra", tags:""},
+ {key:"civic", label:"Civic, cities & policy", shape:"cube", tags:""},
+ {key:"journalism", label:"Journalism & investigation", shape:"octa", tags:""},
+ {key:"research", label:"Research, stats & teaching", shape:"icosa", tags:""},
+ {key:"maps", label:"Maps, climate & nature", shape:"cone", tags:""},
+ {key:"regions", label:"Regions", shape:"torus", tags:""},
+ {key:"culture", label:"Culture & curiosities", shape:"disc", tags:""},
+ {key:"tools", label:"Tools & catalogue sections", shape:"dodeca", tags:""},
 ];
 const FAMCOL_L={design:"#ff4f86",rights:"#e8590c",civic:"#3a86ff",journalism:"#f4b400",research:"#2bb673",maps:"#00a6a6",regions:"#c77dff",culture:"#8a4fff",tools:"#6c6f78",other:"#1b1712"};
 const FAMCOL_D={design:"#ff8fab",rights:"#ff9f68",civic:"#7fb2ff",journalism:"#ffd166",research:"#72e0a3",maps:"#5fd4d4",regions:"#d4a5ff",culture:"#b48cff",tools:"#b8b2a7",other:"#f1e6cd"};
@@ -534,52 +547,58 @@ function stats(){
 }
 
 /* ---------- treemap ---------- */
-function primaryGroup(d){
-  if(d.category==="Tool") return d.tags.find(t=>SECS.includes(t))||"other";
-  return d.tags.find(t=>t!=="visualising-data-catalogue")||"other";
+function primaryGroup(d){ return d.category==="Tool" ? (d.tags.find(t=>SECS.includes(t))||"tools") : d.family; }
+function groupLabel(k){ return SECS.includes(k)? k : ({maps:"maps & climate"}[k]||k); }
+function groupFamily(k){ return SECS.includes(k)? "tools" : k; }
+function attachFocus(svg){
+  const node=svg.node();
+  svg.selectAll(".mk").on("pointerenter.focus",function(e){ if(e.pointerType==="touch") return; svg.classed("focusing",true); this.classList.add("on"); })
+    .on("pointerleave.focus",function(e){ if(e.pointerType==="touch") return; this.classList.remove("on"); svg.classed("focusing",false); })
+    .on("pointerdown.focus",function(e){ if(e.pointerType!=="touch") return; const was=this.classList.contains("on"); svg.selectAll(".mk.on").classed("on",false); if(was){svg.classed("focusing",false);} else {this.classList.add("on"); svg.classed("focusing",true);} });
+  if(!node.__focusDoc){ node.__focusDoc=true; document.addEventListener("pointerdown",e=>{ if(e.pointerType==="touch" && !node.contains(e.target)){ svg.selectAll(".mk.on").classed("on",false); svg.classed("focusing",false); } }); }
 }
 function treemap(){
   const svg=d3.select("#treemap"); const W=svg.node().clientWidth||1200, H=440; svg.attr("viewBox",`0 0 ${W} ${H}`);
   const byCat=d3.group(DATA,d=>d.category);
   const root={name:"all",children:CATS.map(([c])=>{
     const rows=byCat.get(c)||[]; const g=d3.rollups(rows,v=>v.length,primaryGroup).sort((a,b)=>b[1]-a[1]);
-    const big=g.filter(([k,n])=>n>=3), small=g.filter(([k,n])=>n<3); const kids=big.map(([k,n])=>({name:k,value:n,cat:c}));
-    const rest=d3.sum(small,x=>x[1]); if(rest) kids.push({name:"other",value:rest,cat:c});
-    return {name:c,children:kids};})};
+    return {name:c,children:g.map(([k,n])=>({name:k,value:n,cat:c}))};})};
   const h=d3.hierarchy(root).sum(d=>d.value||0).sort((a,b)=>b.value-a.value);
   d3.treemap().size([W,H]).paddingOuter(0).paddingTop(22).paddingInner(3).round(true)(h);
   svg.selectAll("*").remove();
   const cats=svg.selectAll("g.cat").data(h.children).join("g").attr("class","cat");
-  cats.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>d.x1-d.x0).attr("height",d=>d.y1-d.y0).attr("rx",0).style("fill","transparent").attr("stroke","none")
+  cats.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>d.x1-d.x0).attr("height",22).style("fill","transparent")
     .style("cursor","pointer").on("click",(e,d)=>{setFilter({cat:d.data.name,theme:""})});
-  cats.append("text").attr("x",d=>d.x0+1).attr("y",d=>d.y0+15).attr("fill",d=>COLOR[d.data.name])
+  cats.append("text").attr("x",d=>d.x0+1).attr("y",d=>d.y0+15).style("fill","var(--ink)")
     .style("font","400 10.5px Epilogue, sans-serif").style("text-transform","uppercase").style("letter-spacing",".14em").style("pointer-events","none")
-    .text(d=>{const w=d.x1-d.x0; const s=`${d.data.name} ${d.value}`; return w>s.length*8?s:(w>40?d.value:"")});
-  const leaves=svg.selectAll("g.leaf").data(h.leaves()).join("g").attr("class","leaf").style("cursor","pointer");
+    .text(d=>{const w=d.x1-d.x0; const s=`${d.data.name} ${d.value}`; if(w>s.length*7.6) return s; const s2=`${d.data.name}`; return w>s2.length*7.6?s2:(w>30?d.value:"")});
+  const leaves=svg.selectAll("g.leaf").data(h.leaves()).join("g").attr("class","leaf mk").style("cursor","pointer");
   leaves.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>Math.max(0,d.x1-d.x0)).attr("height",d=>Math.max(0,d.y1-d.y0)).attr("rx",0)
-    .attr("fill",d=>COLOR[d.data.cat]).attr("fill-opacity",(d,i)=>.9-.55*(d.parent.children.indexOf(d)/Math.max(1,d.parent.children.length-1)));
-  leaves.append("text").attr("x",d=>d.x0+6).attr("y",d=>d.y0+15).style("fill","var(--onfill)").style("font","400 10.5px Epilogue, sans-serif").style("pointer-events","none")
-    .text(d=>{const w=d.x1-d.x0,hh=d.y1-d.y0; if(hh<18) return ""; const s=d.data.name; return w>s.length*6.8+8?s:""});
-  leaves.on("mousemove",(e,d)=>showTip(`<div class="m">${esc(d.data.cat)}</div><b>${esc(d.data.name)}</b> · ${d.value} entries`,e.clientX,e.clientY)).on("mouseleave",hideTip)
-    .on("click",(e,d)=>setFilter({cat:d.data.cat,theme:d.data.name==="other"?"":d.data.name}));
+    .attr("fill",d=>famColor(groupFamily(d.data.name))).attr("fill-opacity",d=>SECS.includes(d.data.name)?.95-.5*(d.parent.children.indexOf(d)/Math.max(1,d.parent.children.length-1)):.92);
+  leaves.append("text").attr("x",d=>d.x0+6).attr("y",d=>d.y0+15).style("fill",d=>tabText(famColor(groupFamily(d.data.name)))).style("font","400 10.5px Epilogue, sans-serif").style("pointer-events","none")
+    .text(d=>{const w=d.x1-d.x0,hh=d.y1-d.y0; if(hh<18) return ""; const s=groupLabel(d.data.name); return w>s.length*6.4+10?s:(w>d.data.name.length*6.4+10?d.data.name:"")});
+  leaves.on("mousemove",(e,d)=>showTip(`<div class="m">${esc(d.data.cat)}</div><b>${esc(SECS.includes(d.data.name)?d.data.name:famLabel(d.data.name))}</b> · ${d.value} entries`,e.clientX,e.clientY)).on("mouseleave",hideTip)
+    .on("click",(e,d)=>setFilter(SECS.includes(d.data.name)?{cat:d.data.cat,theme:d.data.name}:{cat:d.data.cat,theme:""}));
+  attachFocus(svg);
 }
 
 /* ---------- decades chart ---------- */
 function yearsChart(){
   const rows=DATA.filter(d=>yearOf(d)!==null);
-  $("yrSub").textContent=`Entries with a known year: ${rows.length} of ${DATA.length}. Tools and most portals have none, so they are absent here.`;
+  $("yrSub").textContent=`Entries with a known year (${rows.length} of ${DATA.length}), stacked by theme family. Tools and most portals have no year.`;
   const bucket=y=>y<1950?"<1950":Math.floor(y/10)*10+"s";
   const order=["<1950","1950s","1960s","1970s","1980s","1990s","2000s","2010s","2020s"];
-  const cats=CATS.map(c=>c[0]).filter(c=>rows.some(d=>d.category===c));
-  const table=order.map(b=>{const o={b};cats.forEach(c=>o[c]=rows.filter(d=>bucket(yearOf(d))===b&&d.category===c).length);return o});
+  const cats=[...FAMILIES.map(f=>f.key)].filter(k=>rows.some(d=>d.family===k));
+  const table=order.map(b=>{const o={b};cats.forEach(c=>o[c]=rows.filter(d=>bucket(yearOf(d))===b&&d.family===c).length);return o});
   const W=560,H=260,m={t:10,r:10,b:28,l:34}; const svg=d3.select("#years").attr("viewBox",`0 0 ${W} ${H}`); svg.selectAll("*").remove();
   const x=d3.scaleBand(order,[m.l,W-m.r]).padding(.18), st=d3.stack().keys(cats)(table);
   const y=d3.scaleLinear().domain([0,d3.max(st,s=>d3.max(s,d=>d[1]))||1]).nice().range([H-m.b,m.t]);
   svg.append("g").attr("class","axis").attr("transform",`translate(0,${H-m.b})`).call(d3.axisBottom(x).tickSize(0)).call(g=>g.select(".domain").remove());
   svg.append("g").attr("class","axis").attr("transform",`translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(-(W-m.l-m.r))).call(g=>g.select(".domain").remove()).call(g=>g.selectAll("line").attr("stroke-opacity",.4));
-  svg.append("g").selectAll("g").data(st).join("g").attr("fill",s=>COLOR[s.key]).selectAll("rect").data(s=>s.map(v=>Object.assign(v,{key:s.key}))).join("rect")
+  svg.append("g").selectAll("g").data(st).join("g").attr("fill",s=>famColor(s.key)).selectAll("rect").data(s=>s.map(v=>Object.assign(v,{key:s.key}))).join("rect").attr("class","mk")
     .attr("x",d=>x(d.data.b)).attr("width",x.bandwidth()).attr("y",d=>y(d[1])).attr("height",d=>Math.max(0,y(d[0])-y(d[1]))).attr("rx",0)
-    .on("mousemove",(e,d)=>showTip(`<div class="m">${esc(d.data.b)}</div><b>${esc(d.key)}</b> · ${d[1]-d[0]}`,e.clientX,e.clientY)).on("mouseleave",hideTip);
+    .on("mousemove",(e,d)=>showTip(`<div class="m">${esc(d.data.b)}</div><b>${esc(famLabel(d.key))}</b> · ${d[1]-d[0]}`,e.clientX,e.clientY)).on("mouseleave",hideTip);
+  attachFocus(svg);
 }
 
 /* ---------- verification chart ---------- */
@@ -589,11 +608,12 @@ function checksChart(){
   const W=560,H=280,m={t:6,r:40,b:10,l:150}; const svg=d3.select("#checks").attr("viewBox",`0 0 ${W} ${H}`); svg.selectAll("*").remove();
   const y=d3.scaleBand(rows.map(r=>r.c),[m.t,H-m.b]).padding(.22), x=d3.scaleLinear([0,d3.max(rows,r=>r.n)],[m.l,W-m.r]);
   const st=d3.stack().keys(keys.map(k=>k[0]))(rows);
-  svg.append("g").selectAll("g").data(st).join("g").attr("fill",(s,i)=>keys[i][1]).selectAll("rect").data((s,i)=>s.map(v=>Object.assign(v,{lab:keys[i][2]}))).join("rect")
+  svg.append("g").selectAll("g").data(st).join("g").attr("fill",(s,i)=>keys[i][1]).selectAll("rect").data((s,i)=>s.map(v=>Object.assign(v,{lab:keys[i][2]}))).join("rect").attr("class","mk")
     .attr("y",d=>y(d.data.c)).attr("height",y.bandwidth()).attr("x",d=>x(d[0])).attr("width",d=>Math.max(0,x(d[1])-x(d[0])))
     .on("mousemove",(e,d)=>showTip(`<div class="m">${esc(d.data.c)}</div><b>${esc(d.lab)}</b> · ${d[1]-d[0]} of ${d.data.n}`,e.clientX,e.clientY)).on("mouseleave",hideTip);
   svg.append("g").selectAll("text").data(rows).join("text").attr("class","lbl").attr("x",m.l-8).attr("y",r=>y(r.c)+y.bandwidth()/2+4).attr("text-anchor","end").text(r=>r.c.toUpperCase());
   svg.append("g").selectAll("text").data(rows).join("text").attr("class","lbl").attr("x",r=>x(r.n)+6).attr("y",r=>y(r.c)+y.bandwidth()/2+4).style("fill","var(--ink)").text(r=>r.n);
+  attachFocus(svg);
 }
 
 /* ---------- filter controls ---------- */
@@ -645,7 +665,7 @@ function card(d){
 }
 function table(rows){
   const th=(k,l)=>{const on=state.sort.replace("-","")===k;const a=on?(state.sort.startsWith("-")?" ↓":" ↑"):"";return `<th scope="col"><button data-sortcol="${k}">${l}${a}</button></th>`};
-  return `<div class="tablewrap"><table><thead><tr>${th("name","Name")}${th("category","Category")}<th scope="col">Who</th>${th("year","Year")}${th("place","Place")}<th scope="col">Themes</th><th scope="col">Status</th></tr></thead><tbody>${rows.map(d=>`<tr><td><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.name)}</a></td><td class="cat" style="color:${COLOR[d.category]}">${esc(d.category)}</td><td>${esc(d.who)}</td><td class="num">${esc(d.year)}</td><td>${esc(d.place)}</td><td class="mono" style="font-size:12px">${esc(d.tags.join(", "))}</td><td>${d.status==="active"?"":esc(d.status)}</td></tr>`).join("")}</tbody></table></div>`;
+  return `<div class="tablewrap"><table><thead><tr>${th("name","Name")}${th("category","Category")}<th scope="col">Who</th>${th("year","Year")}${th("place","Place")}<th scope="col">Themes</th><th scope="col">Status</th></tr></thead><tbody>${rows.map(d=>`<tr><td><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.name)}</a></td><td class="cat">${esc(d.category)}</td><td>${esc(d.who)}</td><td class="num">${esc(d.year)}</td><td>${esc(d.place)}</td><td class="mono" style="font-size:12px">${esc(d.tags.join(", "))}</td><td>${d.status==="active"?"":esc(d.status)}</td></tr>`).join("")}</tbody></table></div>`;
 }
 function pageList(cur,n){
   const s=new Set([1,n,cur-1,cur,cur+1]); if(cur<=3){s.add(2);s.add(3);s.add(4);} if(cur>=n-2){s.add(n-1);s.add(n-2);s.add(n-3);}
@@ -704,7 +724,7 @@ function buildNetwork(){
   const entryPos=DATA.map((d,i)=>{const c=catPos[d.category];const ts=d.tags.filter(t=>themePos[t]);const m=new THREE.Vector3();
     if(ts.length){ts.forEach(t=>m.add(themePos[t].pos));m.divideScalar(ts.length);} else m.copy(c);
     const p=c.clone().multiplyScalar(.6).add(m.multiplyScalar(.4)).add(new THREE.Vector3(gauss()*7,gauss()*7,gauss()*7));
-    pos.set([p.x,p.y,p.z],i*3); const cc=new THREE.Color(COLOR[d.category]); baseCol.push(cc); col.set([cc.r,cc.g,cc.b],i*3); return p;});
+    pos.set([p.x,p.y,p.z],i*3); const cc=new THREE.Color(famColor(d.family)); baseCol.push(cc); col.set([cc.r,cc.g,cc.b],i*3); return p;});
   const dotTex=(()=>{const cv=document.createElement("canvas");cv.width=cv.height=64;const g=cv.getContext("2d");const gr=g.createRadialGradient(32,32,0,32,32,30);gr.addColorStop(0,"rgba(255,255,255,1)");gr.addColorStop(.55,"rgba(255,255,255,.95)");gr.addColorStop(1,"rgba(255,255,255,0)");g.fillStyle=gr;g.beginPath();g.arc(32,32,30,0,7);g.fill();return new THREE.CanvasTexture(cv)})();
   const pg=new THREE.BufferGeometry(); pg.setAttribute("position",new THREE.BufferAttribute(pos,3)); pg.setAttribute("color",new THREE.BufferAttribute(col,3));
   const points=new THREE.Points(pg,new THREE.PointsMaterial({size:2.3,map:dotTex,vertexColors:true,transparent:true,depthWrite:false,alphaTest:.05,sizeAttenuation:true})); scene.add(points);
@@ -723,16 +743,19 @@ function buildNetwork(){
     const fc=new THREE.Color(famColor(f)); const m=new THREE.Mesh(geo[shape](),new THREE.MeshStandardMaterial({color:fc,emissive:fc,emissiveIntensity:.18,roughness:.55,metalness:0,flatShading:true,transparent:true,opacity:.92}));
     const sc=.7+Math.sqrt(themePos[t].n)*.22; m.scale.setScalar(sc); if(shape==="cone") m.rotation.x=Math.PI; m.position.copy(themePos[t].pos); m.userData={type:"theme",key:t,n:themePos[t].n,fam:f}; scene.add(m); hubs.push(m);});
   CATS.forEach(([c])=>{const n=DATA.filter(d=>d.category===c).length;const r=4+Math.sqrt(n)*.55;
-    const ring=new THREE.Mesh(new THREE.TorusGeometry(r,.16,8,96),new THREE.MeshBasicMaterial({color:new THREE.Color(COLOR[c]),transparent:true,opacity:.9}));
+    const ring=new THREE.Mesh(new THREE.TorusGeometry(r,.16,8,96),new THREE.MeshBasicMaterial({color:new THREE.Color(cssv("--ink")),transparent:true,opacity:.9}));
     ring.position.copy(catPos[c]); ring.userData={type:"cat",key:c,n}; scene.add(ring); hubs.push(ring);
-    const cv=document.createElement("canvas");cv.width=512;cv.height=96;const g=cv.getContext("2d");g.font="600 40px Manrope, Arial, sans-serif";g.fillStyle=COLOR[c];g.textAlign="center";g.fillText(c,256,60);
+    const cv=document.createElement("canvas");cv.width=512;cv.height=96;const g=cv.getContext("2d");g.font="600 40px Manrope, Arial, sans-serif";g.fillStyle=cssv("--ink");g.textAlign="center";g.fillText(c,256,60);
     const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(cv),transparent:true,depthWrite:false})); sprites.push({sp,c,g,cv});sp.scale.set(34,6.4,1);sp.position.copy(catPos[c]).add(new THREE.Vector3(0,r+6,0));scene.add(sp);});
   // interaction
   const ray=new THREE.Raycaster(); ray.params.Points.threshold=1.6; const mouse=new THREE.Vector2(); let hover=null;
   function pick(e){const r=canvas.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;ray.setFromCamera(mouse,camera);
     const h=ray.intersectObjects(hubs,false)[0]; if(h) return {kind:h.object.userData.type,obj:h.object};
     const p=ray.intersectObject(points)[0]; if(p&&visible[p.index]) return {kind:"entry",i:p.index}; return null;}
-  canvas.addEventListener("pointermove",e=>{const h=pick(e);hover=h; if(h&&sameAs(h,pinned)){hideTip();canvas.style.cursor="pointer";return;}
+  const focusFor=h=>!h?null:(h.kind==="entry"?(d=>d._i===h.i):(h.obj.userData.type==="cat"?(d=>d.category===h.obj.userData.key):(d=>d.tags.includes(h.obj.userData.key))));
+  let lastFocusKey=null; const setHoverFocus=h=>{ if(pinned) return; const key=h?(h.kind==="entry"?"e"+h.i:h.obj.userData.type+h.obj.userData.key):null; if(key===lastFocusKey) return; lastFocusKey=key; focusFn=focusFor(h); highlight(); };
+  canvas.addEventListener("pointerleave",()=>setHoverFocus(null));
+  canvas.addEventListener("pointermove",e=>{const h=pick(e);hover=h; if(e.pointerType!=="touch") setHoverFocus(h); if(h&&sameAs(h,pinned)){hideTip();canvas.style.cursor="pointer";return;}
     if(!h){hideTip();canvas.style.cursor="grab";return;} canvas.style.cursor="pointer";
     if(h.kind==="entry"){const d=DATA[h.i];showTip(`<div class="m">${esc(d.category)}</div><b>${esc(d.name)}</b><div class="m" style="margin-top:4px">${esc(d.tags.join(" · "))}</div>`,e.clientX,e.clientY);}
     else {const u=h.obj.userData; showTip(`<div class="m">${u.type==="cat"?"Category":"Theme · "+esc((famByKey[u.fam]||{label:"Other"}).label)}</div><b>${esc(u.key)}</b> · ${u.n} entries<div class="m" style="margin-top:4px">Click to filter</div>`,e.clientX,e.clientY);}});
@@ -748,7 +771,7 @@ function buildNetwork(){
   function pinFilter(h){ if(h.kind==="entry"){ $("sortSel").value="relevance"; return {q:DATA[h.i].name,cat:"",theme:"",status:"",link:"",sort:"relevance"}; }
     const u=h.obj.userData; return u.type==="cat"?{cat:u.key,theme:"",q:""}:{theme:u.key,cat:"",q:""}; }
   function openPin(h){ pinned=h; pinEl.innerHTML=pinHTML(h); pinEl.hidden=false; hideTip(); setFilter(pinFilter(h),false); placePin(); }
-  function closePin(){ if(!pinned) return; pinned=null; pinEl.hidden=true; const s=state.sort==="relevance"?"name":state.sort; $("sortSel").value=s; setFilter({q:"",cat:"",theme:"",sort:s},false); }
+  function closePin(){ if(!pinned) return; pinned=null; focusFn=null; lastFocusKey=null; pinEl.hidden=true; const s=state.sort==="relevance"?"name":state.sort; $("sortSel").value=s; setFilter({q:"",cat:"",theme:"",sort:s},false); }
   const tmpV=new THREE.Vector3();
   function placePin(){ if(!pinned) return; tmpV.copy(pinned.kind==="entry"?entryPos[pinned.i]:pinned.obj.position).project(camera);
     if(tmpV.z>1){pinEl.style.visibility="hidden";return;} pinEl.style.visibility="visible";
@@ -763,14 +786,15 @@ function buildNetwork(){
     if(!h||sameAs(h,pinned)) closePin(); else openPin(h); });
   // highlight according to filters
   let visible=DATA.map(()=>true);
-  function highlight(){ visible=DATA.map(matches); const any=visible.some(v=>!v);
-    const pc=new THREE.Color(cssv("--paper3")); DATA.forEach((d,i)=>{const c=baseCol[i]; if(visible[i]) col.set([c.r,c.g,c.b],i*3); else if(isDark()) col.set([c.r*.13,c.g*.13,c.b*.13],i*3); else col.set([pc.r,pc.g,pc.b],i*3);}); pg.attributes.color.needsUpdate=true;
+  let focusFn=null;
+  function highlight(){ visible=DATA.map(d=>matches(d)&&(!focusFn||focusFn(d))); const any=visible.some(v=>!v);
+    const pc=new THREE.Color(cssv("--paper")); DATA.forEach((d,i)=>{const c=baseCol[i]; if(visible[i]){col.set([c.r,c.g,c.b],i*3);return;} const g=.3*c.r+.59*c.g+.11*c.b; const dr=c.r+(g-c.r)*.9, dg=c.g+(g-c.g)*.9, db=c.b+(g-c.b)*.9; col.set([dr+(pc.r-dr)*.55, dg+(pc.g-dg)*.55, db+(pc.b-db)*.55],i*3);}); pg.attributes.color.needsUpdate=true;
     let j=0; DATA.forEach((d,i)=>{const k=(visible[i]?1:.06); const cc=baseCol[i];
       const setSeg=a=>{for(let q=0;q<2;q++){segCol[j++]=cc.r*a*k;segCol[j++]=cc.g*a*k;segCol[j++]=cc.b*a*k;}};
       setSeg(.35); d.tags.forEach(t=>{if(themePos[t]) setSeg(.22)});});
     lg.attributes.color.array.set(segCol); lg.attributes.color.needsUpdate=true;
     hubs.forEach(h=>{const u=h.userData; const on=!any || (u.type==="cat"? DATA.some((d,i)=>visible[i]&&d.category===u.key) : DATA.some((d,i)=>visible[i]&&d.tags.includes(u.key)));
-      h.material.transparent=true; h.material.opacity=on?(u.type==="cat"?.9:.92):.12; const sel=(u.type==="cat"&&state.cat===u.key)||(u.type==="theme"&&state.theme===u.key); if(h.material.emissive){h.material.emissive.set(sel?cssv("--accent"):famColor(u.fam)); h.material.emissiveIntensity=sel?.7:.18;} else {h.material.color.set(sel?cssv("--accent"):COLOR[u.key]);} if(u.type==="cat") h.scale.setScalar(sel?1.25:1);});
+      h.material.transparent=true; h.material.opacity=on?(u.type==="cat"?.55:.92):.12; const sel=(u.type==="cat"&&state.cat===u.key)||(u.type==="theme"&&state.theme===u.key); if(h.material.emissive){h.material.emissive.set(sel?cssv("--accent"):famColor(u.fam)); h.material.emissiveIntensity=sel?.7:.18;} else {h.material.color.set(sel?cssv("--accent"):cssv("--ink"));} if(u.type==="cat") h.scale.setScalar(sel?1.25:1);});
   }
   function size(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
   new ResizeObserver(size).observe(canvas); size();
@@ -783,10 +807,10 @@ function buildNetwork(){
   $("links").onclick=()=>{lines.visible=!lines.visible;$("links").setAttribute("aria-pressed",lines.visible)};
   $("netReset").onclick=()=>{camera.position.set(0,20,190);controls.target.set(0,0,0);};
   function retheme(){
-    DATA.forEach((d,i)=>baseCol[i].set(COLOR[d.category]));
+    DATA.forEach((d,i)=>baseCol[i].set(famColor(d.family)));
     lineMat.blending=isDark()?THREE.AdditiveBlending:THREE.NormalBlending; lineMat.opacity=isDark()?.22:.09; scene.fog.color=fogCol(); lineMat.needsUpdate=true;
-    hubs.forEach(h=>{const u=h.userData; if(u.type==="cat"){h.material.color.set(COLOR[u.key]);} else {h.material.color.set(famColor(u.fam));}});
-    sprites.forEach(s=>{s.g.clearRect(0,0,512,96);s.g.font="600 40px Manrope, Arial, sans-serif";s.g.fillStyle=COLOR[s.c];s.g.textAlign="center";s.g.fillText(s.c,256,60);s.sp.material.map.needsUpdate=true;});
+    hubs.forEach(h=>{const u=h.userData; if(u.type==="cat"){h.material.color.set(cssv("--ink"));} else {h.material.color.set(famColor(u.fam));}});
+    sprites.forEach(s=>{s.g.clearRect(0,0,512,96);s.g.font="600 40px Manrope, Arial, sans-serif";s.g.fillStyle=cssv("--ink");s.g.textAlign="center";s.g.fillText(s.c,256,60);s.sp.material.map.needsUpdate=true;});
     $("netLegend").innerHTML=legendHTML(); highlight();
   }
   return {highlight,retheme};
@@ -797,13 +821,8 @@ const SHAPE_SVG={sphere:'<circle cx="7" cy="7" r="5"/>',tetra:'<polygon points="
   disc:'<ellipse cx="7" cy="7" rx="6" ry="3.4"/>',other:'<polygon points="7,3.5 10.5,7 7,10.5 3.5,7"/>'};
 // cone and tetra differ: cone gets a base line so the two read apart
 SHAPE_SVG.cone='<polygon points="1.5,2 12.5,2 7,12.8"/>';
-function legendHTML(){return FAMILIES.map(f=>`<div>${shapeIcon(f.shape,famColor(f.key))}${esc(f.label)}</div>`).join("")+`<div>${shapeIcon("other",famColor("other"))}Other themes</div><div><svg width="14" height="14"><circle cx="7" cy="7" r="4" fill="currentColor"/></svg>Entry (ink = category)</div>`;}
+function legendHTML(){const used=new Set(DATA.flatMap(d=>d.tag_families||[])); return FAMILIES.filter(f=>used.has(f.key)).map(f=>`<div>${shapeIcon(f.shape,famColor(f.key))}${esc(f.label)}</div>`).join("")+`<div><svg width="14" height="14"><circle cx="7" cy="7" r="3.5" fill="var(--ink2)"/></svg>Entry dot (colour = its theme family)</div><div><svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="none" stroke="var(--ink)" stroke-width="1.2"/></svg>Ring = category</div>`;}
 function shapeIcon(s,fill="currentColor",size=14){return `<svg width="${size}" height="${size}" viewBox="0 0 14 14" fill="${fill}" aria-hidden="true">${(SHAPE_SVG[s]||SHAPE_SVG.other).replaceAll("FILL",fill)}</svg>`;}
-const PATTERN_CACHE={};
-function patternURI(shape){ if(PATTERN_CACHE[shape]) return PATTERN_CACHE[shape];
-  const g=(SHAPE_SVG[shape]||SHAPE_SVG.other).replaceAll("FILL","#fff");
-  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="#fff" fill-opacity=".26" stroke-opacity=".26"><g transform="translate(4 4)">${g}</g><g transform="translate(26 26)">${g}</g></svg>`;
-  return PATTERN_CACHE[shape]=`url('data:image/svg+xml,${encodeURIComponent(svg)}') 0 0/44px 44px`; }
 /* ---------- DPA data-mark wordmark ---------- */
 const GROUPS={D:{label:"Data",cats:["Data Portal","Dataset Source","Weird Dataset","Tool"]},P:{label:"Practice",cats:["Person","Studio & Lab","Festival & Conference"]},A:{label:"Atlas reading",cats:["Book","Website & Publication","Video & Podcast"]}};
 async function wordmark(){
@@ -822,11 +841,11 @@ async function wordmark(){
       const inside=(px,py)=>{px|=0;py|=0;return px>=0&&py>=0&&px<W&&py<H&&img[(py*W+px)*4+3]>128};
       const rows=DATA.filter(d=>GROUPS[b.l].cats.includes(d.category)); let s=b.l.charCodeAt(0)*97; const rnd=()=>{s=(s*16807)%2147483647;return (s-1)/2147483646};
       rows.forEach(d=>{let px,py,tries=0;do{px=b.x+rnd()*b.w;py=H*.02+rnd()*H*.9;tries++;}while(!inside(px,py)&&tries<400);
-        marks.push({x:px,y:py,ox:px,oy:py,ph:rnd()*6.28,c:COLOR[d.category],shape:shapeOfFam(primaryFamily(d)),inside});});
+        marks.push({x:px,y:py,ox:px,oy:py,ph:rnd()*6.28,c:famColor(d.family),shape:shapeOfFam(primaryFamily(d)),inside});});
       b.outline=new Path2D(); });
     boxes.forEach(b=>{}); layout.boxes=boxes; layout.fs=fs; layout.base=base;
     const cap=Object.entries(GROUPS).map(([k,v])=>`${k} = ${v.label} ${DATA.filter(d=>v.cats.includes(d.category)).length}`).join(" · ");
-    $("wmCap").textContent=`One mark per entry · colour = category · shape = theme family · ${cap}`;
+    $("wmCap").textContent=`One mark per entry · colour and shape = theme family · ${cap}`;
   }
   const sz=()=>Math.max(3,W/260);
   function drawMark(m){const r=sz();ctx.fillStyle=m.c;ctx.strokeStyle=m.c;ctx.lineWidth=r*.55;ctx.beginPath();
