@@ -376,7 +376,7 @@ details.gov summary{font:700 24px var(--dhead)}
     <summary>Data governance and constraints</summary>
     <p><strong>Provenance.</strong> A personal list, expanded with Claude on 19 Nov 2026 in several rounds, plus a Tool category that reproduces Andy Kirk's Visualising Data resources catalogue (293 tools, read the same day) in its seven original sections, without descriptions. <span id="provcounts"></span></p>
     <p><strong>Corrections.</strong> On the Visualising Data catalogue page about a dozen links sit on the wrong tile (for example Vega and Vega-Lite, Plotly and Dash); the Atlas corrects them and says so on each entry. RightsCon 2026 (Lusaka) was cancelled. "Super dot" is Superdot (Basel); its Venice work is listed as the Come ViVi Venezia project.</p>
-    <p><strong>How the pictures are made.</strong> Treemap groups use each entry's first theme. The decade chart only counts entries with a year. Network positions are computed: each theme sits at the average position of the categories its entries belong to, and each entry sits between its category and its themes. Theme families are an editorial grouping made for this page. Each entry's family is the family of its first theme that belongs to one (regions only when nothing else applies); each family has one shape, one pattern and one ink, used the same way in the network, on the entry plates and theme lines, and in the footer wordmark. On catalogue entries, the theme-family ink also colours the top rule block and the category tab; categories keep their own inks in the charts, network and table.</p>
+    <p><strong>How the pictures are made.</strong> Treemap groups use each entry's first theme. The decade chart only counts entries with a year. Network positions are computed: each theme sits at the average position of the categories its entries belong to, and each entry sits between its category and its themes. Theme families are an editorial grouping: every theme belongs to exactly one family, and each entry's family is stored in the data (tools are always Tools; otherwise the family with the most themes, the first theme counting a little more, regions only when nothing else applies); each family has one shape, one pattern and one ink, used the same way in the network, on the entry plates and theme lines, and in the footer wordmark. On catalogue entries, the theme-family ink also colours the top rule block and the category tab; categories keep their own inks in the charts, network and table.</p>
     <p><strong>Gaps.</strong> Leans towards Europe, North America and English-language work despite deliberate additions from Latin America, Africa, MENA, South and Southeast Asia and Italy. Years and places are blank where not confirmed. Event dates change.</p>
     <p><strong>Permitted use.</strong> A starting reading, contacts and tools list for teaching, inspiration and programme research. <strong>Not for</strong> citation without checking each link, claims of completeness, or ranking people or studios.</p>
   </details>
@@ -416,7 +416,7 @@ const FAMILIES = [
  {key:"civic", label:"Civic, cities & policy", shape:"cube", tags:"cities civic-data civic-tech government policy democracy open-data official-statistics development data-governance participatory tourism housing open-government smart-city regional public-spending transparency legibility politics humanitarian crisis census demography surveys society agriculture transport civic-systems decision-intelligence"},
  {key:"journalism", label:"Journalism & investigation", shape:"octa", tags:"journalism investigation fact-checking misinformation osint conflict literacy data-journalism media-startups"},
  {key:"research", label:"Research, stats & teaching", shape:"icosa", tags:"statistics research complexity networks economics science theory history classic academic humanities climate ml ai data-science forecasting information-theory hci cultural-analytics digital-humanities teaching critique trade health public-health classification nlp"},
- {key:"maps", label:"Maps & the natural world", shape:"cone", tags:"maps mapping spatial-analysis cartography counter-mapping trees nature animals space earth birds biodiversity oceans weather tracking aviation"},
+ {key:"maps", label:"Maps, climate & nature", shape:"cone", tags:"maps mapping spatial-analysis cartography counter-mapping trees nature animals space earth birds biodiversity oceans weather tracking aviation"},
  {key:"regions", label:"Regions", shape:"torus", tags:"italy latin-america africa asia india mena nordic europe"},
  {key:"culture", label:"Culture & curiosities", shape:"disc", tags:"weird food film games books toys citizen-reports crowdsourced community web internet digital-society open-knowledge public-domain archive search news events multidisciplinary"},
  {key:"tools", label:"Tools & catalogue sections", shape:"dodeca", tags:"coding charting specialist data complex colour tools tool open-source d3 r python reference visualising-data-catalogue datasets knowledge-graph"},
@@ -428,7 +428,7 @@ const famColor = k => { const m=isDark()?FAMCOL_D:FAMCOL_L; return m[k]||m.other
 const famOf = {}; FAMILIES.forEach(f=>f.tags.split(" ").forEach(t=>famOf[t]=f.key));
 const famByKey = Object.fromEntries(FAMILIES.map(f=>[f.key,f]));
 const familyOfTag = t => famOf[t] || "other";
-const primaryFamily = d => { let region=""; for(const t of d.tags){ const f=famOf[t]; if(f==="regions"){region=region||f;continue;} if(f) return f; } return region||"other"; };
+const primaryFamily = d => d.family || "other";
 const shapeOfFam = k => (famByKey[k]||{shape:"other"}).shape;
 const famLabel = k => (famByKey[k]||{label:"Other themes"}).label;
 
@@ -864,7 +864,7 @@ function wire(){
   $("vCards").onclick=()=>setView("cards"); $("vTable").onclick=()=>setView("table");
   try{if(localStorage.getItem("dpaView")==="table"){state.view="table";$("vCards").setAttribute("aria-pressed","false");$("vTable").setAttribute("aria-pressed","true")}}catch(e){}
   $("pager").addEventListener("click",e=>{const b=e.target.closest("[data-page]"); if(!b||b.disabled) return; goPage(+b.dataset.page);});
-  $("copyCsv").onclick=async()=>{const cols=["name","category","who","year","place","tags","note","url","status","verified"];const rows=sorted(filtered());
+  $("copyCsv").onclick=async()=>{const cols=["name","category","who","year","place","tags","family","note","url","status","verified"];const rows=sorted(filtered());
     try{await navigator.clipboard.writeText([cols.join(",")].concat(rows.map(d=>cols.map(c=>csvCell(c==="tags"?d.tags.join(";"):d[c])).join(","))).join("\n"));toast(`Copied ${rows.length} rows`)}catch(e){toast("Copy was blocked by the browser")}};
   document.addEventListener("click",e=>{
     const sc=e.target.closest("[data-sortcol]"); if(sc){const k=sc.dataset.sortcol;state.sort=state.sort===k?"-"+k:k;const o=[...$("sortSel").options].some(x=>x.value===state.sort);$("sortSel").value=o?state.sort:"name";renderList();return;}
@@ -877,6 +877,7 @@ function wire(){
 async function boot(){
   if(INLINE) DATA=INLINE; else { try{DATA=await (await fetch("data/atlas.json")).json();}catch(e){$("list").innerHTML=`<div class="empty">Could not load data/atlas.json. Serve this folder over http (for example GitHub Pages).</div>`;return;} }
   try{ await document.fonts.ready; }catch(e){}
+  Object.keys(famOf).forEach(k=>delete famOf[k]); DATA.forEach(d=>(d.tags||[]).forEach((tg,i)=>{ if(d.tag_families) famOf[tg]=d.tag_families[i]; }));
   DATA.forEach((d,i)=>d._i=i); buildIndex(); $("sortSel").value=state.sort;
   stats(); fillSelects(); treemap(); yearsChart(); checksChart(); wire(); renderList();
   try{ await document.fonts.ready; }catch(e){}

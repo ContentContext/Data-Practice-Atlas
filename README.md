@@ -19,7 +19,9 @@ Data and written content: [CC BY 4.0](https://creativecommons.org/licenses/by/4.
 
 ## Fields
 
-`id`, `name`, `category`, `who`, `year`, `place`, `tags`, `note`, `url`, `seed` (true = in the original personal list), `status` (active / archived / historical / unclear), `verified`.
+`id`, `name`, `category`, `who`, `year`, `place`, `tags` (themes), `tag_families` (the family of each theme, same order), `family` (the entry's theme family: drives colour, shape and pattern on the page), `source` (e.g. Visualising Data catalogue), `note`, `url`, `seed` (true = in the original personal list), `status` (active / archived / historical / unclear), `verified`.
+
+**Theme families.** Every theme belongs to exactly one of: design, rights, civic, journalism, research, maps (maps, climate & nature), culture, tools, regions. The mapping lives in `scripts/taxonomy.py`. An entry's family: tools are always `tools`; otherwise the family with the most themes (the first theme counts a little more), with regions used only when nothing else applies.
 
 ## Data governance and constraints
 

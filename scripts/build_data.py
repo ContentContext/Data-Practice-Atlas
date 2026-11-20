@@ -211,6 +211,8 @@ for i, r in enumerate(recs, 1):
 
 from catalogue import merge
 recs = merge(recs)
+from taxonomy import clean
+recs = clean(recs)
 for i, r in enumerate(recs, 1): r["id"] = i
 names = [r["name"] for r in recs]
 assert len(names) == len(set(names)), "duplicate names"
@@ -218,9 +220,10 @@ assert len(names) == len(set(names)), "duplicate names"
 json.dump(recs, open("data.json","w"), ensure_ascii=False, indent=1)
 with open("data.csv","w",newline="",encoding="utf-8") as f:
     w = csv.writer(f)
-    w.writerow(["id"]+cols)
+    cols2=cols+["family","source"]
+    w.writerow(["id"]+cols2)
     for r in recs:
-        w.writerow([r["id"]]+[ ";".join(r[c]) if c=="tags" else r[c] for c in cols])
+        w.writerow([r["id"]]+[ ";".join(r[c]) if c=="tags" else r[c] for c in cols2])
 
 from collections import Counter
 print(len(recs), Counter(r["category"] for r in recs), sum(r["seed"] for r in recs), Counter(r["verified"] for r in recs))
