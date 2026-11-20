@@ -34,7 +34,7 @@ Data and written content: [CC BY 4.0](https://creativecommons.org/licenses/by/4.
 
 **Corrections.** About a dozen links on the Visualising Data catalogue page are attached to the wrong tile (e.g. Vega and Vega-Lite, Plotly and Dash). This dataset corrects them and notes it on each record.
 
-**Gaps.** Leans towards Europe, North America and English-language work despite deliberate additions from Latin America, Africa, MENA, South and Southeast Asia and Italy. Years and places are blank where not confirmed. Event dates change.
+**Gaps.** Leans towards Europe, North America and English-language work despite deliberate additions from Latin America, Africa, MENA, South and Southeast Asia and Italy. Years and places are blank where not confirmed. People entries deliberately carry no contact links, places, region tags or nationality: the Atlas lists their public work, not where they live or how to reach them. Event dates change.
 
 **Permitted use.** A starting reading, contacts and tools list for teaching, inspiration and programme research.
 

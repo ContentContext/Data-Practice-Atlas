@@ -696,12 +696,12 @@
   "category": "Person",
   "who": "Information designer; partner at Pentagram",
   "year": "",
-  "place": "New York",
+  "place": "",
   "tags": [
    "data-humanism",
    "information-design"
   ],
-  "note": "Co-founded Accurat in Milan; coined 'Data Humanism'. Born in Italy.",
+  "note": "Co-founded Accurat; coined 'Data Humanism'.",
   "url": "https://giorgialupi.com",
   "seed": true,
   "status": "active",
@@ -719,7 +719,7 @@
   "category": "Person",
   "who": "Designer, artist, author",
   "year": "",
-  "place": "London",
+  "place": "",
   "tags": [
    "data-humanism",
    "physicalisation",
@@ -744,7 +744,7 @@
   "category": "Person",
   "who": "Physician, statistician, co-founder of Gapminder",
   "year": "",
-  "place": "Sweden",
+  "place": "",
   "tags": [
    "statistics",
    "development",
@@ -769,7 +769,7 @@
   "category": "Person",
   "who": "Physicist; director, Center for Collective Learning",
   "year": "",
-  "place": "Toulouse / Budapest",
+  "place": "",
   "tags": [
    "complexity",
    "economics"
@@ -792,7 +792,7 @@
   "category": "Person",
   "who": "Designer, author; founder of VisualComplexity.com",
   "year": "",
-  "place": "London / New York",
+  "place": "",
   "tags": [
    "networks",
    "history"
@@ -815,7 +815,7 @@
   "category": "Person",
   "who": "Information designer, creative director",
   "year": "",
-  "place": "London",
+  "place": "",
   "tags": [
    "information-design",
    "data-art"
@@ -838,7 +838,7 @@
   "category": "Person",
   "who": "Data and analytics leader; NYC's first Chief Analytics Officer (2009–13)",
   "year": "",
-  "place": "New York",
+  "place": "",
   "tags": [
    "civic-data",
    "government",
@@ -863,12 +863,12 @@
   "category": "Person",
   "who": "Co-founders of Superdot",
   "year": "",
-  "place": "Basel",
+  "place": "",
   "tags": [
    "information-design",
    "teaching"
   ],
-  "note": "Swiss information designers, educators and hosts of On Data and Design.",
+  "note": "Information designers, educators and hosts of On Data and Design.",
   "url": "https://www.superdot.studio",
   "seed": true,
   "status": "active",
@@ -886,11 +886,10 @@
   "category": "Person",
   "who": "Independent information designer",
   "year": "",
-  "place": "Milan",
+  "place": "",
   "tags": [
    "information-design",
-   "data-art",
-   "italy"
+   "data-art"
   ],
   "note": "Delicate, organic visual languages for the UN, WHO, BBC and La Lettura. Work held at MoMA.",
   "url": "https://www.behance.net/FedericaFragapane",
@@ -900,8 +899,7 @@
   "id": 37,
   "tag_families": [
    "design",
-   "design",
-   "regions"
+   "design"
   ],
   "source": "",
   "family": "design"
@@ -911,7 +909,7 @@
   "category": "Person",
   "who": "Data journalist and illustrator",
   "year": "",
-  "place": "New York / London",
+  "place": "",
   "tags": [
    "journalism",
    "illustration"
@@ -934,7 +932,7 @@
   "category": "Person",
   "who": "Artist and researcher",
   "year": "",
-  "place": "Brooklyn",
+  "place": "",
   "tags": [
    "data-gaps",
    "art",
@@ -959,7 +957,7 @@
   "category": "Person",
   "who": "Associate Professor, MIT; director, Data + Feminism Lab",
   "year": "",
-  "place": "Cambridge, MA",
+  "place": "",
   "tags": [
    "data-feminism",
    "civic-data"
@@ -982,7 +980,7 @@
   "category": "Person",
   "who": "Data artist, writer",
   "year": "",
-  "place": "Canada / US",
+  "place": "",
   "tags": [
    "data-humanism",
    "art"
@@ -1005,7 +1003,7 @@
   "category": "Person",
   "who": "Researcher (AI and society)",
   "year": "",
-  "place": "Sydney / New York",
+  "place": "",
   "tags": [
    "ai-ethics",
    "art"
@@ -1028,7 +1026,7 @@
   "category": "Person",
   "who": "Knight Chair in Visual Journalism, University of Miami",
   "year": "",
-  "place": "Miami",
+  "place": "",
   "tags": [
    "journalism",
    "literacy"
@@ -1051,7 +1049,7 @@
   "category": "Person",
   "who": "Data visualisation designer (Visual Cinnamon)",
   "year": "",
-  "place": "Netherlands",
+  "place": "",
   "tags": [
    "data-art",
    "d3"
@@ -1074,7 +1072,7 @@
   "category": "Person",
   "who": "Data visualisation designer and artist",
   "year": "",
-  "place": "San Francisco",
+  "place": "",
   "tags": [
    "data-art",
    "d3"
@@ -1097,7 +1095,7 @@
   "category": "Person",
   "who": "Founder, Truth & Beauty",
   "year": "",
-  "place": "Germany",
+  "place": "",
   "tags": [
    "information-design",
    "complexity"
@@ -1120,10 +1118,9 @@
   "category": "Person",
   "who": "Designer, professor at Northeastern; DensityDesign co-founder",
   "year": "",
-  "place": "Boston / Milan",
+  "place": "",
   "tags": [
    "information-design",
-   "italy",
    "research"
   ],
   "note": "Founded DensityDesign Lab at Politecnico di Milano.",
@@ -1134,7 +1131,6 @@
   "id": 47,
   "tag_families": [
    "design",
-   "regions",
    "research"
   ],
   "source": "",
@@ -1145,7 +1141,7 @@
   "category": "Person",
   "who": "Economist; founder of Our World in Data",
   "year": "",
-  "place": "Oxford",
+  "place": "",
   "tags": [
    "development",
    "open-data"
@@ -1168,7 +1164,7 @@
   "category": "Person",
   "who": "Data journalist; author of Data Is Plural",
   "year": "",
-  "place": "New York",
+  "place": "",
   "tags": [
    "datasets",
    "journalism"
@@ -1191,7 +1187,7 @@
   "category": "Person",
   "who": "Director, Civic Data Design Lab, MIT",
   "year": "",
-  "place": "Cambridge, MA",
+  "place": "",
   "tags": [
    "civic-data",
    "cities"
@@ -1214,7 +1210,7 @@
   "category": "Person",
   "who": "Architect; founder of Forensic Architecture",
   "year": "",
-  "place": "London",
+  "place": "",
   "tags": [
    "human-rights",
    "spatial-analysis"
@@ -1237,7 +1233,7 @@
   "category": "Person",
   "who": "Professor, Northeastern University",
   "year": "",
-  "place": "Boston",
+  "place": "",
   "tags": [
    "physicalisation",
    "cities",
@@ -1262,7 +1258,7 @@
   "category": "Person",
   "who": "Researcher, SHARE Foundation",
   "year": "",
-  "place": "Novi Sad",
+  "place": "",
   "tags": [
    "ai-ethics",
    "maps",
@@ -1287,7 +1283,7 @@
   "category": "Person",
   "who": "Designer, activist, educator",
   "year": "",
-  "place": "Tel Aviv",
+  "place": "",
   "tags": [
    "activism",
    "ethics"
@@ -1310,7 +1306,7 @@
   "category": "Person",
   "who": "Statistician, nurse",
   "year": "",
-  "place": "London",
+  "place": "",
   "tags": [
    "history",
    "public-health",
@@ -1335,7 +1331,7 @@
   "category": "Person",
   "who": "Creators of Isotype",
   "year": "",
-  "place": "Vienna / Oxford",
+  "place": "",
   "tags": [
    "history",
    "pictograms",
@@ -1360,7 +1356,7 @@
   "category": "Person",
   "who": "Sociologist, historian, activist",
   "year": "",
-  "place": "Atlanta",
+  "place": "",
   "tags": [
    "history",
    "race",
@@ -5444,7 +5440,7 @@
   "category": "Person",
   "who": "Statistician, information designer",
   "year": "",
-  "place": "Connecticut",
+  "place": "",
   "tags": [
    "classic",
    "information-design"
@@ -5467,7 +5463,7 @@
   "category": "Person",
   "who": "Data visualisation consultant, educator",
   "year": "",
-  "place": "UK",
+  "place": "",
   "tags": [
    "teaching",
    "process"
@@ -5490,7 +5486,7 @@
   "category": "Person",
   "who": "Founder & CEO, Storytelling with Data",
   "year": "",
-  "place": "US",
+  "place": "",
   "tags": [
    "storytelling",
    "business"
@@ -5513,7 +5509,7 @@
   "category": "Person",
   "who": "Professor, University of British Columbia",
   "year": "",
-  "place": "Vancouver",
+  "place": "",
   "tags": [
    "research",
    "theory"
@@ -5536,12 +5532,12 @@
   "category": "Person",
   "who": "Professor, OCAD University",
   "year": "",
-  "place": "Toronto",
+  "place": "",
   "tags": [
    "information-design",
    "teaching"
   ],
-  "note": "Author of Design for Information; Brazilian-born.",
+  "note": "Author of Design for Information.",
   "url": "https://duckduckgo.com/?q=Isabel+Meirelles+Professor%2C+OCAD+University",
   "seed": false,
   "status": "active",
@@ -5559,7 +5555,7 @@
   "category": "Person",
   "who": "Statistician, author of FlowingData",
   "year": "",
-  "place": "California",
+  "place": "",
   "tags": [
    "information-design",
    "teaching"
@@ -5582,7 +5578,7 @@
   "category": "Person",
   "who": "Data journalist, designer",
   "year": "",
-  "place": "London",
+  "place": "",
   "tags": [
    "information-design"
   ],
@@ -5603,7 +5599,7 @@
   "category": "Person",
   "who": "Data vis writer, Datawrapper",
   "year": "",
-  "place": "Berlin",
+  "place": "",
   "tags": [
    "craft",
    "colour"
@@ -5626,7 +5622,7 @@
   "category": "Person",
   "who": "Data journalist",
   "year": "",
-  "place": "US",
+  "place": "",
   "tags": [
    "journalism",
    "statistics"
@@ -5649,7 +5645,7 @@
   "category": "Person",
   "who": "Head of Visual & Data Journalism, Financial Times",
   "year": "",
-  "place": "London",
+  "place": "",
   "tags": [
    "journalism"
   ],
@@ -5670,7 +5666,7 @@
   "category": "Person",
   "who": "Chief data reporter, Financial Times",
   "year": "",
-  "place": "London",
+  "place": "",
   "tags": [
    "journalism",
    "statistics"
@@ -5693,7 +5689,7 @@
   "category": "Person",
   "who": "Mathematician, broadcaster",
   "year": "",
-  "place": "London",
+  "place": "",
   "tags": [
    "statistics",
    "public-speaking"
@@ -5716,7 +5712,7 @@
   "category": "Person",
   "who": "Economist, broadcaster",
   "year": "",
-  "place": "Oxford",
+  "place": "",
   "tags": [
    "statistics",
    "literacy"
@@ -5739,7 +5735,7 @@
   "category": "Person",
   "who": "Professor, UCLA",
   "year": "",
-  "place": "Los Angeles",
+  "place": "",
   "tags": [
    "algorithms",
    "race"
@@ -5762,7 +5758,7 @@
   "category": "Person",
   "who": "Professor, Princeton",
   "year": "",
-  "place": "Princeton",
+  "place": "",
   "tags": [
    "race",
    "technology"
@@ -5785,7 +5781,7 @@
   "category": "Person",
   "who": "Founder, Algorithmic Justice League",
   "year": "",
-  "place": "Cambridge, MA",
+  "place": "",
   "tags": [
    "ai-ethics",
    "facial-recognition"
@@ -5808,7 +5804,7 @@
   "category": "Person",
   "who": "Founder, DAIR Institute",
   "year": "",
-  "place": "US",
+  "place": "",
   "tags": [
    "ai-ethics",
    "research"
@@ -5831,7 +5827,7 @@
   "category": "Person",
   "who": "Data journalist, NYU professor",
   "year": "",
-  "place": "New York",
+  "place": "",
   "tags": [
    "ai-ethics",
    "journalism"
@@ -5854,7 +5850,7 @@
   "category": "Person",
   "who": "Researcher, designer",
   "year": "",
-  "place": "US",
+  "place": "",
   "tags": [
    "design-justice",
    "participatory"
@@ -5877,7 +5873,7 @@
   "category": "Person",
   "who": "Professor, University of Pennsylvania",
   "year": "",
-  "place": "Philadelphia",
+  "place": "",
   "tags": [
    "cities",
    "media"
@@ -5900,7 +5896,7 @@
   "category": "Person",
   "who": "Professor emerita, UCLA",
   "year": "",
-  "place": "Los Angeles",
+  "place": "",
   "tags": [
    "theory",
    "humanities"
@@ -5923,7 +5919,7 @@
   "category": "Person",
   "who": "Professor, Emory University",
   "year": "",
-  "place": "Atlanta",
+  "place": "",
   "tags": [
    "data-feminism",
    "digital-humanities"
@@ -5946,13 +5942,12 @@
   "category": "Person",
   "who": "Associate Professor, Northeastern University",
   "year": "",
-  "place": "Boston",
+  "place": "",
   "tags": [
    "research",
-   "podcast",
-   "italy"
+   "podcast"
   ],
-  "note": "Italian visualisation researcher; co-host of Data Stories.",
+  "note": "Visualisation researcher; co-host of Data Stories.",
   "url": "https://enrico.bertini.io",
   "seed": false,
   "status": "active",
@@ -5960,8 +5955,7 @@
   "id": 253,
   "tag_families": [
    "research",
-   "culture",
-   "regions"
+   "culture"
   ],
   "source": "",
   "family": "research"
@@ -5971,7 +5965,7 @@
   "category": "Person",
   "who": "Founder, Fathom",
   "year": "",
-  "place": "Boston",
+  "place": "",
   "tags": [
    "creative-coding"
   ],
@@ -5992,7 +5986,7 @@
   "category": "Person",
   "who": "Artist, UCLA professor",
   "year": "",
-  "place": "Los Angeles",
+  "place": "",
   "tags": [
    "creative-coding",
    "art"
@@ -6015,22 +6009,18 @@
   "category": "Person",
   "who": "Chief data officer, Code for Africa",
   "year": "",
-  "place": "Italy / Africa",
+  "place": "",
   "tags": [
-   "journalism",
-   "africa",
-   "italy"
+   "journalism"
   ],
-  "note": "Italian data journalist leading data work across Code for Africa's network.",
+  "note": "Data journalist leading data work across Code for Africa's network.",
   "url": "https://gijn.org/?p=2498172",
   "seed": false,
   "status": "active",
   "verified": "verified this session",
   "id": 256,
   "tag_families": [
-   "journalism",
-   "regions",
-   "regions"
+   "journalism"
   ],
   "source": "",
   "family": "journalism"
@@ -6040,11 +6030,10 @@
   "category": "Person",
   "who": "Founder, Code for Africa",
   "year": "",
-  "place": "South Africa",
+  "place": "",
   "tags": [
    "civic-tech",
-   "journalism",
-   "africa"
+   "journalism"
   ],
   "note": "Built Africa's largest network of civic-tech and data-journalism labs.",
   "url": "https://codeforafrica.org",
@@ -6054,8 +6043,7 @@
   "id": 257,
   "tag_families": [
    "civic",
-   "journalism",
-   "regions"
+   "journalism"
   ],
   "source": "",
   "family": "civic"
@@ -6065,10 +6053,9 @@
   "category": "Person",
   "who": "Founder, InfoTimes",
   "year": "",
-  "place": "Cairo",
+  "place": "",
   "tags": [
-   "journalism",
-   "mena"
+   "journalism"
   ],
   "note": "Pioneer of Arab data journalism training.",
   "url": "https://duckduckgo.com/?q=Amr+Eleraqi+Founder%2C+InfoTimes",
@@ -6077,8 +6064,7 @@
   "verified": "no link confirmed; search link",
   "id": 258,
   "tag_families": [
-   "journalism",
-   "regions"
+   "journalism"
   ],
   "source": "",
   "family": "journalism"
@@ -6088,7 +6074,7 @@
   "category": "Person",
   "who": "Data journalism trainer",
   "year": "",
-  "place": "Global",
+  "place": "",
   "tags": [
    "journalism",
    "teaching"
@@ -6111,10 +6097,9 @@
   "category": "Person",
   "who": "Data visualisation designer, Complexity Science Hub",
   "year": "",
-  "place": "Vienna",
+  "place": "",
   "tags": [
-   "information-design",
-   "asia"
+   "information-design"
   ],
   "note": "Designer of 'Not My Name', on translating Chinese names into Pinyin.",
   "url": "https://www.audible.fr/podcast/Explore-Explain/episodes/B08K5XHM8Z",
@@ -6123,8 +6108,7 @@
   "verified": "verified this session",
   "id": 260,
   "tag_families": [
-   "design",
-   "regions"
+   "design"
   ],
   "source": "",
   "family": "design"
@@ -6134,20 +6118,18 @@
   "category": "Person",
   "who": "Senior Design Manager, DataLabs at Capital One",
   "year": "",
-  "place": "US / India",
+  "place": "",
   "tags": [
-   "information-design",
-   "india"
+   "information-design"
   ],
-  "note": "Indian information designer; Viz Chitra community.",
+  "note": "Information designer; Viz Chitra community.",
   "url": "https://duckduckgo.com/?q=Rasagy+Sharma+Senior+Design+Manager%2C+DataLabs+at+Capital+One",
   "seed": false,
   "status": "active",
   "verified": "no link confirmed; search link",
   "id": 261,
   "tag_families": [
-   "design",
-   "regions"
+   "design"
   ],
   "source": "",
   "family": "design"
@@ -6157,20 +6139,18 @@
   "category": "Person",
   "who": "Data visualisation designer",
   "year": "",
-  "place": "India / US",
+  "place": "",
   "tags": [
-   "journalism",
-   "india"
+   "journalism"
   ],
-  "note": "Graphics for Reuters and others; Indian design voice.",
+  "note": "Graphics for Reuters and others.",
   "url": "https://duckduckgo.com/?q=Gurman+Bhatia+Data+visualisation+designer",
   "seed": false,
   "status": "active",
   "verified": "no link confirmed; search link",
   "id": 262,
   "tag_families": [
-   "journalism",
-   "regions"
+   "journalism"
   ],
   "source": "",
   "family": "journalism"
@@ -6180,20 +6160,18 @@
   "category": "Person",
   "who": "Data artist, lecturer",
   "year": "",
-  "place": "London",
+  "place": "",
   "tags": [
-   "data-art",
-   "italy"
+   "data-art"
   ],
-  "note": "Italian-born information designer and data artist.",
+  "note": "Information designer and data artist.",
   "url": "https://duckduckgo.com/?q=Tiziana+Alocci+Data+artist%2C+lecturer",
   "seed": false,
   "status": "active",
   "verified": "no link confirmed; search link",
   "id": 263,
   "tag_families": [
-   "design",
-   "regions"
+   "design"
   ],
   "source": "",
   "family": "design"
@@ -6203,20 +6181,18 @@
   "category": "Person",
   "who": "Data visualisation manager",
   "year": "",
-  "place": "British Columbia",
+  "place": "",
   "tags": [
-   "information-design",
-   "africa"
+   "information-design"
   ],
-  "note": "Nigerian-Canadian practitioner, DVS community voice.",
+  "note": "Practitioner and DVS community voice.",
   "url": "https://duckduckgo.com/?q=Chimdi+Nwosu+Data+visualisation+manager",
   "seed": false,
   "status": "active",
   "verified": "no link confirmed; search link",
   "id": 264,
   "tag_families": [
-   "design",
-   "regions"
+   "design"
   ],
   "source": "",
   "family": "design"
@@ -6226,20 +6202,18 @@
   "category": "Person",
   "who": "Data scientist, civic technologist",
   "year": "",
-  "place": "Mexico / US",
+  "place": "",
   "tags": [
-   "civic-data",
-   "latin-america"
+   "civic-data"
   ],
-  "note": "Civic data work in Mexico and Boston (ACLU).",
+  "note": "Civic data work, including with the ACLU.",
   "url": "https://duckduckgo.com/?q=Paola+Villarreal+Data+scientist%2C+civic+technologist",
   "seed": false,
   "status": "active",
   "verified": "no link confirmed; search link",
   "id": 265,
   "tag_families": [
-   "civic",
-   "regions"
+   "civic"
   ],
   "source": "",
   "family": "civic"
@@ -6249,7 +6223,7 @@
   "category": "Person",
   "who": "Data visualisation artist and researcher",
   "year": "",
-  "place": "Berlin / Boston",
+  "place": "",
   "tags": [
    "complexity",
    "data-art"
@@ -6272,7 +6246,7 @@
   "category": "Person",
   "who": "Editor, Nightingale; dataviz historian",
   "year": "",
-  "place": "New York",
+  "place": "",
   "tags": [
    "history",
    "community"
@@ -6295,7 +6269,7 @@
   "category": "Person",
   "who": "Senior graphics editor, Scientific American",
   "year": "",
-  "place": "New York",
+  "place": "",
   "tags": [
    "science",
    "information-design"
@@ -6318,7 +6292,7 @@
   "category": "Person",
   "who": "Founder, Code for America",
   "year": "",
-  "place": "California",
+  "place": "",
   "tags": [
    "civic-tech",
    "government"
@@ -6341,7 +6315,7 @@
   "category": "Person",
   "who": "Founder, GovEx at Johns Hopkins",
   "year": "",
-  "place": "Baltimore",
+  "place": "",
   "tags": [
    "civic-data",
    "government"
@@ -6364,7 +6338,7 @@
   "category": "Person",
   "who": "Founder, mySociety",
   "year": "",
-  "place": "UK",
+  "place": "",
   "tags": [
    "civic-tech"
   ],
@@ -6385,7 +6359,7 @@
   "category": "Person",
   "who": "Founder, Open Knowledge Foundation",
   "year": "",
-  "place": "UK",
+  "place": "",
   "tags": [
    "open-data"
   ],
@@ -6406,7 +6380,7 @@
   "category": "Person",
   "who": "Founder, Connected by Data",
   "year": "",
-  "place": "UK",
+  "place": "",
   "tags": [
    "data-governance",
    "participatory"
@@ -6429,7 +6403,7 @@
   "category": "Person",
   "who": "Co-founder, The GovLab",
   "year": "",
-  "place": "New York",
+  "place": "",
   "tags": [
    "data-governance",
    "data-collaboratives"
@@ -6452,7 +6426,7 @@
   "category": "Person",
   "who": "Director, The GovLab",
   "year": "",
-  "place": "New York",
+  "place": "",
   "tags": [
    "civic-tech",
    "democracy"
@@ -6475,11 +6449,10 @@
   "category": "Person",
   "who": "Taiwan's first digital minister (2016–24)",
   "year": "",
-  "place": "Taipei",
+  "place": "",
   "tags": [
    "civic-tech",
-   "democracy",
-   "asia"
+   "democracy"
   ],
   "note": "vTaiwan, g0v and participatory digital democracy.",
   "url": "https://duckduckgo.com/?q=Audrey+Tang+Taiwan%27s+first+digital+minister+%282016%E2%80%9324%29",
@@ -6489,8 +6462,7 @@
   "id": 276,
   "tag_families": [
    "civic",
-   "civic",
-   "regions"
+   "civic"
   ],
   "source": "",
   "family": "civic"
@@ -6500,13 +6472,12 @@
   "category": "Person",
   "who": "Director, MIT Senseable City Lab",
   "year": "",
-  "place": "Turin / Cambridge, MA",
+  "place": "",
   "tags": [
    "cities",
-   "italy",
    "sensing"
   ],
-  "note": "Italian architect; curated the 2025 Venice Architecture Biennale.",
+  "note": "Architect; curated the 2025 Venice Architecture Biennale.",
   "url": "https://senseable.mit.edu",
   "seed": false,
   "status": "active",
@@ -6514,7 +6485,6 @@
   "id": 277,
   "tag_families": [
    "civic",
-   "regions",
    "civic"
   ],
   "source": "",
@@ -6525,7 +6495,7 @@
   "category": "Person",
   "who": "Cartographer",
   "year": "",
-  "place": "UK",
+  "place": "",
   "tags": [
    "maps",
    "cartography"
@@ -6548,7 +6518,7 @@
   "category": "Person",
   "who": "Creator of D3.js; co-founder of Observable",
   "year": "",
-  "place": "San Francisco",
+  "place": "",
   "tags": [
    "d3"
   ],
@@ -6569,7 +6539,7 @@
   "category": "Person",
   "who": "Professor emeritus, University of Maryland",
   "year": "",
-  "place": "Maryland",
+  "place": "",
   "tags": [
    "research",
    "hci"
@@ -6592,7 +6562,7 @@
   "category": "Person",
   "who": "Professor, CUNY Graduate Center",
   "year": "",
-  "place": "New York",
+  "place": "",
   "tags": [
    "cultural-analytics",
    "art"
@@ -6615,7 +6585,7 @@
   "category": "Person",
   "who": "Visualisation researchers, Harvard / Google",
   "year": "",
-  "place": "Cambridge, MA",
+  "place": "",
   "tags": [
    "research",
    "data-art"
@@ -6638,7 +6608,7 @@
   "category": "Person",
   "who": "Artist, technologist",
   "year": "",
-  "place": "San Francisco",
+  "place": "",
   "tags": [
    "data-art"
   ],
@@ -6659,11 +6629,10 @@
   "category": "Person",
   "who": "Artist, composer",
   "year": "",
-  "place": "Paris / Kyoto",
+  "place": "",
   "tags": [
    "data-art",
-   "sound",
-   "asia"
+   "sound"
   ],
   "note": "Immersive installations from pure data ('datamatics').",
   "url": "https://duckduckgo.com/?q=Ryoji+Ikeda+Artist%2C+composer",
@@ -6673,8 +6642,7 @@
   "id": 284,
   "tag_families": [
    "design",
-   "design",
-   "regions"
+   "design"
   ],
   "source": "",
   "family": "design"
@@ -6684,7 +6652,7 @@
   "category": "Person",
   "who": "Data artist",
   "year": "",
-  "place": "Austin",
+  "place": "",
   "tags": [
    "data-humanism",
    "personal-data"
@@ -6707,7 +6675,7 @@
   "category": "Person",
   "who": "Artist, designer",
   "year": "",
-  "place": "Manchester",
+  "place": "",
   "tags": [
    "data-art",
    "generative"
@@ -6730,7 +6698,7 @@
   "category": "Person",
   "who": "Infographic artist, journalist",
   "year": "",
-  "place": "Barcelona",
+  "place": "",
   "tags": [
    "information-design",
    "journalism",
@@ -6755,7 +6723,7 @@
   "category": "Person",
   "who": "Graphics director",
   "year": "",
-  "place": "Spain / US",
+  "place": "",
   "tags": [
    "information-design",
    "science"
@@ -6778,13 +6746,12 @@
   "category": "Person",
   "who": "Designer, médialab Sciences Po",
   "year": "",
-  "place": "Paris",
+  "place": "",
   "tags": [
    "research",
-   "italy",
    "controversy-mapping"
   ],
-  "note": "Italian designer working on controversy mapping and digital methods.",
+  "note": "Designer working on controversy mapping and digital methods.",
   "url": "https://duckduckgo.com/?q=Donato+Ricci+Designer%2C+m%C3%A9dialab+Sciences+Po",
   "seed": false,
   "status": "active",
@@ -6792,7 +6759,6 @@
   "id": 289,
   "tag_families": [
    "research",
-   "regions",
    "research"
   ],
   "source": "",
@@ -6803,9 +6769,8 @@
   "category": "Person",
   "who": "Scientific director, DensityDesign",
   "year": "",
-  "place": "Milan",
+  "place": "",
   "tags": [
-   "italy",
    "research"
   ],
   "note": "Co-creator of RAWGraphs.",
@@ -6815,7 +6780,6 @@
   "verified": "from Claude's knowledge; check link",
   "id": 290,
   "tag_families": [
-   "regions",
    "research"
   ],
   "source": "",
@@ -12198,11 +12162,10 @@
   "category": "Person",
   "who": "Information designer; co-founder of Encode and Market Cafe Magazine",
   "year": "",
-  "place": "London / Amsterdam",
+  "place": "",
   "tags": [
    "information-design",
-   "community",
-   "italy"
+   "community"
   ],
   "note": "Award-winning data designer who worked at Information is Beautiful, Beyond Words and Signal Noise before going independent. Co-founded the Encode conference and Market Cafe Magazine; spoke at DataFest Tbilisi 2019.",
   "url": "https://www.behance.net/pierozag",
@@ -12212,8 +12175,7 @@
   "id": 523,
   "tag_families": [
    "design",
-   "culture",
-   "regions"
+   "culture"
   ],
   "source": "",
   "family": "design"
@@ -12273,7 +12235,7 @@
   "category": "Person",
   "who": "Interaction designer; co-founder of Parallel",
   "year": "",
-  "place": "London",
+  "place": "",
   "tags": [
    "decision-intelligence",
    "information-design"
@@ -12317,7 +12279,7 @@
   "category": "Person",
   "who": "Data researcher, writer",
   "year": "",
-  "place": "London",
+  "place": "",
   "tags": [
    "sonification",
    "data-humanism",
@@ -12547,17 +12509,17 @@
   "category": "Person",
   "who": "Visual and data journalist; graphics editor at Reuters",
   "year": "",
-  "place": "Brooklyn, New York",
+  "place": "",
   "tags": [
    "journalism",
    "information-design",
    "teaching"
   ],
   "note": "Began on the New York Times graphics desks, where she ran the business graphics team, then worked at Fortune and The Wall Street Journal before joining Reuters' investigative and data team. Teaches data visualisation at The New School (Journalism + Design) and has taught on Columbia's Lede program.",
-  "url": "https://www.linkedin.com/in/sarahslobin",
+  "url": "https://duckduckgo.com/?q=Sarah+Slobin+Visual+and+data+journalist%3B+graphics+editor+at+Reuters",
   "seed": true,
   "status": "active",
-  "verified": "verified this session",
+  "verified": "no link confirmed; search link",
   "id": 538,
   "tag_families": [
    "journalism",
@@ -12572,17 +12534,17 @@
   "category": "Person",
   "who": "Economist; senior fellow at the Urban Institute; founder of PolicyViz",
   "year": "",
-  "place": "Washington, DC area",
+  "place": "",
   "tags": [
    "policy",
    "information-design",
    "teaching"
   ],
   "note": "Economist turned data communicator. Specialises in data visualisation and presentation design at the Urban Institute, runs the PolicyViz firm, podcast and newsletter, and teaches at Georgetown, MICA and Cornell. Author of 'Better Data Visualizations'.",
-  "url": "https://www.linkedin.com/in/jonathanschwabish",
+  "url": "https://duckduckgo.com/?q=Jonathan+Schwabish+Economist%3B+senior+fellow+at+the+Urban+Institute%3B+founder+of+PolicyViz",
   "seed": true,
   "status": "active",
-  "verified": "verified this session",
+  "verified": "no link confirmed; search link",
   "id": 539,
   "tag_families": [
    "civic",

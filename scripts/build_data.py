@@ -213,6 +213,33 @@ from catalogue import merge
 recs = merge(recs)
 from taxonomy import clean
 recs = clean(recs)
+# --- privacy for people: no contact links, no locations (places, region tags, nationality/birthplace notes) ---
+from urllib.parse import quote_plus as _q
+PERSON_NOTES = {
+ "Giorgia Lupi": "Co-founded Accurat; coined 'Data Humanism'.",
+ "Nicole Lachenmeier & Darjan Hil": "Information designers, educators and hosts of On Data and Design.",
+ "Isabel Meirelles": "Author of Design for Information.",
+ "Enrico Bertini": "Visualisation researcher; co-host of Data Stories.",
+ "Jacopo Ottaviani": "Data journalist leading data work across Code for Africa's network.",
+ "Rasagy Sharma": "Information designer; Viz Chitra community.",
+ "Gurman Bhatia": "Graphics for Reuters and others.",
+ "Tiziana Alocci": "Information designer and data artist.",
+ "Chimdi Nwosu": "Practitioner and DVS community voice.",
+ "Paola Villarreal": "Civic data work, including with the ACLU.",
+ "Carlo Ratti": "Architect; curated the 2025 Venice Architecture Biennale.",
+ "Donato Ricci": "Designer working on controversy mapping and digital methods.",
+}
+for r in recs:
+    if r["category"] != "Person": continue
+    r["place"] = ""
+    keep = [i for i, f in enumerate(r["tag_families"]) if f != "regions"]
+    r["tags"] = [r["tags"][i] for i in keep]; r["tag_families"] = [r["tag_families"][i] for i in keep]
+    assert r["family"] != "regions", r["name"]
+    if "linkedin.com" in r["url"]:
+        r["url"] = "https://duckduckgo.com/?q=" + _q(r["name"] + " " + r["who"]); r["verified"] = "no link confirmed; search link"
+    if r["name"] in PERSON_NOTES: r["note"] = PERSON_NOTES[r["name"]]
+assert set(PERSON_NOTES) <= {r["name"] for r in recs if r["category"]=="Person"}
+
 for i, r in enumerate(recs, 1): r["id"] = i
 names = [r["name"] for r in recs]
 assert len(names) == len(set(names)), "duplicate names"
