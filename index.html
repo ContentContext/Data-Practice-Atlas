@@ -7,7 +7,7 @@
 <script>try{var p=localStorage.getItem("dpaPaper");if(p==="dark"||p==="light")document.documentElement.setAttribute("data-paper",p);}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&family=Epilogue:wght@400;700&family=Courier+Prime:wght@400;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,0..100,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&family=Epilogue:wght@400;700&family=Courier+Prime:wght@400;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,0..100,0..1&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: a 1970s counterculture mail-order catalogue on newsprint. Masthead with heavy rules, a "Function" statement,
    catalogue sections divided by thick/thin rules, entries set in ruled newspaper columns, each ending in a typewritten ACCESS block.
@@ -15,7 +15,7 @@
 :root{
   --serif:"Manrope", "Helvetica Neue", Arial, sans-serif;
   --display:"Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
-  --dhead:"Instrument Serif", "Fraunces", "Libre Caslon Text", Georgia, serif;
+  --dhead:"Young Serif", "Fraunces", "Libre Caslon Text", Georgia, serif;
   --head:"Epilogue", "Helvetica Neue", Arial, sans-serif;
   --type:"Courier Prime", "Courier New", ui-monospace, monospace;
   --ease:cubic-bezier(.4,.2,.2,1);
@@ -313,7 +313,7 @@ body{font-weight:400;letter-spacing:-.003em}
 /* big numbers centred in their cells */
 .stats div{align-items:center!important;justify-content:center!important;text-align:center}
 .stats span{text-align:center}
-/* titles: Instrument Serif (Google Fonts, OFL), Regular only */
+/* titles: Young Serif (Google Fonts, OFL), Regular only */
 h1,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.stats b,.function p:first-of-type::first-letter{font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 96}
 h1{font-weight:700;letter-spacing:-.025em}
 .entry h3{font-weight:700;font-variation-settings:"SOFT" 100,"WONK" 0,"opsz" 36}
@@ -371,23 +371,25 @@ th,th button{font-weight:700!important;color:var(--ink)}
 .f .btn{align-self:end}
 /* filter and sort labels match the section kickers exactly */
 .sechead .pg,.f label,th,th button{font-family:var(--head)!important;font-weight:400!important;font-size:10.5px!important;letter-spacing:.18em!important;text-transform:uppercase!important;color:var(--accent)!important}
-/* Instrument Serif has no bold: set every title at 400, a touch larger since the face is narrow */
-h1{font-weight:400!important;letter-spacing:-.01em!important;font-size:clamp(52px,9.6vw,140px)!important}
-.stats b{font:400 54px/1 var(--dhead)!important}
-.sechead h2{font:400 clamp(34px,4vw,54px)/1.02 var(--dhead)!important;letter-spacing:0!important}
-.charts h3{font:400 24px var(--dhead)!important}
-.entry h3{font:400 29px/1.08 var(--dhead)!important;letter-spacing:0!important}
-.count{font:400 38px var(--dhead)!important}
-.tip b{font:400 19px var(--dhead)!important}
-td a{font:400 20px var(--dhead)!important}
-details.gov summary{font:400 28px var(--dhead)!important}
-.netpin b{font:400 21px/1.1 var(--dhead)!important}
+/* Young Serif has one weight: titles at 400, sized like the earlier Sentient set */
+h1{font-weight:400!important;letter-spacing:-.02em!important;font-size:clamp(42px,7.8vw,114px)!important}
+.stats b{font:400 44px/1 var(--dhead)!important}
+.sechead h2{font:400 clamp(27px,3.2vw,42px)/1.08 var(--dhead)!important;letter-spacing:-.01em!important}
+.charts h3{font:400 19px var(--dhead)!important}
+.entry h3{font:400 23px/1.15 var(--dhead)!important;letter-spacing:-.005em!important}
+.count{font:400 30px var(--dhead)!important}
+.tip b{font:400 16px var(--dhead)!important}
+td a{font:400 16px var(--dhead)!important}
+details.gov summary{font:400 23px var(--dhead)!important}
+.netpin b{font:400 17px/1.15 var(--dhead)!important}
+/* Young Serif in one weight, thickened with a hairline stroke in the text colour for a heavier title cut */
+h1,.stats b,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.netpin b{-webkit-text-stroke:.028em currentColor;paint-order:stroke fill;font-synthesis:none}
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="topstrip">
-  <span>Vol. 1 · Ed. 1.047 · Autumn 2026 · Free</span>
+  <span>Vol. 1 · Ed. 1.048 · Autumn 2026 · Free</span>
   <span class="paperswitch" role="group" aria-label="Paper colour">
     <span class="seg"><button id="paperLight" aria-pressed="true">Light</button><button id="paperDark" aria-pressed="false">Dark</button></span>
   </span>
@@ -897,17 +899,17 @@ function shapeIcon(s,fill="currentColor",size=14){return `<svg width="${size}" h
 const GROUPS={D:{label:"Data",cats:["Data Portal","Dataset Source","Weird Dataset","Tool"]},P:{label:"Practice",cats:["Person","Studio & Lab","Festival & Conference"]},A:{label:"Atlas reading",cats:["Book","Website & Publication","Video & Podcast"]}};
 async function wordmark(){
   const cv=$("wordmark"), ctx=cv.getContext("2d");
-  try{await document.fonts.load("400 300px 'Instrument Serif'");}catch(e){}
+  try{await document.fonts.load("400 300px 'Young Serif'");}catch(e){}
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   let marks=[], W=0,H=0,dpr=Math.min(2,devicePixelRatio);
   function layout(){
     W=cv.clientWidth; H=Math.round(W*.34); cv.width=W*dpr; cv.height=H*dpr; cv.style.height=H+"px";
     const off=document.createElement("canvas"); off.width=W; off.height=H; const g=off.getContext("2d");
-    const fs=H*1.08; g.font=`400 ${fs}px "Instrument Serif", Fraunces, Georgia, serif`; g.textBaseline="alphabetic";
+    const fs=H*1.08; g.font=`400 ${fs}px "Young Serif", Fraunces, Georgia, serif`; g.textBaseline="alphabetic";
     const letters=["D","P","A"], widths=letters.map(l=>g.measureText(l).width), gap=fs*.04, total=widths.reduce((a,b)=>a+b,0)+gap*2; let x=(W-total)/2; const base=H*.86;
     const boxes=letters.map((l,i)=>{const b={l,x,w:widths[i]}; x+=widths[i]+gap; return b;});
     marks=[]; boxes.forEach(b=>{
-      g.clearRect(0,0,W,H); g.fillStyle="#000"; g.fillText(b.l,b.x,base); const img=g.getImageData(0,0,W,H).data;
+      g.clearRect(0,0,W,H); g.fillStyle="#000"; g.fillText(b.l,b.x,base); g.lineJoin="round"; g.lineWidth=fs*.05; g.strokeStyle="#000"; g.strokeText(b.l,b.x,base); const img=g.getImageData(0,0,W,H).data;
       const inside=(px,py)=>{px|=0;py|=0;return px>=0&&py>=0&&px<W&&py<H&&img[(py*W+px)*4+3]>128};
       const rows=DATA.filter(d=>GROUPS[b.l].cats.includes(d.category)); let s=b.l.charCodeAt(0)*97; const rnd=()=>{s=(s*16807)%2147483647;return (s-1)/2147483646};
       rows.forEach(d=>{let px,py,tries=0;do{px=b.x+rnd()*b.w;py=H*.02+rnd()*H*.9;tries++;}while(!inside(px,py)&&tries<400);
@@ -931,7 +933,7 @@ async function wordmark(){
   }
   function frame(t){
     ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
-    ctx.font=`400 ${layout.fs}px "Instrument Serif", Fraunces, Georgia, serif`; ctx.lineWidth=1; ctx.strokeStyle=cssv("--hair"); layout.boxes.forEach(b=>ctx.strokeText(b.l,b.x,layout.base));
+    ctx.font=`400 ${layout.fs}px "Young Serif", Fraunces, Georgia, serif`; ctx.lineWidth=1; ctx.strokeStyle=cssv("--hair"); layout.boxes.forEach(b=>ctx.strokeText(b.l,b.x,layout.base));
     marks.forEach(m=>{ if(!reduce){const nx=m.ox+Math.sin(t/1400+m.ph)*2.2, ny=m.oy+Math.cos(t/1700+m.ph)*2.2; if(m.inside(nx,ny)){m.x=nx;m.y=ny;}} drawMark(m); });
     if(!reduce&&wmRunning) requestAnimationFrame(frame);
   }
