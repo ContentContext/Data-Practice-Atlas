@@ -359,7 +359,7 @@ th,th button{font-weight:700!important;color:var(--ink)}
 <body>
 <div class="wrap">
 <div class="topstrip">
-  <span>Vol. 1 · Ed. 1.041 · Autumn 2026 · Free</span>
+  <span>Vol. 1 · Ed. 1.042 · Autumn 2026 · Free</span>
   <span class="paperswitch" role="group" aria-label="Paper colour">
     <span class="seg"><button id="paperLight" aria-pressed="true">Light</button><button id="paperDark" aria-pressed="false">Dark</button></span>
   </span>
@@ -830,10 +830,13 @@ function buildNetwork(){
     hubs.forEach(h=>{const u=h.userData; const on=!any || (u.type==="cat"? DATA.some((d,i)=>visible[i]&&d.category===u.key) : DATA.some((d,i)=>visible[i]&&d.tags.includes(u.key)));
       h.material.transparent=true; h.material.opacity=on?(u.type==="cat"?.55:.92):.12; const sel=(u.type==="cat"&&state.cat===u.key)||(u.type==="theme"&&state.theme===u.key); if(h.material.emissive){h.material.emissive.set(sel?cssv("--accent"):famColor(u.fam)); h.material.emissiveIntensity=sel?.7:.18;} else {h.material.color.set(sel?cssv("--accent"):cssv("--ink"));} if(u.type==="cat") h.scale.setScalar(sel?1.25:1);});
   }
-  function size(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
+  const RB=R+24; // radius that holds every ring, shape and dot
+  function fitDist(){const v=THREE.MathUtils.degToRad(camera.fov)/2, hfov=Math.atan(Math.tan(v)*camera.aspect); return RB/Math.sin(Math.min(v,hfov));}
+  function size(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix(); controls.maxDistance=fitDist()*1.08; controls.minDistance=RB*.45;}
+  function fogFollow(){const d=camera.position.distanceTo(controls.target); scene.fog.near=Math.max(1,d-RB*.7); scene.fog.far=d+RB*1.05;}
   new ResizeObserver(size).observe(canvas); size();
   let running=true; const io=new IntersectionObserver(es=>{running=es[0].isIntersecting;if(running) loop();}); io.observe(canvas);
-  function loop(){ if(!running) return; requestAnimationFrame(loop); hubs.forEach(h=>{if(h.userData.type==="theme") h.rotation.y+=.0022;}); controls.update(); renderer.render(scene,camera); placePin(); }
+  function loop(){ if(!running) return; requestAnimationFrame(loop); hubs.forEach(h=>{if(h.userData.type==="theme") h.rotation.y+=.0022;}); controls.update(); fogFollow(); renderer.render(scene,camera); placePin(); }
   loop();
   // legend
   $("netLegend").innerHTML=legendHTML(); capIcons();
