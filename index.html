@@ -386,12 +386,14 @@ details.gov summary{font:400 23px var(--dhead)!important}
 h1,.stats b,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summary,.netpin b{-webkit-text-stroke:.028em currentColor;paint-order:stroke fill;font-synthesis:none}
 /* optical centring: Epilogue caps sit .09em high in the line box, so push the label down by that much */
 .btn,.chip,.pgb,.pa button,.seg button,.seg2 button{line-height:1!important;padding-top:.18em!important;padding-bottom:0!important;align-items:center}
+.plate .cap{color:var(--ink2)!important}
+.plate .badge,.entry .themes>span{color:var(--ink)}
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="topstrip">
-  <span>Vol. 1 · Ed. 1.051 · Autumn 2026 · Free</span>
+  <span>Vol. 1 · Ed. 1.052 · Autumn 2026 · Free</span>
   <span class="paperswitch" role="group" aria-label="Paper colour">
     <span class="seg"><button id="paperLight" aria-pressed="true">Light</button><button id="paperDark" aria-pressed="false">Dark</button></span>
   </span>
@@ -423,7 +425,7 @@ h1,.stats b,.sechead h2,.charts h3,.entry h3,.count,.tip b,td a,details.gov summ
   <div class="sechead"><h2 id="h-net">How it all connects</h2><span class="pg">Section 2</span></div>
   <div class="sub netcap">
     <p>Drag to spin, scroll to zoom.</p>
-    <p><span class="i3" data-ic="ring"></span>Rings are categories; <span class="i3" data-ic="design"></span><span class="i3" data-ic="rights"></span><span class="i3" data-ic="civic"></span>shapes are themes; <span class="i3" data-ic="dot"></span>dots are entries. Colour and shape always mean theme family, as on the cards. Themes near the centre cross many categories; themes near a ring belong mostly to it.</p>
+    <p><span class="i3" data-ic="ring"></span>Rings are categories; <span class="i3" data-ic="design"></span><span class="i3" data-ic="rights"></span><span class="i3" data-ic="civic"></span>shapes are themes; <span class="i3" data-ic="dot"></span>dots are entries. Here colour and shape mean theme family; on the Index cards, colour and pattern mean category and the shape still marks the theme family. Themes near the centre cross many categories; themes near a ring belong mostly to it.</p>
     <p>Click any dot, shape or ring to pin its label and filter the Index below; click it again or click empty space to close and clear.</p>
   </div>
   <div class="netwrap">
@@ -712,20 +714,36 @@ function famPattern(k){
   return P[k]||P.other;
 }
 function patternFor(d){ return famPattern(primaryFamily(d)); }
+function catPattern(cat){
+  const c=COLOR[cat]||"#888", a=`color-mix(in srgb, ${c} 85%, transparent)`;
+  const P={
+    "Book":`repeating-linear-gradient(0deg, transparent 0 12px, ${a} 12px 16px)`,
+    "Person":`radial-gradient(${a} 3px, transparent 3.6px) 0 0/16px 16px`,
+    "Studio & Lab":`repeating-linear-gradient(0deg, transparent 0 21px, ${a} 21px 24px), repeating-linear-gradient(90deg, transparent 0 21px, ${a} 21px 24px)`,
+    "Festival & Conference":`repeating-radial-gradient(circle at 75% 25%, transparent 0 14px, ${a} 14px 17px)`,
+    "Data Portal":`repeating-linear-gradient(45deg, transparent 0 16px, ${a} 16px 18px), repeating-linear-gradient(-45deg, transparent 0 16px, ${a} 16px 18px)`,
+    "Dataset Source":`linear-gradient(135deg, ${a} 25%, transparent 25%) -12px 0/24px 24px, linear-gradient(225deg, ${a} 25%, transparent 25%) -12px 0/24px 24px`,
+    "Weird Dataset":`conic-gradient(${a} 25%, transparent 0 50%, ${a} 0 75%, transparent 0) 0 0/28px 28px`,
+    "Website & Publication":`repeating-linear-gradient(45deg, transparent 0 13px, ${a} 13px 17px)`,
+    "Video & Podcast":`repeating-radial-gradient(circle at 100% 100%, transparent 0 12px, ${a} 12px 14px)`,
+    "Tool":`repeating-linear-gradient(90deg, transparent 0 10px, ${a} 10px 13px)`};
+  return P[cat]||`radial-gradient(${a} 1.6px, transparent 2px) 0 0/10px 10px`;
+}
+
 function baseFor(cat){ return `color-mix(in srgb, ${COLOR[cat]} 42%, #1c0458)`; }
 function host(u){try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return ""}}
 function card(d){
   const ok=d.verified.startsWith("verified"), srch=d.verified.startsWith("no link");
-  const fk=primaryFamily(d), fc=famColor(fk);
+  const fk=primaryFamily(d), cc=COLOR[d.category]||"#888";
   const meta=[d.year,d.place].filter(Boolean).join(" · ");
   const stamp=d.status!=="active"?`<span class="stamp">${esc(d.status)}</span>`:"";
-  return `<article class="entry" style="--cat:${fc};--tabtext:${tabText(fc)}">
+  return `<article class="entry" style="--cat:${cc};--tabtext:${tabText(cc)}">
     <div class="sect"><span class="tabl"><span>${esc(d.category)}</span></span><span class="no">No. ${String(d.id).padStart(3,"0")}</span></div>
-    <div class="plate" style="background:${patternFor(d)}, var(--paper2)"><span class="badge" title="${esc(famLabel(fk))}">${shapeIcon(shapeOfFam(fk),fc,25)}</span><span class="cap" style="color:${fc}">${esc(famLabel(fk))}</span></div>
+    <div class="plate" style="background:${catPattern(d.category)}, var(--paper2)"><span class="badge" title="Theme family: ${esc(famLabel(fk))}">${shapeIcon(shapeOfFam(fk),"currentColor",25)}</span><span class="cap">${esc(famLabel(fk))}</span></div>
     <h3>${esc(d.name)}${stamp}</h3>
     ${d.who?`<div class="who">${esc(d.who)}</div>`:""}
     ${d.note?`<p class="note">${esc(d.note)}</p>`:""}
-    <div class="themes">${d.tags.map(t=>{const f=familyOfTag(t);return `<span style="color:${famColor(f)}">${shapeIcon(shapeOfFam(f),famColor(f),11)}<span style="color:var(--ink)">${esc(t)}</span></span>`}).join("")}</div>
+    <div class="themes">${d.tags.map(t=>{const f=familyOfTag(t);return `<span>${shapeIcon(shapeOfFam(f),"currentColor",11)}<span style="color:var(--ink)">${esc(t)}</span></span>`}).join("")}</div>
     <div class="access"><b>ACCESS</b><br><a href="${esc(d.url)}" target="_blank" rel="noopener">${srch?"Search the web for it":esc(host(d.url)||d.url)} ↗</a>${meta?`<br><span class="meta">${esc(meta)}</span>`:""}<br><span class="meta">${ok?"Link checked 19 Nov 2026":(srch?"No link confirmed":"Link not yet checked")}</span></div>
   </article>`;
 }
