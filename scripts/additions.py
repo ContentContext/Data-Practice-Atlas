@@ -100,7 +100,7 @@ add = [
 ("Chimdi Nwosu","Person","Data visualisation manager","","British Columbia","dataviz;africa","Nigerian-Canadian practitioner, DVS community voice.","",0,"active",V),
 ("Paola Villarreal","Person","Data scientist, civic technologist","","Mexico / US","civic-data;latin-america","Civic data work in Mexico and Boston (ACLU).","",0,"active",K),
 ("Kim Albrecht","Person","Data visualisation artist and researcher","","Berlin / Boston","complexity;data-art","metaLAB Harvard; visualising networks and knowledge.","https://kimalbrecht.com",0,"active",K),
-("Jason Forrest","Person","Editor, Nightingale; dataviz historian","","New York","history;community","Researches lost history of visualisation; Nightingale editorial team.","https://nightingaledvs.com",0,"active",V),
+("Jason Forrest","Person","Editor, Nightingale; dataviz historian","","New York","history;community","Researches lost history of visualisation; Nightingale editorial team.","https://jasonforrestagency.com",0,"active",K),
 ("Jen Christiansen","Person","Senior graphics editor, Scientific American","","New York","science;information-design","Author of 'Building Science Graphics'.","",0,"active",K),
 ("Jennifer Pahlka","Person","Founder, Code for America","","California","civic-tech;government","Former US Deputy CTO; author of Recoding America.","https://www.recodingamerica.us",0,"active",K),
 ("Beth Blauer","Person","Founder, GovEx at Johns Hopkins","","Baltimore","civic-data;government","Built performance and data programmes for US cities and states; JHU COVID dashboard data lead.","https://govex.jhu.edu",0,"active",K),
